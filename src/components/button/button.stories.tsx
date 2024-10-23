@@ -7,7 +7,7 @@ const meta = {
     onClick: { action: 'clicked' },
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'tertiary', 'link'],
+      options: ['primary', 'secondary', 'outline', 'text', 'icon'],
     },
   },
   component: Button,
@@ -20,7 +20,7 @@ type Story = StoryObj<typeof meta>
 
 export const Primary: Story = {
   args: {
-    children: 'Primary Button',
+    children: 'Button',
     disabled: false,
     variant: 'primary',
   },
@@ -28,42 +28,52 @@ export const Primary: Story = {
 
 export const Secondary: Story = {
   args: {
-    children: 'Secondary Button',
+    children: 'Button',
     disabled: false,
     variant: 'secondary',
   },
 }
-export const Tertiary: Story = {
+
+export const Outline: Story = {
   args: {
-    children: 'Tertiary Button',
+    children: 'Button',
     disabled: false,
-    variant: 'tertiary',
+    variant: 'outline',
   },
 }
-export const Link: Story = {
+
+export const Text: Story = {
   args: {
-    children: 'Button that looks like a link',
+    children: 'Button',
     disabled: false,
-    variant: 'link',
+    variant: 'text',
   },
 }
 
 export const FullWidth: Story = {
   args: {
-    children: 'Full Width Button',
+    children: 'Button',
     disabled: false,
     fullWidth: true,
     variant: 'primary',
   },
 }
 
-export const AsLink: Story = {
+// export const Link: Story = {
+//   args: {
+//     as: 'a',
+//     children: 'Link that looks like a button',
+//     href: 'https://google.com',
+//     rel: 'noopener noreferrer',
+//     target: '_blank',
+//     variant: 'primary',
+//   },
+// }
+
+export const WithIcon: Story = {
   args: {
-    as: 'a',
-    children: 'Link that looks like a button',
-    href: 'https://google.com',
-    rel: 'noopener noreferrer',
-    target: '_blank',
-    variant: 'primary',
+    children: 'Button',
+    disabled: false,
+    variant: 'icon',
   },
 }
