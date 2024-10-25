@@ -21,6 +21,8 @@ jobs:
           cache: 'pnpm'
       - name: Install dependencies
         run: pnpm install --no-frozen-lockfile
+      - name: Clear pnpm cache
+        run: pnpm cache clean
       - name: Build lib
         run: pnpm run build
       - uses: JS-DevTools/npm-publish@v3
