@@ -11,7 +11,8 @@ const preview: Preview = {
     backgrounds: {
       default: 'dark',
       values: [
-        {name:'dark', value: '#0d0d0d'}
+        {name:'dark', value: '#0d0d0d'},
+        {name:'light', value: '#fff' },
       ]
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
