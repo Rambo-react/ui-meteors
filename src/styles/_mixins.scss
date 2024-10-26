@@ -1,0 +1,80 @@
+@mixin Large {
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+@mixin H1 {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 36px;
+}
+
+@mixin H2 {
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+@mixin H3 {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+@mixin regular_text_16 {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@mixin Bold_text_16 {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+@mixin regular_text_14 {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+@mixin Medium_text_14 {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+@mixin bold_text_14 {
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+}
+
+@mixin small_text {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+}
+
+@mixin Semi-bold_small_text {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
+}
+
+@mixin regular_link {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #397DF6;
+}
+
+@mixin small_link {
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  text-align: left;
+  color: #397DF6;
+}
