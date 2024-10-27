@@ -7,7 +7,7 @@ const meta = {
     onClick: { action: 'clicked' },
     variant: {
       control: { type: 'radio' },
-      options: ['primary', 'secondary', 'outline', 'text', 'icon'],
+      options: ['primary', 'secondary', 'outline', 'text'],
     },
   },
   args: {
@@ -54,24 +54,5 @@ export const FullWidth: Story = {
     disabled: false,
     fullWidth: true,
     variant: 'primary',
-  },
-}
-
-// export const Link: Story = {
-//   args: {
-//     as: 'a',
-//     children: 'Link that looks like a button',
-//     href: 'https://google.com',
-//     rel: 'noopener noreferrer',
-//     target: '_blank',
-//     variant: 'primary',
-//   },
-// }
-
-export const WithIcon: Story = {
-  args: {
-    children: 'Button',
-    disabled: false,
-    variant: 'icon',
   },
 }
