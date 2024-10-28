@@ -1,0 +1,61 @@
+@import "../../styles/typography";
+
+.sidebar {
+  background-color: var(--color-dark-700);
+  width: 220px;
+  height: 100%;
+  //position: fixed;
+  margin: 0;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  overflow-x: hidden;
+  padding: 72px 50px 36px 62px;
+  @include Medium_text_14;
+}
+
+.sidebar li:not(:last-child):not(:nth-child(5)):not(:nth-child(7)) {
+  margin-bottom: 24px;
+}
+
+.sidebar li:nth-child(5) {
+  margin-bottom: 60px;
+}
+
+.sidebar li:nth-child(7) {
+  margin-bottom: 180px;
+}
+
+.menuItem {
+  list-style-type: none;
+}
+
+.menuItemLink {
+  display: flex;
+  //align-items: center;
+  text-decoration: none;
+  color: var(--color-light-100);
+  cursor: pointer;
+}
+
+.span {
+  color: var(--color-light-100);
+  margin-left: 12px;
+}
+
+.spanActive {
+  color: var(--color-accent-500);
+}
+
+.spanHover {
+  color: var(--color-accent-100);
+}
+
+.spanDisabled {
+  color: var(--color-dark-100);
+}
+
+.menuItemLinkDisabled {
+  cursor: not-allowed;
+  pointer-events: none;
+}
