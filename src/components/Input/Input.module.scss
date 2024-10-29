@@ -131,7 +131,8 @@ input:-webkit-autofill:focus {
     color: var(--color-dark-100);
   }
 
-  ~ .iconPass {
+  ~ .iconPass,
+  ~ .iconSearch {
     cursor: not-allowed;
     color: var(--color-dark-100);
   }
