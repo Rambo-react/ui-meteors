@@ -58,7 +58,7 @@ input:-webkit-autofill:focus {
 }
 
 .inputSearch {
-  padding: 6px 12px 6px 30px;
+  padding: 6px 12px 6px 40px;
 }
 
 .errorMsg {
@@ -82,7 +82,7 @@ input:-webkit-autofill:focus {
 .iconSearch {
   position: absolute;
   top: 50%;
-  left: 10px;
+  left: 12px;
   transform: translateY(-50%);
   color: var(--color-light-900);
 }

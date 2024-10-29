@@ -1,12 +1,11 @@
 import { ComponentPropsWithoutRef, forwardRef, useId, useState } from 'react'
 
+import * as Label from '@radix-ui/react-label'
 import { clsx } from 'clsx'
 
 import s from './Input.module.scss'
 
-import EyeOffOutline from '../../assets/components/EyeOffOutline'
-import EyeOutline from '../../assets/components/EyeOutline'
-import Search from '../../assets/components/Search'
+import { Icon } from '../Icon'
 
 export type InputProps = {
   className?: string
@@ -30,9 +29,9 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={containerClassName}>
         {label && (
-          <label className={s.label} htmlFor={finalId}>
+          <Label.Root className={s.label} htmlFor={id}>
             {label}
-          </label>
+          </Label.Root>
         )}
         <div className={clsx(s.inputContainer, isFocused && s.active)}>
           <input
@@ -52,12 +51,34 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             type={type === 'password' && showPassword ? 'text' : type}
             {...rest}
           />
-          {type === 'search' && <Search className={s.iconSearch} />}
+          {type === 'search' && (
+            <Icon
+              className={s.iconSearch}
+              color={'currentColor'}
+              height={20}
+              id={'search'}
+              width={20}
+            />
+          )}
           {type === 'password' &&
             (showPassword ? (
-              <EyeOffOutline className={s.iconPass} onClick={() => setShowPassword(false)} />
+              <Icon
+                className={s.iconPass}
+                color={'currentColor'}
+                height={24}
+                id={'eye-outline'}
+                onClick={() => setShowPassword(false)}
+                width={24}
+              />
             ) : (
-              <EyeOutline className={s.iconPass} onClick={() => setShowPassword(true)} />
+              <Icon
+                className={s.iconPass}
+                color={'currentColor'}
+                height={24}
+                id={'eye-off-outline'}
+                onClick={() => setShowPassword(true)}
+                width={24}
+              />
             ))}
         </div>
         <p className={`${s.errorMsg} ${errorMsg ? s.show : ''}`}>{errorMsg}</p>
