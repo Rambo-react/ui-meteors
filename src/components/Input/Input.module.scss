@@ -1,7 +1,9 @@
+@import '../../styles/_typography.scss';
+
 .label {
   display: block;
   cursor: pointer;
-  font-size: var(--font-size-s);
+  @include Regular_text_14;
   color: var(--color-light-900);
 }
 
@@ -24,7 +26,7 @@
   height: var(--line-height-l);
   padding: 6px 12px;
 
-  font-size: var(--font-size-m);
+  @include Regular_text_16;
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
@@ -64,7 +66,7 @@ input:-webkit-autofill:focus {
 .errorMsg {
   position: absolute;
   margin-top: 2px;
-  font-size: var(--font-size-xs);
+  @include Small_text;
   color: var(--color-danger-500);
 
   visibility: hidden;
