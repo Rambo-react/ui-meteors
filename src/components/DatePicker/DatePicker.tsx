@@ -1,33 +1,21 @@
-import { useState } from 'react'
+import { useReducer } from 'react'
 
 import clsx from 'clsx'
 
 import s from './DatePicker.module.scss'
 
 import { Icon } from '../Icon'
-import { SelectedDate, getCalendarDays } from './utils/getCalendarDays'
-
-const MONTHS_NUMBER: Record<number, string> = {
-  0: 'January',
-  1: 'February',
-  2: 'March',
-  3: 'April',
-  4: 'May',
-  5: 'June',
-  6: 'July',
-  7: 'August',
-  8: 'September',
-  9: 'October',
-  10: 'November',
-  11: 'December',
-}
-
-const WEEK_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
-
-const TODAY = new Date()
-const TODAYS_DAY = TODAY.getDate()
-const TODAYS_MONTH = TODAY.getMonth()
-const TODAYS_YEAR = TODAY.getFullYear()
+import { CalendarDay } from './CalendarDay/CalendarDay'
+import {
+  datePickerInitialState,
+  datePickerReducer,
+  setCalendarDataAC,
+  setSelectedDateAC,
+  toggleIsCalendarOpenAC,
+} from './datePickerReducer/datePickerReducer'
+import { SelectedDate } from './datePickerReducer/types'
+import { getCalendarDays } from './utils/getCalendarDays'
+import { MONTHS_NUMBER, WEEK_DAYS } from './variables'
 
 type Props = {
   disabled?: boolean
@@ -37,52 +25,37 @@ type Props = {
 }
 
 export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelect }: Props) => {
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false)
-  const [{ selectedMonth, selectedYear }, setCalendarState] = useState<CalendarState>({
-    selectedMonth: TODAYS_MONTH,
-    selectedYear: TODAYS_YEAR,
-  })
-  const [selectedDate, setSelectedDate] = useState<SelectedDate>({
-    day: TODAYS_DAY,
-    month: TODAYS_MONTH,
-    year: TODAYS_YEAR,
-  })
+  const [
+    {
+      calendarData: { selectedMonth, selectedYear },
+      isCalendarOpen,
+      selectedDate,
+    },
+    dispatch,
+  ] = useReducer(datePickerReducer, datePickerInitialState)
 
   const toggleCalendarHandler = () => {
     if (!disabled) {
-      setIsCalendarOpen(!isCalendarOpen)
+      dispatch(toggleIsCalendarOpenAC())
     }
   }
 
   const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
 
-  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map((date, i) => {
-    const dayOnClickHandler = () => {
-      setSelectedDate(date)
+  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map(date => {
+    const dayOnClickHandler = (date: SelectedDate) => {
+      dispatch(setSelectedDateAC(date))
       onDateSelect(new Date(date.year, date.month, date.day))
     }
 
-    const { day, month } = date
-
-    const isFromCurrentMonth = month === selectedMonth
-
     return (
-      <div
-        className={clsx({
-          [s.selected]: JSON.stringify(selectedDate) === JSON.stringify(date),
-        })}
-        key={`${day}${i}`}
+      <CalendarDay
+        date={date}
+        key={JSON.stringify(date)}
         onClick={dayOnClickHandler}
-      >
-        <span
-          className={clsx({
-            [s.dayFromCurrentMonth]: isFromCurrentMonth,
-            [s.today]: day === TODAY.getDate() && isFromCurrentMonth,
-          })}
-        >
-          {day}
-        </span>
-      </div>
+        selectedDate={selectedDate}
+        selectedMonth={selectedMonth}
+      />
     )
   })
 
@@ -102,10 +75,12 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
       year += isGoToPrevMonth ? -1 : 1
     }
 
-    setCalendarState({
-      selectedMonth: month,
-      selectedYear: year,
-    })
+    dispatch(
+      setCalendarDataAC({
+        selectedMonth: month,
+        selectedYear: year,
+      })
+    )
   }
 
   return (
@@ -168,9 +143,4 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
       {error && <span className={s.errorMessage}>{error}</span>}
     </div>
   )
-}
-
-type CalendarState = {
-  selectedMonth: number
-  selectedYear: number
 }

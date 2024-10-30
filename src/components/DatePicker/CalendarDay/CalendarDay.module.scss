@@ -1,0 +1,44 @@
+@import '@styles/typography';
+
+.calendarDay {
+  cursor: pointer;
+
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+
+  span {
+    @include Regular_text_16;
+
+    position: relative;
+    z-index: 1;
+    color: var(--color-light-900);
+
+    &.dayFromCurrentMonth {
+      color: var(--color-light-100);
+    }
+
+    &.today {
+      color: var(--color-accent-500);
+    }
+  }
+
+  &.selected::before {
+    content: '';
+
+    position: absolute;
+
+    display: block;
+
+    width: 36px;
+    height: 36px;
+
+    background-color: var(--color-accent-900);
+    border-radius: 50%;
+  }
+}

@@ -1,3 +1,4 @@
+import { SelectedDate } from '../datePickerReducer/types'
 import { getDaysInMonth } from './getDaysInMonth'
 
 export function getCalendarDays(year: number, month: number): SelectedDate[] {
@@ -37,10 +38,4 @@ export function getCalendarDays(year: number, month: number): SelectedDate[] {
   }
 
   return daysInCalendar
-}
-
-export type SelectedDate = {
-  day: number
-  month: number
-  year: number
 }
