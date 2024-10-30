@@ -99,7 +99,13 @@ export const DatePicker = ({ onDateSelect }: Props) => {
                   })
                 }
               >
-                <Icon height={24} id={'chevron_left'} width={24} />
+                <Icon
+                  fill={'#fff'}
+                  height={20}
+                  id={'arrow-ios-back'}
+                  viewBox={'0 0 24 24'}
+                  width={20}
+                />
               </button>
               <button
                 onClick={() =>
@@ -109,7 +115,13 @@ export const DatePicker = ({ onDateSelect }: Props) => {
                   })
                 }
               >
-                <Icon height={24} id={'chevron_right'} width={24} />
+                <Icon
+                  fill={'#fff'}
+                  height={20}
+                  id={'arrow-ios-forward'}
+                  viewBox={'0 0 24 24'}
+                  width={20}
+                />
               </button>
             </div>
           </div>
