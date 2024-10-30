@@ -25,6 +25,9 @@ const MONTHS_NUMBER: Record<number, string> = {
 const WEEK_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 
 const TODAY = new Date()
+const TODAYS_DAY = TODAY.getDate()
+const TODAYS_MONTH = TODAY.getMonth()
+const TODAYS_YEAR = TODAY.getFullYear()
 
 type Props = {
   disabled?: boolean
@@ -36,13 +39,13 @@ type Props = {
 export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelect }: Props) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [{ selectedMonth, selectedYear }, setCalendarState] = useState<CalendarState>({
-    selectedMonth: TODAY.getMonth(),
-    selectedYear: TODAY.getFullYear(),
+    selectedMonth: TODAYS_MONTH,
+    selectedYear: TODAYS_YEAR,
   })
   const [selectedDate, setSelectedDate] = useState<SelectedDate>({
-    day: TODAY.getDate(),
-    month: TODAY.getMonth(),
-    year: TODAY.getFullYear(),
+    day: TODAYS_DAY,
+    month: TODAYS_MONTH,
+    year: TODAYS_YEAR,
   })
 
   const toggleCalendarHandler = () => {
