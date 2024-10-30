@@ -1,0 +1,99 @@
+@import "../../styles/typography";
+
+button {
+  all: unset;
+}
+
+.RadioGroupRoot {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.RadioGroupItem {
+  border: solid 2px var(--color-light-100);
+  background-color: rgba(255, 255, 255, 0);
+  width: 20px;
+  height: 20px;
+  border-radius: 100%;
+  position: relative;
+}
+
+.RadioGroupItem[disabled] {
+  border-color: var(--color-dark-100);
+
+  .RadioGroupIndicator::after {
+    background-color: var(--color-dark-100);
+  }
+}
+
+.RadioGroupIndicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.RadioGroupIndicator::after {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  background-color: var(--color-light-100);
+}
+
+.Label {
+  color: var(--color-light-100);
+  @include Regular_text_14;
+  margin-left: 10px;
+}
+
+@mixin RadioGroupItemBefore {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: -39%;
+  right: 0;
+  bottom: 0;
+  margin: auto;
+  z-index: -1;
+  width: 36px;
+  height: 36px;
+  border-radius: 100%;
+}
+
+.RadioGroupItem:hover::before {
+  @include RadioGroupItemBefore;
+  background-color: var(--color-dark-300);
+}
+
+.RadioGroupItem:active::before {
+  @include RadioGroupItemBefore;
+  background-color: var(--color-dark-100);
+}
+
+.RadioGroupItem:focus::before {
+  @include RadioGroupItemBefore;
+  background-color: var(--color-dark-500);
+}
+
+.RadioGroupItem[disabled]:hover::before {
+  content: none;
+}
+
+.RadioGroupItem[disabled]:active::before {
+  content: none;
+}
+
+.RadioGroupItem[disabled]:focus::before {
+  content: none;
+}
+
+.RadioGroupLayoutItem {
+  display: flex;
+  align-items: center;
+}
