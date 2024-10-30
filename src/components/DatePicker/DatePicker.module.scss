@@ -57,6 +57,20 @@
     }
   }
 
+  // if date picker has an error
+  &.error {
+    span {
+      color: var(--color-danger-500);
+    }
+
+    .dateDisplayer {
+      cursor: default;
+      color: var(--color-danger-500);
+      background-color: var(--color-dark-500);
+      border-color: var(--color-danger-500);
+    }
+  }
+
   .calendar {
     position: absolute;
     top: 65px;
@@ -167,5 +181,9 @@
         }
       }
     }
+  }
+
+  .errorMessage {
+    @include Small_text;
   }
 }

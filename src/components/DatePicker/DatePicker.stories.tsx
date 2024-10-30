@@ -17,9 +17,17 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
+// stories
 export const BaseExample: Story = {}
+
 export const DisabledDatePicker: Story = {
   args: {
     disabled: true,
+  },
+}
+
+export const DatePickerWithError: Story = {
+  args: {
+    error: 'Error!',
   },
 }

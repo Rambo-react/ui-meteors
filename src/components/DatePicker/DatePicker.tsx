@@ -28,11 +28,12 @@ const TODAY = new Date()
 
 type Props = {
   disabled?: boolean
+  error?: string
   label?: string
   onDateSelect: (date: Date) => void
 }
 
-export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Props) => {
+export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelect }: Props) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [{ selectedMonth, selectedYear }, setCalendarState] = useState<CalendarState>({
     selectedMonth: TODAY.getMonth(),
@@ -86,6 +87,7 @@ export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Pr
     <div
       className={clsx(s.datePicker, {
         [s.disabled]: disabled,
+        [s.error]: error,
       })}
     >
       <span>{label}</span>
@@ -98,7 +100,7 @@ export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Pr
       >
         {`${selectedDate.day}/${selectedDate.month + 1}/${selectedDate.year}`}
         <Icon
-          fill={'#fff'}
+          fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
           height={24}
           id={isCalendarOpen ? 'calendar' : 'calendar-outline'}
           width={24}
@@ -120,7 +122,7 @@ export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Pr
                 }
               >
                 <Icon
-                  fill={'#fff'}
+                  fill={'var(--color-light-100)'}
                   height={20}
                   id={'arrow-ios-back'}
                   viewBox={'0 0 24 24'}
@@ -136,7 +138,7 @@ export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Pr
                 }
               >
                 <Icon
-                  fill={'#fff'}
+                  fill={'var(--color-light-100)'}
                   height={20}
                   id={'arrow-ios-forward'}
                   viewBox={'0 0 24 24'}
@@ -151,6 +153,8 @@ export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Pr
           <div className={s.calendarDays}>{mappedCalendarDays}</div>
         </div>
       )}
+
+      {error && <span className={s.errorMessage}>{error}</span>}
     </div>
   )
 }
