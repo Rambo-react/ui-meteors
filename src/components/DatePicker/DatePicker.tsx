@@ -83,6 +83,28 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
     )
   })
 
+  const goToMonth = (isGoToPrevMonth: boolean) => {
+    let shouldChangeYear = false
+    let month = selectedMonth
+    let year = selectedYear
+
+    if (month === (isGoToPrevMonth ? 0 : 11)) {
+      month = isGoToPrevMonth ? 11 : 0
+      shouldChangeYear = true
+    } else {
+      month += isGoToPrevMonth ? -1 : 1
+    }
+
+    if (shouldChangeYear) {
+      year += isGoToPrevMonth ? -1 : 1
+    }
+
+    setCalendarState({
+      selectedMonth: month,
+      selectedYear: year,
+    })
+  }
+
   return (
     <div
       className={clsx(s.datePicker, {
@@ -113,14 +135,7 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
             <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
             <div>
-              <button
-                onClick={() =>
-                  setCalendarState({
-                    selectedMonth: selectedMonth ? selectedMonth - 1 : 11,
-                    selectedYear,
-                  })
-                }
-              >
+              <button onClick={() => goToMonth(true)}>
                 <Icon
                   fill={'var(--color-light-100)'}
                   height={20}
@@ -129,14 +144,7 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
                   width={20}
                 />
               </button>
-              <button
-                onClick={() =>
-                  setCalendarState({
-                    selectedMonth: selectedMonth - 11 ? selectedMonth + 1 : 0,
-                    selectedYear,
-                  })
-                }
-              >
+              <button onClick={() => goToMonth(false)}>
                 <Icon
                   fill={'var(--color-light-100)'}
                   height={20}
