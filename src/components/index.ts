@@ -1,2 +1,5 @@
 export * from './Icon'
 export * from './Button'
+export * from './Tabs'
+export * from './TextArea'
+export * from './CheckBox'
