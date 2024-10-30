@@ -14,18 +14,16 @@ type Props = {
   placeholder?: string
 } & ComponentPropsWithoutRef<'textarea'>
 
-export const TextArea = (props: Props) => {
-  const {
-    className,
-    disabled = false,
-    error,
-    errorText = '',
-    label = 'Text-area',
-    onChange,
-    placeholder = 'Text-area',
-    ...rest
-  } = props
-
+export const TextArea = ({
+  className,
+  disabled = false,
+  error,
+  errorText = '',
+  label = 'Text-area',
+  onChange,
+  placeholder = 'Text-area',
+  ...rest
+}: Props) => {
   const classNames = clsx(s.textarea, error && s.error, className)
   const labelClassNames = clsx(s.label, disabled && s.disabled)
   const id = useId()

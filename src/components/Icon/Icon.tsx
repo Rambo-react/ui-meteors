@@ -2,7 +2,7 @@ import { ComponentPropsWithoutRef } from 'react'
 
 import sprite from './icons/sprite.svg'
 
-export type IconProps = {
+type Props = {
   color?: string
   height?: number
   id: string
@@ -11,9 +11,7 @@ export type IconProps = {
   width?: number
 } & ComponentPropsWithoutRef<'svg'>
 
-export const Icon = (props: IconProps) => {
-  const { color, height, id, stroke, viewBox, width, ...rest } = props
-
+export const Icon = ({ color, height, id, stroke, viewBox, width, ...rest }: Props) => {
   return (
     <svg
       fill={color}
