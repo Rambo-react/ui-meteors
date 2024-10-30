@@ -18,3 +18,8 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 export const BaseExample: Story = {}
+export const DisabledDatePicker: Story = {
+  args: {
+    disabled: true,
+  },
+}

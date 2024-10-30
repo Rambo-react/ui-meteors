@@ -27,10 +27,12 @@ const WEEK_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
 const TODAY = new Date()
 
 type Props = {
+  disabled?: boolean
+  label?: string
   onDateSelect: (date: Date) => void
 }
 
-export const DatePicker = ({ onDateSelect }: Props) => {
+export const DatePicker = ({ disabled, label = 'Select Date', onDateSelect }: Props) => {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false)
   const [{ selectedMonth, selectedYear }, setCalendarState] = useState<CalendarState>({
     selectedMonth: TODAY.getMonth(),
@@ -43,7 +45,9 @@ export const DatePicker = ({ onDateSelect }: Props) => {
   })
 
   const toggleCalendarHandler = () => {
-    setIsCalendarOpen(!isCalendarOpen)
+    if (!disabled) {
+      setIsCalendarOpen(!isCalendarOpen)
+    }
   }
 
   const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
@@ -79,11 +83,27 @@ export const DatePicker = ({ onDateSelect }: Props) => {
   })
 
   return (
-    <div className={s.datePicker}>
-      <span>Date select</span>
-      <div className={s.datePickerForm} onClick={toggleCalendarHandler}>{`${selectedDate.day}/${
-        selectedDate.month + 1
-      }/${selectedDate.year}`}</div>
+    <div
+      className={clsx(s.datePicker, {
+        [s.disabled]: disabled,
+      })}
+    >
+      <span>{label}</span>
+
+      <div
+        className={clsx(s.dateDisplayer, {
+          [s.calendarExpanded]: isCalendarOpen, // for background while calendar opened
+        })}
+        onClick={toggleCalendarHandler}
+      >
+        {`${selectedDate.day}/${selectedDate.month + 1}/${selectedDate.year}`}
+        <Icon
+          fill={'#fff'}
+          height={24}
+          id={isCalendarOpen ? 'calendar' : 'calendar-outline'}
+          width={24}
+        />
+      </div>
 
       {isCalendarOpen && (
         <div className={s.calendar}>
