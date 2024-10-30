@@ -4,7 +4,11 @@ import { DatePicker } from '.'
 
 const meta = {
   argTypes: {},
-  args: {},
+  args: {
+    onDateSelect(date: Date) {
+      alert(date)
+    },
+  },
   component: DatePicker,
   tags: ['autodocs'],
   title: 'Components/DatePicker',

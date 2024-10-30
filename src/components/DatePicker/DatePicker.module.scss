@@ -1,0 +1,137 @@
+@import '@styles/typography';
+
+.datePicker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+
+  span {
+    @include Regular_text_14;
+
+    color: var(--color-light-900);
+  }
+
+  &Form {
+    @include Regular_text_16;
+
+    width: auto;
+    padding: 6px 12px;
+
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-300);
+    border-radius: 2px;
+  }
+
+  .calendar {
+    position: absolute;
+    top: 63px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    width: 300px;
+    height: 348px;
+    padding: 16px 24px;
+
+    background-color: var(--color-dark-500);
+    border: 1px solid var(--color-dark-300);
+
+    .monthsSettings {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      span {
+        @include Bold_text_16;
+
+        margin: 6px 0 6px 2px;
+        color: var(--color-light-100);
+      }
+
+      button {
+        all: unset;
+
+        cursor: pointer;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 36px;
+        height: 36px;
+
+        background-color: var(--color-dark-100);
+        border-radius: 50%;
+      }
+    }
+
+    .daysInWeek {
+      display: flex;
+      justify-content: space-between;
+
+      div {
+        @include Regular_text_16;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 36px;
+        height: 40px;
+
+        color: var(--color-light-900);
+      }
+    }
+
+    .calendarDays {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-template-rows: repeat(6, 1fr);
+
+      div {
+        cursor: pointer;
+
+        position: relative;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        width: 36px;
+        height: 36px;
+
+        span {
+          @include Regular_text_16;
+
+          position: relative;
+          z-index: 1;
+          color: var(--color-light-900);
+
+          &.dayFromCurrentMonth {
+            color: var(--color-light-100);
+          }
+
+          &.today {
+            color: var(--color-accent-500);
+          }
+        }
+
+        &.selected::before {
+          content: '';
+
+          position: absolute;
+
+          display: block;
+
+          width: 36px;
+          height: 36px;
+
+          background-color: var(--color-accent-900);
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}
