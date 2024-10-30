@@ -161,7 +161,7 @@ export const Gallery = () => (
         </div>
         <div
           style={{
-            color: '#0d0d0d',
+            color: '#fff',
             fontSize: '12px',
             lineHeight: 1.2,
             marginLeft: '10px',
