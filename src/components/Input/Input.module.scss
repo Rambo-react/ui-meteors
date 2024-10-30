@@ -1,9 +1,10 @@
-@import '../../styles/_typography.scss';
+@import '../../styles/typography';
 
 .label {
-  display: block;
-  cursor: pointer;
   @include Regular_text_14;
+
+  cursor: pointer;
+  display: block;
   color: var(--color-light-900);
 }
 
@@ -20,13 +21,15 @@
 }
 
 .inputField {
+  @include Regular_text_16;
+
   display: inline-block;
+
   box-sizing: border-box;
   width: 100%;
   height: var(--line-height-l);
   padding: 6px 12px;
 
-  @include Regular_text_16;
   color: var(--color-light-100);
 
   background-color: var(--color-dark-900);
@@ -43,8 +46,8 @@
   }
 
   &:focus {
-    border-color: var(--color-light-100);
     background-color: var(--color-dark-500);
+    border-color: var(--color-light-100);
 
     &::placeholder {
       color: var(--color-light-100);
@@ -56,6 +59,7 @@ input:-webkit-autofill,
 input:-webkit-autofill:hover,
 input:-webkit-autofill:focus {
   box-shadow: 0 0 0 1000px black inset;
+
   -webkit-text-fill-color: var(--color-light-100);
 }
 
@@ -64,16 +68,20 @@ input:-webkit-autofill:focus {
 }
 
 .errorMsg {
-  position: absolute;
-  margin-top: 2px;
   @include Small_text;
+
+  position: absolute;
+
+  margin-top: 2px;
+
   color: var(--color-danger-500);
 
   visibility: hidden;
+  opacity: 0;
+
   transition:
     visibility 0.3s ease,
     opacity 0.3s ease;
-  opacity: 0;
 
   &.show {
     visibility: visible;
@@ -86,10 +94,42 @@ input:-webkit-autofill:focus {
   top: 50%;
   left: 12px;
   transform: translateY(-50%);
+
   color: var(--color-light-900);
 }
 
 .active .iconSearch {
+  color: var(--color-light-100);
+}
+
+.iconPass {
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  color: var(--color-light-100);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--color-dark-100);
+  border-color: var(--color-dark-100);
+
+  &::placeholder {
+    color: var(--color-dark-100);
+  }
+
+  ~ .iconPass,
+  ~ .iconSearch {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+}
+
+.active .iconPass {
   color: var(--color-light-100);
 }
 
@@ -113,33 +153,4 @@ input:-webkit-autofill:focus {
       color: var(--color-light-100);
     }
   }
-}
-
-.iconPass {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  right: 10px;
-  transform: translateY(-50%);
-  color: var(--color-light-100);
-}
-
-.disabled {
-  cursor: not-allowed;
-  color: var(--color-dark-100);
-  border-color: var(--color-dark-100);
-
-  &::placeholder {
-    color: var(--color-dark-100);
-  }
-
-  ~ .iconPass,
-  ~ .iconSearch {
-    cursor: not-allowed;
-    color: var(--color-dark-100);
-  }
-}
-
-.active .iconPass {
-  color: var(--color-light-100);
 }
