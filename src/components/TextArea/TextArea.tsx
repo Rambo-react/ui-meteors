@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useId } from 'react'
+import { ComponentPropsWithoutRef, useId } from 'react'
 
 import * as Label from '@radix-ui/react-label'
 import clsx from 'clsx'
@@ -12,6 +12,7 @@ type Props = {
   label?: string
   onChange?: (text: string) => void
   placeholder?: string
+  value?: string
 } & ComponentPropsWithoutRef<'textarea'>
 
 export const TextArea = ({
@@ -22,19 +23,12 @@ export const TextArea = ({
   label = 'Text-area',
   onChange,
   placeholder = 'Text-area',
+  value,
   ...rest
 }: Props) => {
   const classNames = clsx(s.textarea, error && s.error, className)
   const labelClassNames = clsx(s.label, disabled && s.disabled)
   const id = useId()
-
-  const handleChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    const { value } = e.target
-
-    if (onChange) {
-      onChange(value)
-    }
-  }
 
   return (
     <div className={s.container}>
@@ -47,8 +41,9 @@ export const TextArea = ({
         aria-label={label}
         className={classNames}
         id={id}
-        onChange={handleChange}
+        onChange={value => onChange?.(value)}
         placeholder={placeholder}
+        value={value}
         {...rest}
         disabled={disabled}
       />
