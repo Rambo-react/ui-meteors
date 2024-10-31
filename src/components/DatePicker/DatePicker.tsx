@@ -1,4 +1,4 @@
-import { useReducer } from 'react'
+import { useReducer, useRef } from 'react'
 
 import clsx from 'clsx'
 
@@ -40,9 +40,13 @@ export const DatePicker = ({
     dispatch,
   ] = useReducer(datePickerReducer, datePickerInitialState)
 
+  const calendarRef = useRef<HTMLDivElement>(null)
+
   const toggleCalendarHandler = () => {
     if (!disabled) {
       dispatch(toggleIsCalendarOpenAC())
+
+      setTimeout(() => calendarRef.current && calendarRef.current.focus(), 0)
     }
   }
 
@@ -106,6 +110,10 @@ export const DatePicker = ({
       })
       .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
 
+  const onCalendarBlur = () => {
+    dispatch(toggleIsCalendarOpenAC())
+  }
+
   return (
     <div
       className={clsx(s.datePicker, {
@@ -132,7 +140,7 @@ export const DatePicker = ({
       </div>
 
       {isCalendarOpen && (
-        <div className={s.calendar}>
+        <div className={s.calendar} onBlur={onCalendarBlur} ref={calendarRef} tabIndex={0}>
           <div className={s.monthsSettings}>
             <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
