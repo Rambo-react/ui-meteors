@@ -3,9 +3,29 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { DatePicker } from '.'
 
 const meta = {
-  argTypes: {},
+  argTypes: {
+    disabled: {
+      description: 'Sets disabled',
+    },
+    error: {
+      description: 'Sets error',
+    },
+    isRangeInput: {
+      description: 'Sets the multi-select mode',
+    },
+    label: {
+      description: 'Sets label',
+    },
+    onDateSelect: {
+      description: 'Callback function to get user selected dates',
+    },
+  },
   args: {
-    onDateSelect(date: Date) {
+    disabled: false,
+    error: '',
+    isRangeInput: false,
+    label: '',
+    onDateSelect(date: Date[]) {
       console.log(date)
     },
   },
@@ -18,7 +38,11 @@ export default meta
 type Story = StoryObj<typeof meta>
 
 // stories
-export const BaseExample: Story = {}
+export const BaseExample: Story = {
+  render(args) {
+    return <DatePicker {...args} />
+  },
+}
 
 export const DisabledDatePicker: Story = {
   args: {
