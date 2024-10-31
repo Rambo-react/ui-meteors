@@ -12,6 +12,7 @@ import {
   setCalendarDataAC,
   toggleIsCalendarOpenAC,
 } from './datePickerReducer/datePickerReducer'
+import { formatSelectedDates } from './utils/formatSelectedDates'
 import { getCalendarDays } from './utils/getCalendarDays'
 import { MONTHS_NUMBER, WEEK_DAYS } from './variables'
 
@@ -89,21 +90,6 @@ export const DatePicker = ({
     )
   }
 
-  const mappedSelectedDate =
-    selectedDates
-      .map(time => {
-        const date = new Date(time)
-
-        let resultString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
-
-        if (selectedDates.length !== 2 && isRangeInput) {
-          resultString += ' - __/__/____'
-        }
-
-        return resultString
-      })
-      .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
-
   const onCalendarBlur = () => {
     if (isCalendarOpen) {
       dispatch(toggleIsCalendarOpenAC())
@@ -125,7 +111,7 @@ export const DatePicker = ({
         })}
         onMouseDown={toggleCalendarHandler}
       >
-        {mappedSelectedDate}
+        {formatSelectedDates(selectedDates, isRangeInput)}
 
         <Icon
           fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
