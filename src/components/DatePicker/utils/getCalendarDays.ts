@@ -4,7 +4,7 @@ import { getTime } from './getTime'
 export function getCalendarDays(year: number, month: number): number[] {
   const firstDayOfCurrentMonth = new Date(year, month, 1)
 
-  const firstDayPosition = firstDayOfCurrentMonth.getDay() // from 1
+  const firstDayPosition = firstDayOfCurrentMonth.getDay() || 7
 
   const previousMonth = month ? month - 1 : 11
   const previousMonthYear = previousMonth === 11 ? year - 1 : year
