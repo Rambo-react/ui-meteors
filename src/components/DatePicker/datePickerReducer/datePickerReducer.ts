@@ -1,5 +1,5 @@
 import { TODAYS_MONTH, TODAYS_YEAR } from '../variables'
-import { CalendarData, DatePickerReducerActions, DatePickerState, SelectedDate } from './types'
+import { CalendarData, DatePickerReducerActions, DatePickerState } from './types'
 
 // initial state
 export const datePickerInitialState: DatePickerState = {
