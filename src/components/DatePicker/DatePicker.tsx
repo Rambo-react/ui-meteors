@@ -155,7 +155,7 @@ export const DatePicker = ({
             <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
             <div>
-              <button onClick={() => goToMonth(true)}>
+              <button onClick={() => goToMonth(true)} onMouseDown={e => e.preventDefault()}>
                 <Icon
                   fill={'var(--color-light-100)'}
                   height={20}
@@ -164,7 +164,7 @@ export const DatePicker = ({
                   width={20}
                 />
               </button>
-              <button onClick={() => goToMonth(false)}>
+              <button onClick={() => goToMonth(false)} onMouseDown={e => e.preventDefault()}>
                 <Icon
                   fill={'var(--color-light-100)'}
                   height={20}
