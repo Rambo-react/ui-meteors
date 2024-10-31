@@ -73,7 +73,8 @@
 
   .calendar {
     position: absolute;
-    top: 65px;
+    z-index: 10;
+    top: 63px;
 
     display: flex;
     flex-direction: column;
@@ -87,6 +88,10 @@
     border: 1px solid var(--color-dark-300);
     border-radius: 2px;
     outline: none;
+
+    &.calendarWithoutLabel {
+      top: 39px;
+    }
 
     .monthsSettings {
       display: flex;

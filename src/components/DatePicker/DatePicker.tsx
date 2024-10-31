@@ -28,7 +28,7 @@ export const DatePicker = ({
   disabled,
   error,
   isRangeInput = false,
-  label = 'Select Date',
+  label,
   onDateSelect,
 }: Props) => {
   const [
@@ -133,7 +133,7 @@ export const DatePicker = ({
         [s.error]: error,
       })}
     >
-      <span>{label}</span>
+      {label && <span>{label}</span>}
 
       <div
         className={clsx(s.dateDisplayer, {
@@ -152,7 +152,14 @@ export const DatePicker = ({
       </div>
 
       {isCalendarOpen && (
-        <div className={s.calendar} onBlur={onCalendarBlur} ref={calendarRef} tabIndex={0}>
+        <div
+          className={clsx(s.calendar, {
+            [s.calendarWithoutLabel]: !label,
+          })}
+          onBlur={onCalendarBlur}
+          ref={calendarRef}
+          tabIndex={0}
+        >
           <div className={s.monthsSettings}>
             <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
