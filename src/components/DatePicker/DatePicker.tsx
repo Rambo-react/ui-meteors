@@ -121,7 +121,7 @@ export const DatePicker = ({
       .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
 
   const onCalendarBlur = () => {
-    if (!isCalendarOpen) {
+    if (isCalendarOpen) {
       dispatch(toggleIsCalendarOpenAC())
     }
   }
@@ -139,7 +139,7 @@ export const DatePicker = ({
         className={clsx(s.dateDisplayer, {
           [s.calendarExpanded]: isCalendarOpen, // for background while calendar opened
         })}
-        onClick={toggleCalendarHandler}
+        onMouseDown={toggleCalendarHandler}
       >
         {mappedSelectedDate}
 
