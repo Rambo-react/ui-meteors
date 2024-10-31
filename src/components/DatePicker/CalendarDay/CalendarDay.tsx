@@ -42,6 +42,7 @@ export const CalendarDay = ({
       <span
         className={clsx({
           [s.dayFromCurrentMonth]: isFromCurrentMonth,
+          [s.dayFromOtherMonth]: !isFromCurrentMonth,
           [s.today]: day === TODAYS_DAY && isFromCurrentMonth,
           [s.weekend]: isFromCurrentMonth && isWeekend,
         })}
