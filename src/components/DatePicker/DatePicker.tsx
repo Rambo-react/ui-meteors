@@ -56,10 +56,14 @@ export const DatePicker = ({
     const dayOnClickHandler = (date: number) => {
       dispatch(addSelectedDateAC(date, isRangeInput))
 
-      if (selectedDates.length === 2) {
-        onDateSelect([new Date(date)])
+      if (isRangeInput) {
+        if (selectedDates.length === 2) {
+          onDateSelect([new Date(date)])
+        } else {
+          onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
+        }
       } else {
-        onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
+        onDateSelect([new Date(date)])
       }
     }
 
@@ -106,7 +110,13 @@ export const DatePicker = ({
       .map(time => {
         const date = new Date(time)
 
-        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+        let resultString = `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+
+        if (selectedDates.length !== 2 && isRangeInput) {
+          resultString += ' - __/__/____'
+        }
+
+        return resultString
       })
       .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
 
