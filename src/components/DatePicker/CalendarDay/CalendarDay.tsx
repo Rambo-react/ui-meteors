@@ -3,7 +3,7 @@ import clsx from 'clsx'
 import s from './CalendarDay.module.scss'
 
 import { getDayMonthYear } from '../utils/getDayMonthYear'
-import { TODAYS_DAY } from '../variables'
+import { TODAYS_DAY, TODAYS_MONTH, TODAYS_YEAR } from '../variables'
 
 type Props = {
   dateInMs: number
@@ -24,7 +24,7 @@ export const CalendarDay = ({
     onClick(dateInMs)
   }
 
-  const { day, month } = getDayMonthYear(dateInMs)
+  const { day, month, year } = getDayMonthYear(dateInMs)
 
   const isFromCurrentMonth = month === selectedMonth
 
@@ -43,7 +43,7 @@ export const CalendarDay = ({
         className={clsx({
           [s.dayFromCurrentMonth]: isFromCurrentMonth,
           [s.dayFromOtherMonth]: !isFromCurrentMonth,
-          [s.today]: day === TODAYS_DAY && isFromCurrentMonth,
+          [s.today]: day === TODAYS_DAY && month === TODAYS_MONTH && year === TODAYS_YEAR,
           [s.weekend]: isFromCurrentMonth && isWeekend,
         })}
       >
