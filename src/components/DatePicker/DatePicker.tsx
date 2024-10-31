@@ -52,7 +52,11 @@ export const DatePicker = ({
     const dayOnClickHandler = (date: number) => {
       dispatch(addSelectedDateAC(date, isRangeInput))
 
-      onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
+      if (selectedDates.length === 2) {
+        onDateSelect([new Date(date)])
+      } else {
+        onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
+      }
     }
 
     const isWeekend = [5, 6, 12, 13, 19, 20, 26, 27, 33, 34, 40, 41].includes(i)
