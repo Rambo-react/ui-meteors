@@ -16,4 +16,5 @@ export const TODAY = new Date()
 export const TODAYS_DAY = TODAY.getDate()
 export const TODAYS_MONTH = TODAY.getMonth()
 export const TODAYS_YEAR = TODAY.getFullYear()
+export const TODAY_IN_MS = TODAY.getTime()
 export const WEEK_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']

@@ -2,29 +2,40 @@ import clsx from 'clsx'
 
 import s from './CalendarDay.module.scss'
 
-import { SelectedDate } from '../utils/getCalendarDays'
+import { getDayMonthYear } from '../utils/getDayMonthYear'
 import { TODAYS_DAY } from '../variables'
 
 type Props = {
-  date: SelectedDate
-  onClick: (date: SelectedDate) => void
-  selectedDate: SelectedDate
+  dateInMs: number
+  isWeekend?: boolean
+  onClick: (date: number) => void
+  selectedDates: number[]
   selectedMonth: number
 }
 
-export const CalendarDay = ({ date, onClick, selectedDate, selectedMonth }: Props) => {
+export const CalendarDay = ({
+  dateInMs,
+  isWeekend,
+  onClick,
+  selectedDates,
+  selectedMonth,
+}: Props) => {
   const onClickHandler = () => {
-    onClick(date)
+    onClick(dateInMs)
   }
 
-  const { day, month } = date
+  const { day, month } = getDayMonthYear(dateInMs)
 
   const isFromCurrentMonth = month === selectedMonth
 
   return (
     <div
       className={clsx(s.calendarDay, {
-        [s.selected]: JSON.stringify(selectedDate) === JSON.stringify(date),
+        [s.endDate]: selectedDates.length === 2 && selectedDates[1] === dateInMs,
+        [s.intermediateDate]:
+          selectedDates.length === 2 && selectedDates[0] < dateInMs && dateInMs < selectedDates[1],
+        [s.selected]: selectedDates.length === 1 && selectedDates[0] === dateInMs,
+        [s.startDate]: selectedDates.length === 2 && selectedDates[0] === dateInMs,
       })}
       onClick={onClickHandler}
     >
@@ -32,6 +43,7 @@ export const CalendarDay = ({ date, onClick, selectedDate, selectedMonth }: Prop
         className={clsx({
           [s.dayFromCurrentMonth]: isFromCurrentMonth,
           [s.today]: day === TODAYS_DAY && isFromCurrentMonth,
+          [s.weekend]: isFromCurrentMonth && isWeekend,
         })}
       >
         {day}

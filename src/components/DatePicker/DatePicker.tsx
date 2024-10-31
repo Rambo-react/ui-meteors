@@ -7,29 +7,35 @@ import s from './DatePicker.module.scss'
 import { Icon } from '../Icon'
 import { CalendarDay } from './CalendarDay/CalendarDay'
 import {
+  addSelectedDateAC,
   datePickerInitialState,
   datePickerReducer,
   setCalendarDataAC,
-  setSelectedDateAC,
   toggleIsCalendarOpenAC,
 } from './datePickerReducer/datePickerReducer'
-import { SelectedDate } from './datePickerReducer/types'
 import { getCalendarDays } from './utils/getCalendarDays'
 import { MONTHS_NUMBER, WEEK_DAYS } from './variables'
 
 type Props = {
   disabled?: boolean
   error?: string
+  isRangeInput?: boolean
   label?: string
-  onDateSelect: (date: Date) => void
+  onDateSelect: (date: Date[]) => void
 }
 
-export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelect }: Props) => {
+export const DatePicker = ({
+  disabled,
+  error,
+  isRangeInput = false,
+  label = 'Select Date',
+  onDateSelect,
+}: Props) => {
   const [
     {
       calendarData: { selectedMonth, selectedYear },
       isCalendarOpen,
-      selectedDate,
+      selectedDates,
     },
     dispatch,
   ] = useReducer(datePickerReducer, datePickerInitialState)
@@ -42,18 +48,22 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
 
   const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
 
-  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map(date => {
-    const dayOnClickHandler = (date: SelectedDate) => {
-      dispatch(setSelectedDateAC(date))
-      onDateSelect(new Date(date.year, date.month, date.day))
+  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map((date, i) => {
+    const dayOnClickHandler = (date: number) => {
+      dispatch(addSelectedDateAC(date, isRangeInput))
+
+      onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
     }
+
+    const isWeekend = [5, 6, 12, 13, 19, 20, 26, 27, 33, 34, 40, 41].includes(i)
 
     return (
       <CalendarDay
-        date={date}
+        dateInMs={date}
+        isWeekend={isWeekend}
         key={JSON.stringify(date)}
         onClick={dayOnClickHandler}
-        selectedDate={selectedDate}
+        selectedDates={selectedDates}
         selectedMonth={selectedMonth}
       />
     )
@@ -83,6 +93,15 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
     )
   }
 
+  const mappedSelectedDate =
+    selectedDates
+      .map(time => {
+        const date = new Date(time)
+
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
+      })
+      .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
+
   return (
     <div
       className={clsx(s.datePicker, {
@@ -98,7 +117,8 @@ export const DatePicker = ({ disabled, error, label = 'Select Date', onDateSelec
         })}
         onClick={toggleCalendarHandler}
       >
-        {`${selectedDate.day}/${selectedDate.month + 1}/${selectedDate.year}`}
+        {mappedSelectedDate}
+
         <Icon
           fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
           height={24}

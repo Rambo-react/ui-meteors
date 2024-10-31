@@ -1,7 +1,7 @@
-import { SelectedDate } from '../datePickerReducer/types'
 import { getDaysInMonth } from './getDaysInMonth'
+import { getTime } from './getTime'
 
-export function getCalendarDays(year: number, month: number): SelectedDate[] {
+export function getCalendarDays(year: number, month: number): number[] {
   const firstDayOfCurrentMonth = new Date(year, month, 1)
 
   const firstDayPosition = firstDayOfCurrentMonth.getDay() // from 1
@@ -12,30 +12,32 @@ export function getCalendarDays(year: number, month: number): SelectedDate[] {
   const nextMonth = month - 11 ? month + 1 : 0
   const nextMonthYear = nextMonth === 0 ? year + 1 : year
 
-  const daysInCalendar: SelectedDate[] = []
+  const datesInCalendar: number[] = []
 
   // add previous month days
   for (let i = 0; i < firstDayPosition - 1; i++) {
-    daysInCalendar.unshift({
-      day: getDaysInMonth(year, previousMonth) - i,
-      month: previousMonth,
-      year: previousMonthYear,
-    })
+    datesInCalendar.unshift(
+      getTime({
+        day: getDaysInMonth(year, previousMonth) - i,
+        month: previousMonth,
+        year: previousMonthYear,
+      })
+    )
   }
 
   // add current month days
   for (let i = 1; i <= getDaysInMonth(year, month); i++) {
-    daysInCalendar.push({ day: i, month, year })
+    datesInCalendar.push(getTime({ day: i, month, year }))
   }
 
   // add next month days
-  if (daysInCalendar.length !== 42) {
-    const iterationCount = 42 - daysInCalendar.length
+  if (datesInCalendar.length !== 42) {
+    const iterationCount = 42 - datesInCalendar.length
 
     for (let i = 1; i <= iterationCount; i++) {
-      daysInCalendar.push({ day: i, month: nextMonth, year: nextMonthYear })
+      datesInCalendar.push(getTime({ day: i, month: nextMonth, year: nextMonthYear }))
     }
   }
 
-  return daysInCalendar
+  return datesInCalendar
 }

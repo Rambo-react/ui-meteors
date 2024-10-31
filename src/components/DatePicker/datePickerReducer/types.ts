@@ -1,9 +1,9 @@
-import { setCalendarDataAC, setSelectedDateAC, toggleIsCalendarOpenAC } from './datePickerReducer'
+import { addSelectedDateAC, setCalendarDataAC, toggleIsCalendarOpenAC } from './datePickerReducer'
 
 export type DatePickerState = {
   calendarData: CalendarData
   isCalendarOpen: boolean
-  selectedDate: SelectedDate
+  selectedDates: number[]
 }
 export type CalendarData = {
   selectedMonth: number
@@ -15,6 +15,6 @@ export type SelectedDate = {
   year: number
 }
 export type DatePickerReducerActions =
+  | ReturnType<typeof addSelectedDateAC>
   | ReturnType<typeof setCalendarDataAC>
-  | ReturnType<typeof setSelectedDateAC>
   | ReturnType<typeof toggleIsCalendarOpenAC>

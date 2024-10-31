@@ -6,7 +6,7 @@ const meta = {
   argTypes: {},
   args: {
     onDateSelect(date: Date) {
-      alert(date)
+      console.log(date)
     },
   },
   component: DatePicker,
@@ -29,5 +29,11 @@ export const DisabledDatePicker: Story = {
 export const DatePickerWithError: Story = {
   args: {
     error: 'Error!',
+  },
+}
+
+export const DatePickerWithRange: Story = {
+  args: {
+    isRangeInput: true,
   },
 }
