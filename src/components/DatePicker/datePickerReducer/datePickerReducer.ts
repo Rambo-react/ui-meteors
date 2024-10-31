@@ -1,12 +1,5 @@
-import { TODAYS_MONTH, TODAYS_YEAR } from '../variables'
-import { CalendarData, DatePickerReducerActions, DatePickerState } from './types'
-
 // initial state
 export const datePickerInitialState: DatePickerState = {
-  calendarData: {
-    selectedMonth: TODAYS_MONTH,
-    selectedYear: TODAYS_YEAR,
-  },
   isCalendarOpen: false,
   selectedDates: [],
 }
@@ -31,9 +24,6 @@ export const datePickerReducer = (
         return { ...state, selectedDates: [action.selectedDate] }
       }
     }
-    case 'SET_CALENDAR_DATA': {
-      return { ...state, calendarData: action.calendarData }
-    }
     default: {
       return state
     }
@@ -46,5 +36,16 @@ export const toggleIsCalendarOpenAC = () => ({ type: 'TOGGLE_IS_CALENDAR_OPEN' }
 export const addSelectedDateAC = (selectedDate: number, isRangeInput: boolean) =>
   ({ isRangeInput, selectedDate, type: 'ADD_SELECTED_DATE' }) as const
 
-export const setCalendarDataAC = (calendarData: CalendarData) =>
-  ({ calendarData, type: 'SET_CALENDAR_DATA' }) as const
+// types
+export type DatePickerState = {
+  isCalendarOpen: boolean
+  selectedDates: number[]
+}
+export type SelectedDate = {
+  day: number
+  month: number
+  year: number
+}
+export type DatePickerReducerActions =
+  | ReturnType<typeof addSelectedDateAC>
+  | ReturnType<typeof toggleIsCalendarOpenAC>

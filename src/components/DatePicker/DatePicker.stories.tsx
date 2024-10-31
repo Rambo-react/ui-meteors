@@ -10,24 +10,24 @@ const meta = {
     error: {
       description: 'Sets error',
     },
+    getDate: {
+      description: 'Callback function to get user selected dates',
+    },
     isRangeInput: {
       description: 'Sets the multi-select mode',
     },
     label: {
       description: 'Sets label',
     },
-    onDateSelect: {
-      description: 'Callback function to get user selected dates',
-    },
   },
   args: {
     disabled: false,
     error: '',
-    isRangeInput: false,
-    label: '',
-    onDateSelect(date: Date[]) {
+    getDate(date: Date[]) {
       console.log(date)
     },
+    isRangeInput: false,
+    label: 'Select Date',
   },
   component: DatePicker,
   tags: ['autodocs'],

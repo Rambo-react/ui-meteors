@@ -1,47 +1,27 @@
-import { Dispatch } from 'react'
-
 import clsx from 'clsx'
 
 import s from './CalendarDay.module.scss'
 
-import { addSelectedDateAC } from '../datePickerReducer/datePickerReducer'
-import { DatePickerReducerActions } from '../datePickerReducer/types'
-import { getDayMonthYear } from '../utils/getDayMonthYear'
-import { TODAYS_DAY, TODAYS_MONTH, TODAYS_YEAR, WEEKEND_INDEXES } from '../variables'
+import { getDayMonthYear } from '../../utils'
+import { TODAYS_DAY, TODAYS_MONTH, TODAYS_YEAR, WEEKEND_INDEXES } from '../../variables'
 
 type Props = {
-  date: number
   dateInMs: number
-  dispatch: Dispatch<DatePickerReducerActions>
   index: number
-  isRangeInput: boolean
-  onDateSelect: (date: Date[]) => void
+  onDateSelect: (dateInMs: number) => void
   selectedDates: number[]
   selectedMonth: number
 }
 
 export const CalendarDay = ({
-  date,
   dateInMs,
-  dispatch,
   index,
-  isRangeInput,
   onDateSelect,
   selectedDates,
   selectedMonth,
 }: Props) => {
-  const dayOnClickHandler = () => {
-    dispatch(addSelectedDateAC(date, isRangeInput))
-
-    if (isRangeInput) {
-      if (selectedDates.length === 2) {
-        onDateSelect([new Date(date)])
-      } else {
-        onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
-      }
-    } else {
-      onDateSelect([new Date(date)])
-    }
+  const onDayClickHandler = () => {
+    onDateSelect(dateInMs)
   }
 
   const isWeekend = WEEKEND_INDEXES.includes(index)
@@ -59,10 +39,10 @@ export const CalendarDay = ({
         [s.selected]: selectedDates.length === 1 && selectedDates[0] === dateInMs,
         [s.startDate]: selectedDates.length === 2 && selectedDates[0] === dateInMs,
       })}
-      onClick={dayOnClickHandler}
+      onClick={onDayClickHandler}
     >
       <span
-        className={clsx({
+        className={clsx(s.day, {
           [s.dayFromCurrentMonth]: isFromCurrentMonth,
           [s.dayFromOtherMonth]: !isFromCurrentMonth,
           [s.today]: day === TODAYS_DAY && month === TODAYS_MONTH && year === TODAYS_YEAR,

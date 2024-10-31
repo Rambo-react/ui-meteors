@@ -1,5 +1,4 @@
-import { getDaysInMonth } from './getDaysInMonth'
-import { getTime } from './getTime'
+import { getDaysInMonth, getTime } from '.'
 
 export function getCalendarDays(year: number, month: number): number[] {
   const firstDayOfCurrentMonth = new Date(year, month, 1)

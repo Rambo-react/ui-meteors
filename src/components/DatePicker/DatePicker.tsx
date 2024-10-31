@@ -1,98 +1,43 @@
-import { useReducer, useRef } from 'react'
-
 import clsx from 'clsx'
 
 import s from './DatePicker.module.scss'
 
 import { Icon } from '../Icon'
-import { CalendarDay } from './CalendarDay/CalendarDay'
-import {
-  datePickerInitialState,
-  datePickerReducer,
-  setCalendarDataAC,
-  toggleIsCalendarOpenAC,
-} from './datePickerReducer/datePickerReducer'
-import { formatSelectedDates } from './utils/formatSelectedDates'
-import { getCalendarDays } from './utils/getCalendarDays'
-import { MONTHS_NUMBER, WEEK_DAYS } from './variables'
+import { Calendar } from './Calendar'
+import { addSelectedDateAC, toggleIsCalendarOpenAC } from './datePickerReducer'
+import { useDatePicker } from './useDatePicker'
+import { formatSelectedDates } from './utils'
 
 type Props = {
   disabled?: boolean
   error?: string
+  getDate: (date: Date[]) => void
   isRangeInput?: boolean
   label?: string
-  onDateSelect: (date: Date[]) => void
 }
 
-export const DatePicker = ({
-  disabled,
-  error,
-  isRangeInput = false,
-  label,
-  onDateSelect,
-}: Props) => {
-  const [
-    {
-      calendarData: { selectedMonth, selectedYear },
-      isCalendarOpen,
-      selectedDates,
-    },
-    dispatch,
-  ] = useReducer(datePickerReducer, datePickerInitialState)
+export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, label }: Props) => {
+  const { calendarRef, dispatch, isCalendarOpen, onCalendarBlur, selectedDates } = useDatePicker()
 
-  const calendarRef = useRef<HTMLDivElement>(null)
+  const onDateSelect = (dateInMs: number) => {
+    dispatch(addSelectedDateAC(dateInMs, isRangeInput))
 
-  const toggleCalendarHandler = () => {
+    if (isRangeInput) {
+      if (selectedDates.length === 2) {
+        getDate([new Date(dateInMs)])
+      } else {
+        getDate([...selectedDates, dateInMs].sort().map(ms => new Date(ms)))
+      }
+    } else {
+      getDate([new Date(dateInMs)])
+    }
+  }
+
+  const toggleCalendar = () => {
     if (!disabled) {
       dispatch(toggleIsCalendarOpenAC())
 
       setTimeout(() => calendarRef.current && calendarRef.current.focus(), 0)
-    }
-  }
-
-  const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
-
-  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map((date, i) => (
-    <CalendarDay
-      date={date}
-      dateInMs={date}
-      dispatch={dispatch}
-      index={i}
-      isRangeInput={isRangeInput}
-      key={JSON.stringify(date)}
-      onDateSelect={onDateSelect}
-      selectedDates={selectedDates}
-      selectedMonth={selectedMonth}
-    />
-  ))
-
-  const goToMonth = (isGoToPrevMonth: boolean) => {
-    let shouldChangeYear = false
-    let month = selectedMonth
-    let year = selectedYear
-
-    if (month === (isGoToPrevMonth ? 0 : 11)) {
-      month = isGoToPrevMonth ? 11 : 0
-      shouldChangeYear = true
-    } else {
-      month += isGoToPrevMonth ? -1 : 1
-    }
-
-    if (shouldChangeYear) {
-      year += isGoToPrevMonth ? -1 : 1
-    }
-
-    dispatch(
-      setCalendarDataAC({
-        selectedMonth: month,
-        selectedYear: year,
-      })
-    )
-  }
-
-  const onCalendarBlur = () => {
-    if (isCalendarOpen) {
-      dispatch(toggleIsCalendarOpenAC())
     }
   }
 
@@ -109,7 +54,7 @@ export const DatePicker = ({
         className={clsx(s.dateDisplayer, {
           [s.calendarExpanded]: isCalendarOpen, // for background while calendar opened
         })}
-        onMouseDown={toggleCalendarHandler}
+        onMouseDown={toggleCalendar}
       >
         {formatSelectedDates(selectedDates, isRangeInput)}
 
@@ -122,43 +67,13 @@ export const DatePicker = ({
       </div>
 
       {isCalendarOpen && (
-        <div
-          className={clsx(s.calendar, {
-            [s.calendarWithoutLabel]: !label,
-          })}
-          onBlur={onCalendarBlur}
+        <Calendar
+          label={label}
+          onCalendarBlur={onCalendarBlur}
+          onDateSelect={onDateSelect}
           ref={calendarRef}
-          tabIndex={0}
-        >
-          <div className={s.monthsSettings}>
-            <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
-
-            <div>
-              <button onClick={() => goToMonth(true)} onMouseDown={e => e.preventDefault()}>
-                <Icon
-                  fill={'var(--color-light-100)'}
-                  height={20}
-                  id={'arrow-ios-back'}
-                  viewBox={'0 0 24 24'}
-                  width={20}
-                />
-              </button>
-              <button onClick={() => goToMonth(false)} onMouseDown={e => e.preventDefault()}>
-                <Icon
-                  fill={'var(--color-light-100)'}
-                  height={20}
-                  id={'arrow-ios-forward'}
-                  viewBox={'0 0 24 24'}
-                  width={20}
-                />
-              </button>
-            </div>
-          </div>
-
-          <div className={s.daysInWeek}>{mappedWeekDays}</div>
-
-          <div className={s.calendarDays}>{mappedCalendarDays}</div>
-        </div>
+          selectedDates={selectedDates}
+        />
       )}
 
       {error && <span className={s.errorMessage}>{error}</span>}

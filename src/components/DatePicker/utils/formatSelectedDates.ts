@@ -1,4 +1,4 @@
-export function formatSelectedDates(selectedDates: number[], isRangeInput: boolean) {
+export function formatSelectedDates(selectedDates: number[], isRangeInput: boolean): string {
   return (
     selectedDates
       .map(time => {

@@ -1,4 +1,6 @@
-export function getDayMonthYear(time: number) {
+import { SelectedDate } from '../datePickerReducer'
+
+export function getDayMonthYear(time: number): SelectedDate {
   const date = new Date(time)
 
   return {
