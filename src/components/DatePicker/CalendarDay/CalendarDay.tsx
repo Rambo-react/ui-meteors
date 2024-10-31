@@ -1,28 +1,50 @@
+import { Dispatch } from 'react'
+
 import clsx from 'clsx'
 
 import s from './CalendarDay.module.scss'
 
+import { addSelectedDateAC } from '../datePickerReducer/datePickerReducer'
+import { DatePickerReducerActions } from '../datePickerReducer/types'
 import { getDayMonthYear } from '../utils/getDayMonthYear'
-import { TODAYS_DAY, TODAYS_MONTH, TODAYS_YEAR } from '../variables'
+import { TODAYS_DAY, TODAYS_MONTH, TODAYS_YEAR, WEEKEND_INDEXES } from '../variables'
 
 type Props = {
+  date: number
   dateInMs: number
-  isWeekend?: boolean
-  onClick: (date: number) => void
+  dispatch: Dispatch<DatePickerReducerActions>
+  index: number
+  isRangeInput: boolean
+  onDateSelect: (date: Date[]) => void
   selectedDates: number[]
   selectedMonth: number
 }
 
 export const CalendarDay = ({
+  date,
   dateInMs,
-  isWeekend,
-  onClick,
+  dispatch,
+  index,
+  isRangeInput,
+  onDateSelect,
   selectedDates,
   selectedMonth,
 }: Props) => {
-  const onClickHandler = () => {
-    onClick(dateInMs)
+  const dayOnClickHandler = () => {
+    dispatch(addSelectedDateAC(date, isRangeInput))
+
+    if (isRangeInput) {
+      if (selectedDates.length === 2) {
+        onDateSelect([new Date(date)])
+      } else {
+        onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
+      }
+    } else {
+      onDateSelect([new Date(date)])
+    }
   }
+
+  const isWeekend = WEEKEND_INDEXES.includes(index)
 
   const { day, month, year } = getDayMonthYear(dateInMs)
 
@@ -37,7 +59,7 @@ export const CalendarDay = ({
         [s.selected]: selectedDates.length === 1 && selectedDates[0] === dateInMs,
         [s.startDate]: selectedDates.length === 2 && selectedDates[0] === dateInMs,
       })}
-      onClick={onClickHandler}
+      onClick={dayOnClickHandler}
     >
       <span
         className={clsx({

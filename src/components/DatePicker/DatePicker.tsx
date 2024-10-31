@@ -7,7 +7,6 @@ import s from './DatePicker.module.scss'
 import { Icon } from '../Icon'
 import { CalendarDay } from './CalendarDay/CalendarDay'
 import {
-  addSelectedDateAC,
   datePickerInitialState,
   datePickerReducer,
   setCalendarDataAC,
@@ -52,34 +51,19 @@ export const DatePicker = ({
 
   const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
 
-  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map((date, i) => {
-    const dayOnClickHandler = (date: number) => {
-      dispatch(addSelectedDateAC(date, isRangeInput))
-
-      if (isRangeInput) {
-        if (selectedDates.length === 2) {
-          onDateSelect([new Date(date)])
-        } else {
-          onDateSelect([...selectedDates, date].sort().map(dateInMs => new Date(dateInMs)))
-        }
-      } else {
-        onDateSelect([new Date(date)])
-      }
-    }
-
-    const isWeekend = [5, 6, 12, 13, 19, 20, 26, 27, 33, 34, 40, 41].includes(i)
-
-    return (
-      <CalendarDay
-        dateInMs={date}
-        isWeekend={isWeekend}
-        key={JSON.stringify(date)}
-        onClick={dayOnClickHandler}
-        selectedDates={selectedDates}
-        selectedMonth={selectedMonth}
-      />
-    )
-  })
+  const mappedCalendarDays = getCalendarDays(selectedYear, selectedMonth).map((date, i) => (
+    <CalendarDay
+      date={date}
+      dateInMs={date}
+      dispatch={dispatch}
+      index={i}
+      isRangeInput={isRangeInput}
+      key={JSON.stringify(date)}
+      onDateSelect={onDateSelect}
+      selectedDates={selectedDates}
+      selectedMonth={selectedMonth}
+    />
+  ))
 
   const goToMonth = (isGoToPrevMonth: boolean) => {
     let shouldChangeYear = false

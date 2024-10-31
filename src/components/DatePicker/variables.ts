@@ -18,3 +18,4 @@ export const TODAYS_MONTH = TODAY.getMonth()
 export const TODAYS_YEAR = TODAY.getFullYear()
 export const TODAY_IN_MS = TODAY.getTime()
 export const WEEK_DAYS = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su']
+export const WEEKEND_INDEXES = [5, 6, 12, 13, 19, 20, 26, 27, 33, 34, 40, 41]
