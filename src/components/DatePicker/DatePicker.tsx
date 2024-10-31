@@ -121,7 +121,9 @@ export const DatePicker = ({
       .join(' - ') || (isRangeInput ? '__/__/____ - __/__/____' : '__/__/____')
 
   const onCalendarBlur = () => {
-    dispatch(toggleIsCalendarOpenAC())
+    if (!isCalendarOpen) {
+      dispatch(toggleIsCalendarOpenAC())
+    }
   }
 
   return (
