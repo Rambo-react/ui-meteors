@@ -1,0 +1,62 @@
+@import '@styles/typography';
+
+@mixin Centered-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination {
+  @include Regular_text_14;
+
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.arrows {
+  all: unset;
+
+  @include Centered-content;
+
+  cursor: pointer;
+
+  width: 16px;
+  height: 16px;
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.3;
+  }
+}
+
+.contentItem {
+  @include Centered-content;
+
+  user-select: none;
+
+  cursor: pointer;
+
+  width: 24px;
+  height: 24px;
+
+  border-radius: 2px;
+
+  transition: 0.2s;
+
+  &.selected {
+    color: var(--color-dark-900);
+    background-color: var(--color-light-100);
+  }
+
+  &:focus {
+    border: 2px solid var(--color-accent-700);
+  }
+}
+
+.itemsPerPage {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  margin-left: 12px;
+}
