@@ -6,8 +6,9 @@ import s from './Pagination.module.scss'
 
 import { Icon } from '../Icon'
 import { Select } from './Select'
+import { usePagination } from './hooks'
 
-export type PaginationProps = {
+type Props = {
   currentPage: number
   itemsCount: number
   itemsPerPage: ItemsPerPage
@@ -17,31 +18,20 @@ export type PaginationProps = {
 
 export type ItemsPerPage = 10 | 20 | 30 | 50 | 100
 
-const itemsPerPageValues = ['10', '20', '30', '50', '100']
+const ITEMS_PER_PAGE_VALUES = ['10', '20', '30', '50', '100']
 
-export const Pagination = (props: PaginationProps) => {
-  const { currentPage, itemsCount, itemsPerPage, onItemsPerPageChange, onPageChange } = props
-
-  const onItemsPerPageChangeHandler = (itemsPerPage: string) => {
-    onItemsPerPageChange(+itemsPerPage as ItemsPerPage)
-  }
-
-  const pages = Math.ceil(itemsCount / itemsPerPage)
-  let content: (number | string)[]
-
-  if (pages < 7) {
-    content = Array.from({ length: pages }, (_, i) => i + 1)
-  } else if (currentPage < 3) {
-    content = [1, 2, 3, 4, 5, '...', pages]
-  } else if (currentPage === 3) {
-    content = [1, 2, 3, 4, 5, '...', pages]
-  } else if (currentPage > pages - 2) {
-    content = [1, '...', pages - 2, pages - 1, pages]
-  } else if (currentPage === pages - 2) {
-    content = [1, '...', pages - 3, pages - 2, pages - 1, pages]
-  } else {
-    content = [1, '...', currentPage - 1, currentPage, currentPage + 1, '...', pages]
-  }
+export const Pagination = ({
+  currentPage,
+  itemsCount,
+  itemsPerPage,
+  onItemsPerPageChange,
+  onPageChange,
+}: Props) => {
+  const { content, isLeftArrowDisabled, isRightArrowDisabled } = usePagination({
+    currentPage,
+    itemsCount,
+    itemsPerPage,
+  })
 
   const mappedContent = content.map((v, i) => {
     const props: ComponentPropsWithoutRef<'span'> =
@@ -62,10 +52,9 @@ export const Pagination = (props: PaginationProps) => {
     return <span key={`${v}${i}`} {...props} />
   })
 
-  const notIncludeTwoStrings = content.filter(v => v === '...').length !== 2
-
-  const isLeftArrowDisabled = currentPage - 3 < 1 && notIncludeTwoStrings
-  const isRightArrowDisabled = currentPage + 3 > pages && notIncludeTwoStrings
+  const onItemsPerPageChangeHandler = (itemsPerPage: string) => {
+    onItemsPerPageChange(+itemsPerPage as ItemsPerPage)
+  }
 
   return (
     <div className={s.pagination}>
@@ -101,7 +90,7 @@ export const Pagination = (props: PaginationProps) => {
 
       <div className={s.itemsPerPage}>
         Show
-        <Select onValueChange={onItemsPerPageChangeHandler} options={itemsPerPageValues} />
+        <Select onValueChange={onItemsPerPageChangeHandler} options={ITEMS_PER_PAGE_VALUES} />
         per page
       </div>
     </div>
