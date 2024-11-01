@@ -1,4 +1,4 @@
-import { resolve } from 'path'
+import path, { resolve } from 'path'
 
 import { defineConfig } from 'vite'
 
@@ -26,5 +26,11 @@ export default defineConfig({
     },
     sourcemap: true,
     target: 'esnext',
+  },
+  resolve: {
+    alias: {
+      '@styles': path.resolve(__dirname, 'src/styles'),
+    },
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.scss'],
   },
 })
