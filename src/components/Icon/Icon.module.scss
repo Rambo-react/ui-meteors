@@ -1,7 +1,44 @@
+$white: #fff;
+
+.container{
+  background-color: $white;
+  border-radius: 5px;
+  min-height: 40px;
+  min-width: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  &>p{
+    position: absolute;
+    bottom: 0;
+    left:110%;
+    color:white;
+    font-size: 12px;
+    width: max-content;
+    opacity: 0;
+    transition: 0.5s all ease-in-out;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    
+    @media (max-width:1024px) {
+      transition: none;
+    }
+  }
+  &:hover >p{
+    @media (max-width:1024px) {
+      opacity: 0;
+    }
+    opacity: 100;
+  }
+}
+
 .icon {
   display: inline-block;
   align-items: center;
   text-align: center;
+  position: relative;
+
 
   svg {
     display: inline-block;
