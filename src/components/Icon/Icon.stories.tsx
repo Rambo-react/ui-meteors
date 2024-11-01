@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+import s from './Icon.module.scss'
 
 import { Icon } from '.'
 
@@ -129,47 +130,14 @@ export const Example: Story = {
 }
 
 export const Gallery = () => (
-  <div style={{ display: 'flex', flexFlow: 'row wrap' }}>
+  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap:'20px',justifyItems:'center',alignItems:'center'}}>
     {arrayOfOptions.map(iconName => (
-      <div
-        key={iconName}
-        style={{
-          alignItems: 'center',
-          display: 'inline-flex',
-          flex: '0 1 calc(20% - 10px)',
-          flexDirection: 'row',
-          margin: '0px 10px 30px 0',
-          minWidth: '200px',
-        }}
-      >
-        <div
-          style={{
-            alignItems: 'center',
-            backgroundColor: '#fff',
-            border: '1px solid hsla(203, 50%, 30%, 0.15)',
-            borderRadius: '4px',
-            boxShadow: 'rgba(0, 0, 0, 0.10) 0 1px 3px 0',
-            display: 'flex',
-            height: '40px',
-            justifyContent: 'center',
-            minWidth: '40px',
-            overflow: 'hidden',
-            textAlign: 'center',
-          }}
+        <div 
+        className={s.container}
         >
-          <Icon height={24} id={iconName} width={24} />
+          <Icon  height={24} id={iconName} width={24} className={s.icon}/>    
+          <p>{iconName}</p>   
         </div>
-        <div
-          style={{
-            color: '#0d0d0d',
-            fontSize: '12px',
-            lineHeight: 1.2,
-            marginLeft: '10px',
-          }}
-        >
-          {iconName}
-        </div>
-      </div>
     ))}
   </div>
 )
