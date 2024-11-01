@@ -138,6 +138,7 @@ export const Gallery = () => (
           <Icon  height={24} id={iconName} width={24} className={s.icon}/>    
           <p>{iconName}</p>   
         </div>
+      </div>
     ))}
   </div>
 )
