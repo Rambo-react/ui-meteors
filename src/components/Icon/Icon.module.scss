@@ -1,4 +1,50 @@
+@import '@styles/typography';
+
+.container {
+  position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 60px;
+  min-height: 40px;
+
+  background-color: var(--color-light-100);
+  border-radius: 5px;
+
+  & > p {
+    @include Small_text;
+
+    position: absolute;
+    bottom: 0;
+    left: 110%;
+
+    width: max-content;
+
+    color: var(--color-light-100);
+    letter-spacing: 1.5px;
+
+    opacity: 0;
+
+    transition: 0.5s all ease-in-out;
+
+    @media (width <=1024px) {
+      transition: none;
+    }
+  }
+
+  &:hover > p {
+    opacity: 100;
+
+    @media (width <=1024px) {
+      opacity: 0;
+    }
+  }
+}
+
 .icon {
+  position: relative;
   display: inline-block;
   align-items: center;
   text-align: center;
