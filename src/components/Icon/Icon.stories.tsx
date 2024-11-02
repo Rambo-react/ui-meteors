@@ -38,6 +38,8 @@ const arrayOfOptions = [
   'eye-outline',
   'eye',
   'facebook',
+  'flag-russia',
+  'flag-uk',
   'github',
   'google',
   'heart-outline',
