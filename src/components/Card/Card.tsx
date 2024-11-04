@@ -8,7 +8,7 @@ type ContentProps = {
 type CardProps = {
   content: ContentProps
 }
-const Card = ({ content }: CardProps) => {
+export const Card = ({ content }: CardProps) => {
   return (
     <div className={styles.cardWrapper}>
       {content.sectionTitle ? <h3 className={styles.titleSection}>{content.sectionTitle}</h3> : ''}
@@ -19,5 +19,3 @@ const Card = ({ content }: CardProps) => {
     </div>
   )
 }
-
-export default Card
