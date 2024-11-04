@@ -76,7 +76,7 @@ export const WithIcon: Story = {
         <SelectItem value={'ru'}>
           <div style={{ alignItems: 'center', display: 'flex', gap: 12 }}>
             <Icon height={24} id={'flag-russia'} width={24} />
-            <span>Russian</span>
+            <span>Russia</span>
           </div>
         </SelectItem>
       </>
