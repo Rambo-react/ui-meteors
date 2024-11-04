@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from '@storybook/react'
 
 import { action } from '@storybook/addon-actions'
 
-import RadioGroupExample from './RadioGroup'
+import { RadioGroupExample } from '.'
 
 const meta = {
   argTypes: {

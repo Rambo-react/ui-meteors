@@ -15,7 +15,7 @@ export type RadioLabels = {
   option2: string
   option3: string
 }
-const RadioGroupExample = ({
+export const RadioGroupExample = ({
   disabled = false,
   disabledOption,
   labels = { option1: 'RadioGroup1', option2: 'RadioGroup2', option3: 'RadioGroup3' },
@@ -83,5 +83,3 @@ const RadioGroupExample = ({
     </form>
   )
 }
-
-export default RadioGroupExample
