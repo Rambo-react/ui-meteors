@@ -17,7 +17,7 @@ export const Icon = ({ color, height, id, stroke, viewBox, width, ...rest }: Pro
       fill={color}
       height={height}
       stroke={stroke}
-      viewBox={viewBox || `0 0 ${width} ${height}`}
+      viewBox={viewBox || `0 0 24 24`}
       width={width}
       xmlns={'http://www.w3.org/2000/svg'}
       {...rest}
