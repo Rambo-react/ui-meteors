@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { clsx } from 'clsx'
 
-import styles from './sidebar.module.scss'
+import styles from './Sidebar.module.scss'
 
 import { Icon } from '../Icon'
 
@@ -21,10 +21,10 @@ const SidebarMenuItem = (props: SidebarMenuItemProps) => {
   const iconColor = isActive
     ? 'var(--color-accent-500)'
     : isDisabled
-      ? 'var(--color-dark-100)'
-      : isHover
-        ? 'var(--color-accent-100)'
-        : 'var(--color-light-100)'
+    ? 'var(--color-dark-100)'
+    : isHover
+    ? 'var(--color-accent-100)'
+    : 'var(--color-light-100)'
 
   const handleMouseEnter = () => {
     if (!isDisabled) {
@@ -53,10 +53,10 @@ const SidebarMenuItem = (props: SidebarMenuItemProps) => {
             isActive
               ? styles.spanActive
               : isHover
-                ? styles.spanHover
-                : isDisabled
-                  ? styles.spanDisabled
-                  : ''
+              ? styles.spanHover
+              : isDisabled
+              ? styles.spanDisabled
+              : ''
           )}
         >
           {label}
