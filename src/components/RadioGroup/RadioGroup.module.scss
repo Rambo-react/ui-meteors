@@ -1,16 +1,16 @@
-@import "../../styles/typography";
+@import '@styles/typography';
 
 button {
   all: unset;
 }
 
-.RadioGroupRoot {
+.radioGroupRoot {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.RadioGroupItem {
+.radioGroupItem {
   border: solid 2px var(--color-light-100);
   background-color: rgba(255, 255, 255, 0);
   width: 20px;
@@ -19,15 +19,15 @@ button {
   position: relative;
 }
 
-.RadioGroupItem[disabled] {
+.radioGroupItem[disabled] {
   border-color: var(--color-dark-100);
 
-  .RadioGroupIndicator::after {
+  .radioGroupIndicator::after {
     background-color: var(--color-dark-100);
   }
 }
 
-.RadioGroupIndicator {
+.radioGroupIndicator {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -36,8 +36,8 @@ button {
   position: relative;
 }
 
-.RadioGroupIndicator::after {
-  content: "";
+.radioGroupIndicator::after {
+  content: '';
   display: block;
   width: 10px;
   height: 10px;
@@ -45,14 +45,14 @@ button {
   background-color: var(--color-light-100);
 }
 
-.Label {
+.label {
   color: var(--color-light-100);
   @include Regular_text_14;
   margin-left: 10px;
 }
 
-@mixin RadioGroupItemBefore {
-  content: "";
+@mixin radioGroupItemBefore {
+  content: '';
   display: block;
   position: absolute;
   top: 0;
@@ -66,34 +66,34 @@ button {
   border-radius: 100%;
 }
 
-.RadioGroupItem:hover::before {
-  @include RadioGroupItemBefore;
+.radioGroupItem:hover::before {
+  @include radioGroupItemBefore;
   background-color: var(--color-dark-300);
 }
 
-.RadioGroupItem:active::before {
-  @include RadioGroupItemBefore;
+.radioGroupItem:active::before {
+  @include radioGroupItemBefore;
   background-color: var(--color-dark-100);
 }
 
-.RadioGroupItem:focus::before {
-  @include RadioGroupItemBefore;
+.radioGroupItem:focus::before {
+  @include radioGroupItemBefore;
   background-color: var(--color-dark-500);
 }
 
-.RadioGroupItem[disabled]:hover::before {
+.radioGroupItem[disabled]:hover::before {
   content: none;
 }
 
-.RadioGroupItem[disabled]:active::before {
+.radioGroupItem[disabled]:active::before {
   content: none;
 }
 
-.RadioGroupItem[disabled]:focus::before {
+.radioGroupItem[disabled]:focus::before {
   content: none;
 }
 
-.RadioGroupLayoutItem {
+.radioGroupLayoutItem {
   display: flex;
   align-items: center;
 }
