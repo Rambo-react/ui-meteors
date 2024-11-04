@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import styles from './menu.module.scss'
+import styles from './Menu.module.scss'
 
 import { Icon } from '../Icon'
 type menuItemsType = Array<menuItem>
@@ -65,4 +65,3 @@ export const Menu = ({ onClick }: MenuProps) => {
     </div>
   )
 }
-export default Menu
