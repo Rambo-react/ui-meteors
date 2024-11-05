@@ -1,19 +1,23 @@
-@import '../../styles/typography';
-@import '../../styles/colors';
+@import '@styles/typography';
+@import '@styles/colors';
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 12px 60px;
-  background-color: var(--color-dark-700);
-  color: var(--color-light-100);
+  justify-content: space-between;
+
   margin-bottom: 100px;
+  padding: 12px 60px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
 
   &Title {
     @include Large;
-    color: var(--color-light-100);
+
     cursor: pointer;
+    color: var(--color-light-100);
     text-decoration: none;
   }
 
@@ -32,20 +36,23 @@
   }
 
   .notificationIcon {
-    position: relative;
-    margin-right: 36px;
-    margin-top: 12px;
     cursor: pointer;
+    position: relative;
+    margin-top: 12px;
+    margin-right: 36px;
 
     .notificationCount {
       position: absolute;
       top: -7px;
       right: -2px;
-      background-color: var(--color-danger-500);
-      color: var(--color-light-100);
-      border-radius: 50%;
+
       padding: 1px 5px;
+
       font-size: 12px;
+      color: var(--color-light-100);
+
+      background-color: var(--color-danger-500);
+      border-radius: 50%;
     }
   }
 
@@ -55,13 +62,17 @@
 }
 
 .languageSelect {
-  position: relative;
-  background: none;
-  color: var(--color-light-100);
   cursor: pointer;
-  border: 1px solid var(--color-dark-100);
-  padding: 0 12px;
+
+  position: relative;
+
   margin-right: 36px;
+  padding: 0 12px;
+
+  color: var(--color-light-100);
+
+  background: none;
+  border: 1px solid var(--color-dark-100);
 }
 
 .selectedLanguage {
@@ -72,23 +83,26 @@
 
 .dropdownMenu {
   position: absolute;
-  top: 100%;
-  border: 1px solid var(--color-dark-100);
   z-index: 10;
-  padding: 4px 12px;
+  top: 100%;
   right: 4px;
+
   display: none;
+
+  padding: 4px 12px;
+
+  border: 1px solid var(--color-dark-100);
 }
 
 .languageSelect:hover .dropdownMenu {
-  display: block;
   overflow-y: hidden;
+  display: block;
 }
 
 .dropdownItem {
-  padding: 10px;
   display: flex;
   align-items: center;
+  padding: 10px;
 }
 
 .dropdownItem:hover {
