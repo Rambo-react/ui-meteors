@@ -28,14 +28,14 @@ export const Modal = ({ buttons, title, children, firstBtnHandler, secondBtnHand
             [s.moreButtons]: buttons.length > 1,
           })}
         >
-          {buttons.map((b, i) =>
-            i >= 1 ? (
+          {buttons.map((button, index) =>
+            index >= 1 ? (
               <Button onClick={secondBtnHandler} variant="outline">
-                {b}
+                {button}
               </Button>
             ) : (
               <Button onClick={firstBtnHandler} variant="primary">
-                {b}
+                {button}
               </Button>
             )
           )}
