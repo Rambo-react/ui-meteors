@@ -1,15 +1,10 @@
 @import '@styles/typography';
 
-* {
-  margin: 0;
-  padding: 0;
-}
-
 .container {
   width: 100%;
   min-width: 300px;
   max-width: 378px;
-  height: auto;
+  min-height: 200px;
 
   background-color: var(--color-dark-300);
 }
@@ -25,6 +20,9 @@
 
   & > p {
     @include H1;
+
+    margin: 0;
+    padding: 0;
   }
 
   & > button {
@@ -46,7 +44,8 @@
   & > p {
     @include Regular_text_16;
 
-    margin-bottom: 18px;
+    margin: 0;
+    padding: 0;
   }
 
   & > button {
@@ -65,7 +64,7 @@
   gap: 24px;
   justify-content: flex-end;
 
-  padding: 10px 0;
+  padding: 15px 0;
 
   & > button {
     @include H3;

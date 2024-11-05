@@ -17,7 +17,7 @@ export const Modal = ({ buttons, title, children, firstBtnHandler, secondBtnHand
       <div className={s.head}>
         <p>{title}</p>
         <button>
-          <Icon id="close" color="white" width={24} height={24}></Icon>
+          <Icon id="close" width={25} height={25} fill="white" />
         </button>
       </div>
       <div className={s.main}>
