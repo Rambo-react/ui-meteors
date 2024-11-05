@@ -21,10 +21,10 @@ const SidebarMenuItem = (props: SidebarMenuItemProps) => {
   const iconColor = isActive
     ? 'var(--color-accent-500)'
     : isDisabled
-    ? 'var(--color-dark-100)'
-    : isHover
-    ? 'var(--color-accent-100)'
-    : 'var(--color-light-100)'
+      ? 'var(--color-dark-100)'
+      : isHover
+        ? 'var(--color-accent-100)'
+        : 'var(--color-light-100)'
 
   const handleMouseEnter = () => {
     if (!isDisabled) {
@@ -46,17 +46,17 @@ const SidebarMenuItem = (props: SidebarMenuItemProps) => {
         className={clsx(styles.menuItemLink, isDisabled ? styles.menuItemLinkDisabled : '')}
         href={'#'}
       >
-        <Icon color={iconColor} height={24} id={id} width={24} />
+        <Icon fill={iconColor} height={24} id={id} width={24} />
         <span
           className={clsx(
             styles.span,
             isActive
               ? styles.spanActive
               : isHover
-              ? styles.spanHover
-              : isDisabled
-              ? styles.spanDisabled
-              : ''
+                ? styles.spanHover
+                : isDisabled
+                  ? styles.spanDisabled
+                  : ''
           )}
         >
           {label}

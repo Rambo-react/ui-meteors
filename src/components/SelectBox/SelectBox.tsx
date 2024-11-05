@@ -44,7 +44,7 @@ export const SelectTrigger = React.forwardRef<
     <SelectPrimitive.Icon asChild>
       <Icon
         className={s.triggerChevron}
-        color={'currentColor'}
+        fill={'currentColor'}
         height={24}
         id={'arrow-ios-down-outline'}
         width={24}
