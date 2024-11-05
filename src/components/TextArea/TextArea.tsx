@@ -7,7 +7,6 @@ import s from './TextArea.module.scss'
 
 type Props = {
   disabled?: boolean
-  error?: boolean
   errorText?: string
   label?: string
 } & ComponentPropsWithoutRef<'textarea'>
@@ -15,12 +14,11 @@ type Props = {
 export const TextArea = ({
   className,
   disabled = false,
-  error,
   errorText = '',
   label = 'Text-area',
   ...rest
 }: Props) => {
-  const classNames = clsx(s.textarea, error && s.error, className)
+  const classNames = clsx(s.textarea, errorText && s.error, className)
   const labelClassNames = clsx(s.label, disabled && s.disabled)
   const id = useId()
 
