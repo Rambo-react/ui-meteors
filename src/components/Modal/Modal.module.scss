@@ -7,9 +7,9 @@
 
 .container {
   width: 100%;
+  min-width: 300px;
   max-width: 378px;
   height: auto;
-  padding: 10px;
 
   background-color: var(--color-dark-300);
 }
@@ -61,10 +61,22 @@
 
 .btnContainer {
   display: flex;
+  flex-wrap: wrap;
   gap: 24px;
   justify-content: flex-end;
+
+  padding: 10px 0;
 
   & > button {
     @include H3;
   }
+}
+
+.oneButton {
+  justify-content: flex-end;
+}
+
+.moreButtons {
+  column-gap: 50px;
+  justify-content: center;
 }
