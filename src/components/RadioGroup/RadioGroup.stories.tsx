@@ -17,11 +17,10 @@ const meta = {
       control: { type: 'radio' },
       defaultValue: 'none',
       description: 'Selecting a radio-button to be disabled',
-      options: ['RadioGroup1', 'RadioGroup2', 'RadioGroup3', 'none'],
     },
     labels: {
       control: { type: 'object' },
-      defaultValue: { option1: 'RadioGroup1', option2: 'RadioGroup2', option3: 'RadioGroup3' },
+      defaultValue: ['RadioGroup1', 'RadioGroup2', 'RadioGroup3', 'RadioGroup4'],
       description: 'Changing the name of any button',
     },
   },
@@ -36,8 +35,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     disabled: false,
-    disabledOption: 'none',
-    labels: { option1: 'RadioGroup1', option2: 'RadioGroup2', option3: 'RadioGroup3' },
+    disabledOption: ['RadioGroup1', 'RadioGroup3'],
+    labels: ['RadioGroup1', 'RadioGroup2', 'RadioGroup3', 'RadioGroup4'],
     onChange: action('radio-selected'),
   },
 }
