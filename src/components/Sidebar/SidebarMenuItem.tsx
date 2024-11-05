@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 import { clsx } from 'clsx'
 
-import styles from './sidebar.module.scss'
+import styles from './Sidebar.module.scss'
 
 import { Icon } from '../Icon'
 
@@ -46,7 +46,7 @@ const SidebarMenuItem = (props: SidebarMenuItemProps) => {
         className={clsx(styles.menuItemLink, isDisabled ? styles.menuItemLinkDisabled : '')}
         href={'#'}
       >
-        <Icon color={iconColor} height={24} id={id} width={24} />
+        <Icon fill={iconColor} height={24} id={id} width={24} />
         <span
           className={clsx(
             styles.span,

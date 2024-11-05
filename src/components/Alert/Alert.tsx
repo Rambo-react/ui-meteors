@@ -2,16 +2,17 @@ import { useEffect, useState } from 'react'
 
 import * as AlertDialog from '@radix-ui/react-alert-dialog'
 
-import styles from './Alert.module.scss'
+import s from './Alert.module.scss'
 
 import { Icon } from '../Icon'
 
 export type AlertProps = {
+  delay?: number
   message: string
   variant: 'accepted' | 'error'
 }
 
-export const Alert = ({ message, variant }: AlertProps) => {
+export const Alert = ({ delay = 6000, message, variant }: AlertProps) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
@@ -19,13 +20,11 @@ export const Alert = ({ message, variant }: AlertProps) => {
       setIsAlertOpen(true)
       const timer = setTimeout(() => {
         setIsAlertOpen(false)
-      }, 6000)
+      }, delay)
 
       return () => clearTimeout(timer)
-    } else {
-      setIsAlertOpen(false)
     }
-  }, [message])
+  }, [message, delay])
 
   const handleClose = () => {
     setIsAlertOpen(false)
@@ -35,12 +34,16 @@ export const Alert = ({ message, variant }: AlertProps) => {
     <AlertDialog.Root onOpenChange={handleClose} open={isAlertOpen}>
       <AlertDialog.Portal>
         <AlertDialog.Overlay />
-        <AlertDialog.Content className={`${styles.alert} ${styles[variant]}`}>
+        <AlertDialog.Content
+          aria-live={'assertive'}
+          className={`${s.alert} ${s[variant]}`}
+          role={'alert'}
+        >
           <div>{message}</div>
           <AlertDialog.Cancel asChild>
-            <button className={styles.button} onClick={handleClose}>
-              <Icon color={'white'} height={24} id={'close'} width={24} />
-            </button>
+            <div className={s.iconWrapper}>
+              <Icon fill={'white'} height={24} id={'close'} width={24} />
+            </div>
           </AlertDialog.Cancel>
         </AlertDialog.Content>
       </AlertDialog.Portal>

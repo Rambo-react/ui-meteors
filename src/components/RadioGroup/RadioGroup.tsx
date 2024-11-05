@@ -15,7 +15,7 @@ export type RadioLabels = {
   option2: string
   option3: string
 }
-const RadioGroupExample = ({
+export const RadioGroupExample = ({
   disabled = false,
   disabledOption,
   labels = { option1: 'RadioGroup1', option2: 'RadioGroup2', option3: 'RadioGroup3' },
@@ -31,50 +31,50 @@ const RadioGroupExample = ({
 
   return (
     <form>
-      <div className={styles.RadioGroupLayout}>
+      <div className={styles.radioGroupLayout}>
         <RadioGroup.Root
           aria-disabled={disabled}
-          className={styles.RadioGroupRoot}
+          className={styles.radioGroupRoot}
           disabled={disabled}
           onValueChange={handleChange}
           value={selected}
         >
-          <div className={styles.RadioGroupLayoutItem}>
+          <div className={styles.radioGroupLayoutItem}>
             <RadioGroup.Item
-              className={styles.RadioGroupItem}
+              className={styles.radioGroupItem}
               disabled={disabled || disabledOption === 'RadioGroup1'}
               id={'RadioGroup1'}
               value={'RadioGroup1'}
             >
-              <RadioGroup.Indicator className={styles.RadioGroupIndicator} />
+              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
             </RadioGroup.Item>
-            <label className={styles.Label} htmlFor={'RadioGroup1'}>
+            <label className={styles.label} htmlFor={'RadioGroup1'}>
               {labels.option1}
             </label>
           </div>
-          <div className={styles.RadioGroupLayoutItem}>
+          <div className={styles.radioGroupLayoutItem}>
             <RadioGroup.Item
-              className={styles.RadioGroupItem}
+              className={styles.radioGroupItem}
               disabled={disabled || disabledOption === 'RadioGroup2'}
               id={'RadioGroup2'}
               value={'RadioGroup2'}
             >
-              <RadioGroup.Indicator className={styles.RadioGroupIndicator} />
+              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
             </RadioGroup.Item>
-            <label className={styles.Label} htmlFor={'RadioGroup2'}>
+            <label className={styles.label} htmlFor={'RadioGroup2'}>
               {labels.option2}
             </label>
           </div>
-          <div className={styles.RadioGroupLayoutItem}>
+          <div className={styles.radioGroupLayoutItem}>
             <RadioGroup.Item
-              className={styles.RadioGroupItem}
+              className={styles.radioGroupItem}
               disabled={disabled || disabledOption === 'RadioGroup3'}
               id={'RadioGroup3'}
               value={'RadioGroup3'}
             >
-              <RadioGroup.Indicator className={styles.RadioGroupIndicator} />
+              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
             </RadioGroup.Item>
-            <label className={styles.Label} htmlFor={'RadioGroup3'}>
+            <label className={styles.label} htmlFor={'RadioGroup3'}>
               {labels.option3}
             </label>
           </div>
@@ -83,5 +83,3 @@ const RadioGroupExample = ({
     </form>
   )
 }
-
-export default RadioGroupExample

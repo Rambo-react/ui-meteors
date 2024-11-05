@@ -54,7 +54,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {type === 'search' && (
             <Icon
               className={s.iconSearch}
-              color={'currentColor'}
+              fill={'currentColor'}
               height={20}
               id={'search'}
               width={20}
@@ -64,7 +64,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             (showPassword ? (
               <Icon
                 className={s.iconPass}
-                color={'currentColor'}
+                fill={'currentColor'}
                 height={24}
                 id={'eye-outline'}
                 onClick={() => setShowPassword(false)}
@@ -73,7 +73,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
             ) : (
               <Icon
                 className={s.iconPass}
-                color={'currentColor'}
+                fill={'currentColor'}
                 height={24}
                 id={'eye-off-outline'}
                 onClick={() => setShowPassword(true)}

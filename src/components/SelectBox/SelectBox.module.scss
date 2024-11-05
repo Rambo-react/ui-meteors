@@ -1,0 +1,84 @@
+@import '@styles/typography';
+
+.trigger {
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  box-sizing: border-box;
+  width: 100%;
+  padding: 6px 12px;
+
+  color: var(--color-light-900);
+
+  background-color: inherit;
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+
+  .triggerChevron {
+    transition: transform 0.3s ease;
+  }
+
+  &[data-state='open'] {
+    color: var(--color-light-100);
+
+    .triggerChevron {
+      transform: rotate(180deg);
+    }
+  }
+
+  &[data-disabled] {
+    pointer-events: none;
+    color: var(--color-dark-100);
+    border-color: var(--color-dark-100);
+  }
+
+  &:hover {
+    color: var(--color-light-100);
+  }
+
+  &:focus-visible {
+    border-color: transparent;
+    outline: 2px solid var(--color-accent-500);
+  }
+}
+
+.triggerLabel {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.content {
+  width: var(--radix-select-trigger-width);
+  max-height: var(--radix-select-content-available-height);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-dark-100);
+  border-top: none;
+  border-radius: 0 0 2px 2px;
+}
+
+.viewport {
+  min-width: var(--radix-select-trigger-width);
+}
+
+.item {
+  @include Regular_text_16;
+
+  cursor: pointer;
+  padding-left: 10px;
+  color: var(--color-light-100);
+
+  &:hover {
+    color: var(--color-accent-500);
+    background-color: var(--color-dark-300);
+  }
+
+  &:focus-visible {
+    background-color: var(--color-accent-900);
+    outline: none;
+  }
+}

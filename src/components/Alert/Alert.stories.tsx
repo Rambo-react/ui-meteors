@@ -12,6 +12,7 @@ type Story = StoryObj<typeof meta>
 
 export const AcceptedAlert: Story = {
   args: {
+    delay: 20000,
     message: 'Your settings are saved',
     variant: 'accepted',
   },
@@ -19,6 +20,7 @@ export const AcceptedAlert: Story = {
 
 export const ErrorAlert: Story = {
   args: {
+    delay: 20000,
     message: 'Error! Server is not available',
     variant: 'error',
   },
