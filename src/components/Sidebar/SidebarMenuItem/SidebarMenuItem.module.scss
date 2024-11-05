@@ -1,0 +1,46 @@
+.sidebar li:not(:last-child):not(:nth-child(5)):not(:nth-child(7)) {
+  margin-bottom: 24px;
+}
+
+.sidebar li:nth-child(5) {
+  margin-bottom: 60px;
+}
+
+.sidebar li:nth-child(7) {
+  margin-bottom: 180px;
+}
+
+.menuItem {
+  list-style-type: none;
+}
+
+.menuItemLink {
+  display: flex;
+  text-decoration: none;
+  color: var(--color-light-100);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-accent-100);
+    svg {
+      fill: var(--color-accent-100);
+    }
+  }
+  &.active {
+    color: var(--color-accent-500);
+    svg {
+      fill: var(--color-accent-500);
+    }
+  }
+  &.disabled {
+    cursor: not-allowed;
+    pointer-events: none;
+    color: var(--color-dark-100);
+    svg {
+      fill: var(--color-dark-100);
+    }
+  }
+}
+span {
+  margin-left: 12px;
+}
