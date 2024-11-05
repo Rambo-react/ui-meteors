@@ -1,6 +1,7 @@
 import { ReactNode } from 'react'
 import { Button, Icon } from '..'
 import s from './Modal.module.scss'
+import clsx from 'clsx'
 
 type Props = {
   title: string
@@ -20,8 +21,13 @@ export const Modal = ({ buttons, title, children, firstBtnHandler, secondBtnHand
         </button>
       </div>
       <div className={s.main}>
-        <p>{children}</p>
-        <div className={s.btnContainer}>
+        {children}
+        <div
+          className={clsx(s.btnContainer, {
+            [s.oneButton]: buttons.length === 1,
+            [s.moreButtons]: buttons.length > 1,
+          })}
+        >
           {buttons.map((b, i) =>
             i >= 1 ? (
               <Button onClick={secondBtnHandler} variant="outline">
