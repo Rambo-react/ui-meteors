@@ -12,41 +12,39 @@ type menuItem = {
 type MenuProps = {
   onClick: (id: string) => void
 }
+const menuItemsArray = [
+  { activeId: 'home', id: 'home-outline', isActive: false, isHover: false },
+  {
+    activeId: 'plus-square',
+    id: 'plus-square-outline',
+    isActive: false,
+  },
+  {
+    activeId: 'person',
+    id: 'person-outline',
+    isActive: false,
+  },
+  {
+    activeId: 'message-circle',
+    id: 'message-circle-outline',
+    isActive: false,
+  },
+  {
+    activeId: 'search',
+    id: 'search-outline',
+    isActive: false,
+  },
+]
+
 export const Menu = ({ onClick }: MenuProps) => {
-  const menuItemsArray = [
-    { activeId: 'home', id: 'home-outline', isActive: false, isHover: false },
-    {
-      activeId: 'plus-square',
-      id: 'plus-square-outline',
-      isActive: false,
-    },
-    {
-      activeId: 'person',
-      id: 'person-outline',
-      isActive: false,
-    },
-    {
-      activeId: 'message-circle',
-      id: 'message-circle-outline',
-      isActive: false,
-    },
-    {
-      activeId: 'search',
-      id: 'search-outline',
-      isActive: false,
-    },
-  ]
   const [menuItems, setMenuItems] = useState<menuItemsType>(menuItemsArray)
 
-  const handleActivate = (id: string) => {
-    setMenuItems((prevItems: menuItemsType) =>
-      prevItems.map(item =>
+  const onClickHandler = (id: string) => {
+    setMenuItems(
+      menuItems.map(item =>
         item.id === id ? { ...item, isActive: true } : { ...item, isActive: false }
       )
     )
-  }
-  const onClickHandler = (id: string) => {
-    handleActivate(id)
     onClick(id)
   }
 
