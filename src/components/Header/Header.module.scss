@@ -99,6 +99,11 @@
   display: block;
 }
 
+.languageOption {
+  display: flex;
+  align-items: center;
+}
+
 .dropdownItem {
   display: flex;
   align-items: center;
@@ -107,4 +112,8 @@
 
 .dropdownItem:hover {
   background-color: var(--color-primary-100);
+}
+
+.iconWithMargin {
+  margin-right: 12px;
 }
