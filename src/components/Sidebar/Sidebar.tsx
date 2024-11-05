@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import styles from './sidebar.module.scss'
+import styles from './Sidebar.module.scss'
 
 import SidebarMenuItem from './SidebarMenuItem'
 

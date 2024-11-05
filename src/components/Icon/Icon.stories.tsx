@@ -1,4 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
+
 import s from './Icon.module.scss'
 
 import { Icon } from '.'
@@ -100,6 +101,8 @@ const arrayOfOptions = [
   'safari',
   'uc-browser',
   'yandex',
+  'flag-russia',
+  'flag-uk',
 ]
 
 const meta = {
@@ -130,14 +133,14 @@ export const Example: Story = {
 }
 
 export const Gallery = () => (
-  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap:'20px',justifyItems:'center',alignItems:'center'}}>
+  <div className={s.wrapper}>
     {arrayOfOptions.map(iconName => (
-        <div 
-        className={s.container}
-        >
-          <Icon  height={24} id={iconName} width={24} className={s.icon}/>    
-          <p>{iconName}</p>   
+      <div className={s.container} key={iconName}>
+        <div className={s.iconContainer}>
+          <Icon height={24} id={iconName} width={24} />
         </div>
+        <p>{iconName}</p>
+      </div>
     ))}
   </div>
 )
