@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import s from './HeaderMobile.module.css'
 
@@ -6,12 +6,12 @@ import { Icon } from '../Icon'
 import { Menu } from '../Menu/Menu'
 import { LanguageOption, LanguageOptionComponent } from './LanguageOption'
 
-export type HeaderProps = {
+type HeaderProps = {
   isAuthenticated?: boolean
   languageOptions?: LanguageOption[]
 }
 
-export const HeaderMobile: React.FC<HeaderProps> = ({
+export const HeaderMobile = ({
   isAuthenticated = true,
   languageOptions = [
     {
@@ -19,7 +19,7 @@ export const HeaderMobile: React.FC<HeaderProps> = ({
       value: 'en',
     },
   ],
-}) => {
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0])
 
@@ -41,7 +41,7 @@ export const HeaderMobile: React.FC<HeaderProps> = ({
             value={selectedLanguage.value}
           />
           <Icon
-            color={'var(--color-light-100)'}
+            fill={'var(--color-light-100)'}
             height={24}
             id={'arrow-ios-down-outline'}
             width={24}
@@ -74,5 +74,3 @@ export const HeaderMobile: React.FC<HeaderProps> = ({
     </header>
   )
 }
-
-export default HeaderMobile
