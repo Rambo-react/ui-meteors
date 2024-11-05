@@ -42,7 +42,7 @@ export const Alert = ({ delay = 6000, message, variant }: AlertProps) => {
           <div>{message}</div>
           <AlertDialog.Cancel asChild>
             <div className={s.iconWrapper}>
-              <Icon color={'white'} height={24} id={'close'} width={24} />
+              <Icon fill={'white'} height={24} id={'close'} width={24} />
             </div>
           </AlertDialog.Cancel>
         </AlertDialog.Content>
