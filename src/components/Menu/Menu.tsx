@@ -3,8 +3,8 @@ import { useState } from 'react'
 import styles from './Menu.module.scss'
 
 import { Icon } from '../Icon'
-type menuItemsType = Array<menuItem>
-type menuItem = {
+type MenuItemsType = Array<MenuItem>
+type MenuItem = {
   activeId: string
   id: string
   isActive: boolean
@@ -37,7 +37,7 @@ const menuItemsArray = [
 ]
 
 export const Menu = ({ onClick }: MenuProps) => {
-  const [menuItems, setMenuItems] = useState<menuItemsType>(menuItemsArray)
+  const [menuItems, setMenuItems] = useState<MenuItemsType>(menuItemsArray)
 
   const onClickHandler = (id: string) => {
     setMenuItems(
