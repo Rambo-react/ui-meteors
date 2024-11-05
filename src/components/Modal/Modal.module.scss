@@ -1,0 +1,70 @@
+@import '@styles/typography';
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  width: 100%;
+  max-width: 378px;
+  height: auto;
+  padding: 10px;
+
+  background-color: var(--color-dark-300);
+}
+
+.head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 12px 24px;
+
+  border-bottom: 1px solid var(--color-dark-100);
+
+  & > p {
+    @include H1;
+  }
+
+  & > button {
+    cursor: pointer;
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  max-width: 378px;
+  height: auto;
+  padding: 30px 24px 0;
+
+  word-wrap: break-word;
+
+  & > p {
+    @include Regular_text_16;
+
+    margin-bottom: 18px;
+  }
+
+  & > button {
+    @include H3;
+
+    display: flex;
+    align-self: flex-end;
+    justify-content: center;
+    width: 96px;
+  }
+}
+
+.btnContainer {
+  display: flex;
+  gap: 24px;
+  justify-content: flex-end;
+
+  & > button {
+    @include H3;
+  }
+}
