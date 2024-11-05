@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import s from './Header.module.scss'
 
@@ -7,7 +7,6 @@ import { Icon } from '../Icon'
 import { LanguageOption, LanguageOptionComponent } from './LanguageOption'
 
 export type HeaderProps = {
-  id: string
   isAuthorized?: boolean
   languageOptions?: LanguageOption[]
   notificationCount?: number
@@ -15,14 +14,13 @@ export type HeaderProps = {
   titleLink?: string
 }
 
-const Header: React.FC<HeaderProps> = ({
-  id,
+export const Header = ({
   isAuthorized,
   languageOptions = [{ iconId: 'flag-uk', label: 'English', value: 'en' }],
   notificationCount = 0,
   title = 'Inctagram',
   titleLink = '/',
-}) => {
+}: HeaderProps) => {
   const [selectedLanguage, setSelectedLanguage] = useState(languageOptions[0])
 
   const handleLanguageChange = (option: LanguageOption) => {
@@ -40,7 +38,12 @@ const Header: React.FC<HeaderProps> = ({
             <span className={s.notificationIcon}>
               {notificationCount > 0 && (
                 <div>
-                  <Icon color={'var(--color-light-100)'} height={24} id={id} width={24} />
+                  <Icon
+                    fill={'var(--color-light-100)'}
+                    height={24}
+                    id={'bell-outline'}
+                    width={24}
+                  />
                   <span className={s.notificationCount}>{notificationCount}</span>
                 </div>
               )}
@@ -53,7 +56,7 @@ const Header: React.FC<HeaderProps> = ({
                   value={selectedLanguage.value}
                 />
                 <Icon
-                  color={'var(--color-light-100)'}
+                  fill={'var(--color-light-100)'}
                   height={24}
                   id={'arrow-ios-down-outline'}
                   width={24}
@@ -86,7 +89,7 @@ const Header: React.FC<HeaderProps> = ({
                   value={selectedLanguage.value}
                 />
                 <Icon
-                  color={'var(--color-light-100)'}
+                  fill={'var(--color-light-100)'}
                   height={24}
                   id={'arrow-ios-down-outline'}
                   width={24}
@@ -122,5 +125,3 @@ const Header: React.FC<HeaderProps> = ({
     </header>
   )
 }
-
-export default Header

@@ -1,6 +1,6 @@
 import { Meta, StoryObj } from '@storybook/react'
 
-import Header from './Header'
+import { Header } from './Header'
 
 const meta = {
   component: Header,
@@ -12,7 +12,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    id: 'bell-outline',
     isAuthorized: true,
     languageOptions: [
       { iconId: 'flag-uk', label: 'English', value: 'en' },
@@ -25,7 +24,6 @@ export const Default: Story = {
 
 export const NotAuthorized: Story = {
   args: {
-    id: 'bell-outline',
     isAuthorized: false,
     languageOptions: [
       { iconId: 'flag-uk', label: 'English', value: 'en' },
