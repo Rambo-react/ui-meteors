@@ -12,7 +12,6 @@ const meta = {
   },
   args: {
     disabled: false,
-    error: false,
     errorText: '',
     label: 'Text-area',
     placeholder: 'Text-area',
@@ -30,7 +29,6 @@ export const Default: Story = {}
 
 export const Error: Story = {
   args: {
-    error: true,
     errorText: 'Error text',
   },
 }

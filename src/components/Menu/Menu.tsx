@@ -54,7 +54,7 @@ export const Menu = ({ onClick }: MenuProps) => {
     <div className={styles.menu}>
       {menuItems.map(item => (
         <Icon
-          color={item.isActive ? 'var(--color-accent-500)' : 'var(--color-light-100)'}
+          fill={item.isActive ? 'var(--color-accent-500)' : 'var(--color-light-100)'}
           height={24}
           id={item.isActive ? item.activeId : item.id}
           key={item.id}
