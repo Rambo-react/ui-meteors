@@ -11,9 +11,13 @@ type SidebarMenuItemProps = {
   label: string
   onActivate: () => void
 }
-export const SidebarMenuItem = (props: SidebarMenuItemProps) => {
-  const { id, isActive, isDisabled, label, onActivate } = props
-
+export const SidebarMenuItem = ({
+  id,
+  isActive,
+  isDisabled,
+  label,
+  onActivate,
+}: SidebarMenuItemProps) => {
   return (
     <li className={styles.menuItem} onClick={onActivate}>
       <a

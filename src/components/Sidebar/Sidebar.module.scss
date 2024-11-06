@@ -1,20 +1,23 @@
 @import '@styles/typography';
 
 .sidebar {
-  background-color: var(--color-dark-700);
-  width: 220px;
-  height: 100%;
-  //position: fixed;
-  margin: 0;
+  @include Medium_text_14;
+
   z-index: 1;
   top: 0;
   left: 0;
+
   overflow-x: hidden;
+
+  width: 220px;
+  height: 100%;
+  margin: 0;
   padding: 72px 50px 36px 62px;
-  @include Medium_text_14;
+
+  background-color: var(--color-dark-700);
 }
 
-.sidebar li:not(:last-child):not(:nth-child(5)):not(:nth-child(7)) {
+.sidebar li:not(:last-child, :nth-child(5), :nth-child(7)) {
   margin-bottom: 24px;
 }
 

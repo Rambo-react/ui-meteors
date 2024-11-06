@@ -72,8 +72,8 @@ export const Sidebar = ({ items = defaultItems }: SidebarProps) => {
   const mappedMenuItems = menuItems.map(item => {
     const itemId = item.id
     const handleActivate = () => {
-      setMenuItems((prevItems: MenuItemsType) =>
-        prevItems.map(item =>
+      setMenuItems(
+        menuItems.map(item =>
           item.id === itemId ? { ...item, isActive: true } : { ...item, isActive: false }
         )
       )
