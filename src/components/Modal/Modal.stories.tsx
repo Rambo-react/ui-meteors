@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import s from '../Card/Card.module.scss'
 
-import { Icon, Input, Select, SelectItem } from '..'
+import { Button, Icon, Input, Select, SelectItem } from '..'
 import { Modal } from './Modal'
 
 const meta = {
@@ -11,7 +11,7 @@ const meta = {
       control: 'select',
       description: 'Accepts whole components, which is very convenient in terms of scalability',
       options: {
-        text: 'We have sent a link to confirm your email to epam@epam.com',
+        text: <p>We have sent a link to confirm your email to epam@epam.com</p>,
         withCard: (
           <div
             className={s.card}
@@ -28,6 +28,9 @@ const meta = {
         ),
       },
     },
+    onCloseBtn: {
+      description: 'Use for Handling listeners on Button ',
+    },
   },
   component: Modal,
   tags: ['autodocs'],
@@ -38,10 +41,10 @@ export default meta
 
 type Story = StoryObj<typeof meta>
 
-export const SentToEmail: Story = {
+export const Example: Story = {
   args: {
-    children: <p>We have sent a link to confirm your email to epam@epam.com</p>,
-    title: 'Email sent',
+    children: <p>Children Example</p>,
+    title: 'Title Example',
   },
 }
 
@@ -54,6 +57,10 @@ export const WithSelector: Story = {
           <SelectItem value={'Advertising placement'}>Advertising placement</SelectItem>
           <SelectItem value={'Another reason'}>Another reason</SelectItem>
         </Select>
+        <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
+          <Button variant={'primary'}>No</Button>
+          <Button variant={'outline'}>Yes</Button>
+        </div>
       </div>
     ),
     title: 'Ban user',
@@ -63,13 +70,27 @@ export const WithSelector: Story = {
 export const WithCard: Story = {
   args: {
     children: (
-      <div
-        className={s.card}
-        style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
-      >
-        <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
+      <div>
+        <div
+          className={s.card}
+          style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+        >
+          <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
+        </div>
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '20px',
+            justifyContent: 'space-around',
+            marginTop: '20px',
+          }}
+        >
+          <Button variant={'primary'}>Select from Computer</Button>
+          <Button variant={'outline'}>Open Draft</Button>
+        </div>
       </div>
     ),
-    title: 'Ban user',
+    title: 'Add Photo',
   },
 }
