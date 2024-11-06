@@ -1,48 +1,37 @@
 import { Meta, StoryObj } from '@storybook/react'
+
 import s from '../Card/Card.module.scss'
 
-import { Modal } from './Modal'
 import { Icon, Input, Select, SelectItem } from '..'
+import { Modal } from './Modal'
 
 const meta = {
-  component: Modal,
-  tags: ['autodocs'],
-  title: 'Components/Modal',
   argTypes: {
     children: {
       control: 'select',
+      description: 'Accepts whole components, which is very convenient in terms of scalability',
       options: {
         text: 'We have sent a link to confirm your email to epam@epam.com',
+        withCard: (
+          <div
+            className={s.card}
+            style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+          >
+            <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
+          </div>
+        ),
         withInput: (
           <div>
             <p>Some words:</p>
             <Input />
           </div>
         ),
-        withCard: (
-          <div
-            className={s.card}
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-          >
-            <Icon id="image-outline" width={40} height={40} viewBox="0 0 30 30" />
-          </div>
-        ),
       },
-      description: 'Accepts whole components, which is very convenient in terms of scalability',
-    },
-    buttons: {
-      control: 'select',
-      options: [['Button'], ['Button1', 'Button2'], ['Select from Computer', 'Open Draft']],
-      description: `Accepts values in an array
-['btn1','btn2',.....]`,
-    },
-    firstBtnHandler: {
-      description: 'Handler for actions on first button',
-    },
-    secondBtnHandler: {
-      description: 'Handler for actions on another button',
     },
   },
+  component: Modal,
+  tags: ['autodocs'],
+  title: 'Components/Modal',
 } satisfies Meta<typeof Modal>
 
 export default meta
@@ -51,39 +40,36 @@ type Story = StoryObj<typeof meta>
 
 export const SentToEmail: Story = {
   args: {
-    title: 'Email sent',
     children: <p>We have sent a link to confirm your email to epam@epam.com</p>,
-    buttons: ['OK'],
+    title: 'Email sent',
   },
 }
 
 export const WithSelector: Story = {
   args: {
-    title: 'Ban user',
     children: (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Select placeholder="Reason for ban">
+        <Select placeholder={'Reason for ban'}>
           <SelectItem value={'Bad behavior'}>Bad behavior</SelectItem>
           <SelectItem value={'Advertising placement'}>Advertising placement</SelectItem>
           <SelectItem value={'Another reason'}>Another reason</SelectItem>
         </Select>
       </div>
     ),
-    buttons: ['No', 'Yes'],
+    title: 'Ban user',
   },
 }
 
 export const WithCard: Story = {
   args: {
-    title: 'Ban user',
     children: (
       <div
         className={s.card}
-        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+        style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
       >
-        <Icon id="image-outline" width={40} height={40} viewBox="0 0 30 30" />
+        <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
       </div>
     ),
-    buttons: ['Select from Computer', 'Open Draft'],
+    title: 'Ban user',
   },
 }
