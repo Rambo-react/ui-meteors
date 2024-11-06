@@ -35,8 +35,6 @@
   flex-direction: column;
   justify-content: space-between;
 
-  max-width: 378px;
-  height: auto;
   padding: 30px 24px 0;
 
   word-wrap: break-word;
@@ -46,15 +44,6 @@
 
     margin: 0;
     padding: 0;
-  }
-
-  & > button {
-    @include H3;
-
-    display: flex;
-    align-self: flex-end;
-    justify-content: center;
-    width: 96px;
   }
 }
 

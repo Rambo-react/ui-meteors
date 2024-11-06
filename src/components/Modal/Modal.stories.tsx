@@ -36,7 +36,12 @@ const meta = {
       description: `Accepts values in an array
 ['btn1','btn2',.....]`,
     },
-    firstBtnHandler: {},
+    firstBtnHandler: {
+      description: 'Handler for actions on first button',
+    },
+    secondBtnHandler: {
+      description: 'Handler for actions on another button',
+    },
   },
 } satisfies Meta<typeof Modal>
 
@@ -65,5 +70,20 @@ export const WithSelector: Story = {
       </div>
     ),
     buttons: ['No', 'Yes'],
+  },
+}
+
+export const WithCard: Story = {
+  args: {
+    title: 'Ban user',
+    children: (
+      <div
+        className={s.card}
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+      >
+        <Icon id="image-outline" width={40} height={40} viewBox="0 0 30 30" />
+      </div>
+    ),
+    buttons: ['Select from Computer', 'Open Draft'],
   },
 }
