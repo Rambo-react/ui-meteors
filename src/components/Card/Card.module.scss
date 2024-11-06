@@ -1,4 +1,4 @@
-@import "@styles/typography";
+@import '@styles/typography';
 
 .cardWrapper {
   word-wrap: break-word;
@@ -7,18 +7,21 @@
 
 .titleSection {
   @include H3;
-  color: var(--color-light-100);
+
   margin: 18px auto;
+  color: var(--color-light-100);
 }
 
 .card {
-  background-color: var(--color-dark-500);
-  border: 1px solid var(--color-dark-300);
   width: 100%;
   min-height: 120px;
   padding: 18px 24px;
+
   word-wrap: break-word;
   overflow-wrap: break-word;
+
+  background-color: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
 }
 
 .cardTitle {
@@ -27,5 +30,6 @@
 
 .text {
   @include Regular_text_14;
+
   color: var(--color-light-100);
 }

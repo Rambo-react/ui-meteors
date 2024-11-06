@@ -1,46 +1,40 @@
-import { useState } from 'react'
-
 import * as RadioGroup from '@radix-ui/react-radio-group'
 
 import styles from './RadioGroup.module.scss'
 
 type RadioGroupProps = {
-  defaultValue?: string
+  currentValue: string
   disabled: boolean
-  disabledOption?: string[]
-  labels: string[]
-  onChange?: (value: string) => void
+  disabledOptions?: string[]
+  onChange: (value: string) => void
+  options: string[]
 }
 
-export const RadioGroupExample = ({
-  defaultValue = '',
+export const RadioGroupComponent = ({
+  currentValue,
   disabled = false,
-  disabledOption,
-  labels,
+  disabledOptions,
   onChange,
+  options,
 }: RadioGroupProps) => {
-  const [selected, setSelected] = useState<string>(defaultValue)
-  const handleChange = (value: string) => {
-    setSelected(value)
-    if (onChange) {
-      onChange(value)
-    }
-  }
-  const mappedRadioGroupItems = labels.map(label => (
-    <div className={styles.radioGroupLayoutItem} key={label}>
+  const mappedRadioGroupItems = options.map(option => (
+    <div className={styles.radioGroupLayoutItem} key={option}>
       <RadioGroup.Item
         className={styles.radioGroupItem}
-        disabled={disabled || disabledOption?.includes(label)}
-        id={label}
-        value={label}
+        disabled={disabledOptions?.includes(option)}
+        id={option}
+        value={option}
       >
         <RadioGroup.Indicator className={styles.radioGroupIndicator} />
       </RadioGroup.Item>
-      <label className={styles.label} htmlFor={label}>
-        {label}
+      <label className={styles.option} htmlFor={option}>
+        {option}
       </label>
     </div>
   ))
+  const onValueChangeHandler = (value: string) => {
+    onChange(value)
+  }
 
   return (
     <form>
@@ -49,8 +43,8 @@ export const RadioGroupExample = ({
           aria-disabled={disabled}
           className={styles.radioGroupRoot}
           disabled={disabled}
-          onValueChange={handleChange}
-          value={selected}
+          onValueChange={onValueChangeHandler}
+          value={currentValue}
         >
           {mappedRadioGroupItems}
         </RadioGroup.Root>
