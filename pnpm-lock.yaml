@@ -32,6 +32,9 @@ importers:
       '@radix-ui/react-tabs':
         specifier: ^1.1.1
         version: 1.1.1(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/addon-viewport':
+        specifier: ^8.4.1
+        version: 8.4.1(storybook@7.5.3)
       clsx:
         specifier: ^2.0.0
         version: 2.0.0
@@ -1909,6 +1912,11 @@ packages:
         optional: true
       react-dom:
         optional: true
+
+  '@storybook/addon-viewport@8.4.1':
+    resolution: {integrity: sha512-O6DcuUfXQTytjl7mj4ld4ZX9x2pUUWKUx1TxiuMuH0EKb612RyYcdpXpDQQwsIzLV/f2BOetk9jmO2/MymfbWQ==}
+    peerDependencies:
+      storybook: ^8.4.1
 
   '@storybook/blocks@7.5.3':
     resolution: {integrity: sha512-Z8yF820v78clQWkwG5OA5qugbQn7rtutq9XCsd03NDB+IEfDaTFQAZG8gs62ZX2ZaXAJsqJSr/mL9oURzXto2A==}
@@ -7391,6 +7399,11 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
       - '@types/react-dom'
+
+  '@storybook/addon-viewport@8.4.1(storybook@7.5.3)':
+    dependencies:
+      memoizerific: 1.11.3
+      storybook: 7.5.3
 
   '@storybook/blocks@7.5.3(@types/react-dom@18.2.15)(@types/react@18.2.37)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
