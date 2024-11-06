@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styles from './Menu.module.scss'
 
 import { Icon } from '../Icon'
+
 type MenuItemsType = Array<MenuItem>
 type MenuItem = {
   activeId: string
@@ -39,15 +40,6 @@ const menuItemsArray = [
 export const Menu = ({ onClick }: MenuProps) => {
   const [menuItems, setMenuItems] = useState<MenuItemsType>(menuItemsArray)
 
-  const onClickHandler = (id: string) => {
-    setMenuItems(
-      menuItems.map(item =>
-        item.id === id ? { ...item, isActive: true } : { ...item, isActive: false }
-      )
-    )
-    onClick(id)
-  }
-
   return (
     <div className={styles.menu}>
       {menuItems.map(item => (
@@ -56,7 +48,14 @@ export const Menu = ({ onClick }: MenuProps) => {
           height={24}
           id={item.isActive ? item.activeId : item.id}
           key={item.id}
-          onClick={() => onClickHandler(item.id)}
+          onClick={() => {
+            setMenuItems(
+              menuItems.map(i =>
+                i.id === item.id ? { ...i, isActive: true } : { ...i, isActive: false }
+              )
+            )
+            onClick(item.id)
+          }}
           width={24}
         />
       ))}
