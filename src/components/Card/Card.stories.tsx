@@ -3,6 +3,11 @@ import type { Meta, StoryObj } from '@storybook/react'
 import { Card } from '.'
 
 const meta = {
+  argTypes: {
+    children: {
+      description: 'content inside card',
+    },
+  },
   args: {
     children: <div>Card</div>,
   },
