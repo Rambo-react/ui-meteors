@@ -1,6 +1,6 @@
 import { useState } from 'react'
 
-import s from './HeaderMobile.module.css'
+import s from './HeaderMobile.module.scss'
 
 import { Icon } from '../Icon'
 import { Menu } from '../Menu/Menu'

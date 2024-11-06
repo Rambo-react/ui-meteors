@@ -1,4 +1,4 @@
-import s from './HeaderMobile.module.css'
+import s from './HeaderMobile.module.scss'
 
 import { Icon } from '../Icon'
 
