@@ -4,8 +4,6 @@
   width: 100%;
   min-width: 300px;
   max-width: 378px;
-  min-height: 200px;
-
   background-color: var(--color-dark-300);
 }
 
@@ -34,37 +32,5 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
-  padding: 30px 24px 0;
-
-  word-wrap: break-word;
-
-  & > p {
-    @include Regular_text_16;
-
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.btnContainer {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 24px;
-  justify-content: flex-end;
-
-  padding: 15px 0;
-
-  & > button {
-    @include H3;
-  }
-}
-
-.oneButton {
-  justify-content: flex-end;
-}
-
-.moreButtons {
-  column-gap: 50px;
-  justify-content: center;
+  padding: 30px 24px;
 }
