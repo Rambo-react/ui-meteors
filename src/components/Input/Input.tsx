@@ -7,7 +7,7 @@ import s from './Input.module.scss'
 
 import { Icon } from '../Icon'
 
-export type InputProps = {
+type Props = {
   className?: string
   containerClassName?: string
   errorMsg?: string
@@ -16,20 +16,19 @@ export type InputProps = {
   type?: 'email' | 'password' | 'search' | 'text'
 } & ComponentPropsWithoutRef<'input'>
 
-export const Input = forwardRef<HTMLInputElement, InputProps>(
+export const Input = forwardRef<HTMLInputElement, Props>(
   (
-    { className, containerClassName, errorMsg, id, label, placeholder, type = 'text', ...rest },
+    { className, containerClassName, errorMsg, label, placeholder, type = 'text', ...rest },
     ref
   ) => {
     const generatedId = useId()
-    const finalId = id ? id : generatedId
     const [isFocused, setIsFocused] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
     return (
       <div className={containerClassName}>
         {label && (
-          <Label.Root className={s.label} htmlFor={id}>
+          <Label.Root className={s.label} htmlFor={generatedId}>
             {label}
           </Label.Root>
         )}
@@ -43,7 +42,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
               className
             )}
             disabled={rest.disabled}
-            id={finalId}
+            id={generatedId}
             onBlur={() => setIsFocused(false)}
             onFocus={() => setIsFocused(true)}
             placeholder={placeholder}
