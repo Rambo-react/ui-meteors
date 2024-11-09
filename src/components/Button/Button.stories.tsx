@@ -4,6 +4,10 @@ import { Button } from './'
 
 const meta = {
   argTypes: {
+    as: {
+      control: { type: 'radio' },
+      options: ['a', 'button'],
+    },
     onClick: { action: 'clicked' },
     variant: {
       control: { type: 'radio' },
@@ -51,6 +55,15 @@ export const Text: Story = {
 
 export const FullWidth: Story = {
   args: {
+    disabled: false,
+    fullWidth: true,
+    variant: 'primary',
+  },
+}
+
+export const Link: Story = {
+  args: {
+    as: 'a',
     disabled: false,
     fullWidth: true,
     variant: 'primary',

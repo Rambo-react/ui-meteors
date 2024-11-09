@@ -1,0 +1,66 @@
+@import '@styles/typography';
+
+.trigger {
+  all: unset;
+
+  /* stylelint-disable-next-line order/order */
+  @include Regular_text_14;
+
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: center;
+
+  width: 52px;
+  height: 24px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 2px;
+
+  span {
+    display: flex;
+    align-items: center;
+
+    svg {
+      transform: rotate(90deg);
+    }
+  }
+
+  &[aria-expanded='true'] {
+    border-radius: 2px 2px 0 0;
+
+    svg {
+      transform: rotate(-90deg);
+    }
+  }
+}
+
+.content {
+  position: relative;
+  top: -1px;
+
+  background-color: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
+  border-radius: 0 0 2px 2px;
+}
+
+.item {
+  @include Regular_text_14;
+
+  user-select: none;
+
+  display: flex;
+  align-items: center;
+
+  width: 52px;
+  height: 24px;
+  padding-left: 5px;
+
+  &[data-highlighted] {
+    background-color: var(--color-dark-100);
+    outline: none;
+  }
+}

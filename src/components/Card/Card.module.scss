@@ -1,0 +1,10 @@
+@import '@styles/typography';
+
+.card {
+  width: 378px;
+  min-height: 120px;
+  padding: 24px;
+
+  background-color: var(--color-dark-500);
+  border: 1px solid var(--color-dark-300);
+}
