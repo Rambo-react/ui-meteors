@@ -1,18 +1,21 @@
-import { useEffect, useState } from 'react'
+import { CSSProperties, useEffect, useState } from 'react'
 
-import * as AlertDialog from '@radix-ui/react-alert-dialog'
+import * as Toast from '@radix-ui/react-toast'
+import { clsx } from 'clsx'
 
 import s from './Alert.module.scss'
 
 import { Icon } from '../Icon'
 
-export type AlertProps = {
-  delay?: number
+type Props = {
+  duration?: number
+  iconClose?: boolean
   message: string
+  styles?: CSSProperties
   variant: 'accepted' | 'error'
 }
 
-export const Alert = ({ delay = 6000, message, variant }: AlertProps) => {
+export const Alert = ({ duration = 6000, iconClose = true, message, styles, variant }: Props) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
@@ -20,33 +23,34 @@ export const Alert = ({ delay = 6000, message, variant }: AlertProps) => {
       setIsAlertOpen(true)
       const timer = setTimeout(() => {
         setIsAlertOpen(false)
-      }, delay)
+      }, duration)
 
       return () => clearTimeout(timer)
     }
-  }, [message, delay])
+  }, [message, duration])
 
   const handleClose = () => {
     setIsAlertOpen(false)
   }
 
   return (
-    <AlertDialog.Root onOpenChange={handleClose} open={isAlertOpen}>
-      <AlertDialog.Portal>
-        <AlertDialog.Overlay />
-        <AlertDialog.Content
-          aria-live={'assertive'}
-          className={`${s.alert} ${s[variant]}`}
-          role={'alert'}
-        >
-          <div>{message}</div>
-          <AlertDialog.Cancel asChild>
+    <Toast.Provider>
+      <Toast.Root
+        aria-live={'assertive'}
+        className={clsx(s.alert, s[variant])}
+        open={isAlertOpen}
+        role={'alert'}
+      >
+        <Toast.Title>{message}</Toast.Title>
+        <Toast.Description onClick={handleClose}>
+          {iconClose && (
             <div className={s.iconWrapper}>
               <Icon fill={'white'} height={24} id={'close'} width={24} />
             </div>
-          </AlertDialog.Cancel>
-        </AlertDialog.Content>
-      </AlertDialog.Portal>
-    </AlertDialog.Root>
+          )}
+        </Toast.Description>
+      </Toast.Root>
+      <Toast.Viewport className={clsx(s.viewport)} style={styles} />
+    </Toast.Provider>
   )
 }
