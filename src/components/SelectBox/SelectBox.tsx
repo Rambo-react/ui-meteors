@@ -1,107 +1,93 @@
-import * as React from 'react'
-import { ComponentPropsWithoutRef, ReactNode } from 'react'
+import { ReactNode, useState } from 'react'
 
-import * as SelectPrimitive from '@radix-ui/react-select'
-import clsx from 'clsx'
+import * as SelectRadix from '@radix-ui/react-select'
 
 import s from './SelectBox.module.scss'
 
 import { Icon } from '../Icon'
 
-export const Select = ({
-  children,
-  placeholder,
-  portal = true,
-  triggerIcon,
-  triggerProps = {},
-  ...props
-}: ComponentPropsWithoutRef<typeof SelectPrimitive.Root> & {
+type Option = {
+  icon?: ReactNode
+  label: string
+  value: string
+}
+
+type Props = {
+  defaultValue?: string
+  disabled?: boolean
+  label?: string
+  onValueChange: (value: string) => void
+  options: Option[]
   placeholder?: string
-  portal?: boolean
-  triggerIcon?: ReactNode
-  triggerProps?: Omit<ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>, 'children'>
-}) => (
-  <SelectPrimitive.Root {...props}>
-    <SelectTrigger {...triggerProps}>
-      <div className={s.triggerLabel}>
-        {triggerIcon && triggerIcon}
-        <SelectValue placeholder={placeholder} />
-      </div>
-    </SelectTrigger>
-    <SelectContent portal={portal}>{children}</SelectContent>
-  </SelectPrimitive.Root>
-)
+}
 
-export const SelectGroup = SelectPrimitive.Group
-export const SelectValue = SelectPrimitive.Value
+export const SelectBox = ({
+  defaultValue,
+  disabled,
+  label,
+  onValueChange,
+  options,
+  placeholder,
+}: Props) => {
+  const [selectedValue, setSelectedValue] = useState<null | string>(defaultValue || null)
 
-export const SelectTrigger = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Trigger>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Trigger>
->(({ children, className, ...props }, ref) => (
-  <SelectPrimitive.Trigger className={clsx(s.trigger, className)} ref={ref} {...props}>
-    {children}
-    <SelectPrimitive.Icon asChild>
-      <Icon
-        className={s.triggerChevron}
-        fill={'currentColor'}
-        height={24}
-        id={'arrow-ios-down-outline'}
-        width={24}
-      />
-    </SelectPrimitive.Icon>
-  </SelectPrimitive.Trigger>
-))
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value)
+    onValueChange(value)
+  }
 
-SelectTrigger.displayName = SelectPrimitive.Trigger.displayName
+  const selectedOption = options.find(option => option.value === selectedValue)
 
-export const SelectContent = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Content>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Content> & { portal?: boolean }
->(({ children, className, portal, position = 'popper', ...props }, ref) => (
-  <>
-    {portal ? (
-      <SelectPrimitive.Portal>
-        <SelectPrimitive.Content
-          className={clsx(s.content, className)}
-          position={position}
-          ref={ref}
-          {...props}
-        >
-          <SelectPrimitive.Viewport className={s.viewport}>{children}</SelectPrimitive.Viewport>
-        </SelectPrimitive.Content>
-      </SelectPrimitive.Portal>
-    ) : (
-      <SelectPrimitive.Content
-        className={clsx(s.content, className)}
-        position={position}
-        ref={ref}
-        {...props}
-      >
-        <SelectPrimitive.Viewport className={s.viewport}>{children}</SelectPrimitive.Viewport>
-      </SelectPrimitive.Content>
-    )}
-  </>
-))
+  return (
+    <SelectRadix.Root onValueChange={handleValueChange}>
+      {label && <label className={s.label}>{label}</label>}
+      {selectedOption ? (
+        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
+          <div className={s.optionContent}>
+            <div className={s.icon}>{selectedOption.icon}</div>
+            <div>{selectedOption.label}</div>
+          </div>
+          <SelectRadix.Icon>
+            <Icon
+              className={s.triggerChevron}
+              fill={'currentColor'}
+              height={24}
+              id={'arrow-ios-down-outline'}
+              width={24}
+            />
+          </SelectRadix.Icon>
+        </SelectRadix.Trigger>
+      ) : (
+        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
+          <SelectRadix.Value placeholder={placeholder} />
+          <SelectRadix.Icon>
+            <Icon
+              className={s.triggerChevron}
+              fill={'currentColor'}
+              height={24}
+              id={'arrow-ios-down-outline'}
+              width={24}
+            />
+          </SelectRadix.Icon>
+        </SelectRadix.Trigger>
+      )}
 
-SelectContent.displayName = SelectPrimitive.Content.displayName
-
-export const SelectLabel = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Label>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Label>
->(({ className, ...props }, ref) => (
-  <SelectPrimitive.Label className={className} ref={ref} {...props} />
-))
-
-SelectLabel.displayName = SelectPrimitive.Label.displayName
-
-export const SelectItem = React.forwardRef<
-  React.ElementRef<typeof SelectPrimitive.Item>,
-  React.ComponentPropsWithoutRef<typeof SelectPrimitive.Item>
->(({ children, className, ...props }, ref) => (
-  <SelectPrimitive.Item className={clsx(s.item, className)} ref={ref} {...props}>
-    <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
-  </SelectPrimitive.Item>
-))
-
-SelectItem.displayName = SelectPrimitive.Item.displayName
+      <SelectRadix.Portal>
+        <SelectRadix.Content className={s.content} position={'popper'}>
+          <SelectRadix.Viewport className={s.viewport}>
+            <SelectRadix.Group>
+              {options.map(({ icon, label, value }) => (
+                <SelectRadix.Item className={s.item} key={value} value={value}>
+                  <div className={s.optionContent}>
+                    {icon && <div className={s.icon}>{icon}</div>}
+                    <SelectRadix.ItemText>{label}</SelectRadix.ItemText>
+                  </div>
+                </SelectRadix.Item>
+              ))}
+            </SelectRadix.Group>
+          </SelectRadix.Viewport>
+        </SelectRadix.Content>
+      </SelectRadix.Portal>
+    </SelectRadix.Root>
+  )
+}
