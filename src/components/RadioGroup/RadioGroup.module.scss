@@ -21,6 +21,18 @@ button {
   border-radius: 100%;
 }
 
+.radioGroupIndicator::after {
+  content: '';
+
+  display: block;
+
+  width: 10px;
+  height: 10px;
+
+  background-color: var(--color-light-100);
+  border-radius: 100%;
+}
+
 .radioGroupItem[disabled] {
   border-color: var(--color-dark-100);
 
@@ -40,18 +52,6 @@ button {
   height: 100%;
 }
 
-.radioGroupIndicator::after {
-  content: '';
-
-  display: block;
-
-  width: 10px;
-  height: 10px;
-
-  background-color: var(--color-light-100);
-  border-radius: 100%;
-}
-
 .option {
   @include Regular_text_14;
 
@@ -59,7 +59,7 @@ button {
   color: var(--color-light-100);
 }
 
-@mixin radioGroupItemBefore {
+@mixin radio-group-item-before {
   content: '';
 
   position: absolute;
@@ -76,19 +76,19 @@ button {
 }
 
 .radioGroupItem:hover::before {
-  @include radioGroupItemBefore;
+  @include radio-group-item-before;
 
   background-color: var(--color-dark-300);
 }
 
 .radioGroupItem:active::before {
-  @include radioGroupItemBefore;
+  @include radio-group-item-before;
 
   background-color: var(--color-dark-100);
 }
 
 .radioGroupItem:focus::before {
-  @include radioGroupItemBefore;
+  @include radio-group-item-before;
 
   background-color: var(--color-dark-500);
 }
