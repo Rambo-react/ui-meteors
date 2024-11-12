@@ -5,11 +5,11 @@ import clsx from 'clsx'
 
 import s from './Scroll.module.scss'
 
-type ScrollAreaProps = {
+type Props = {
   styles?: CSSProperties
 }
 
-export const ScrollAreaComponent = ({ children, styles }: PropsWithChildren<ScrollAreaProps>) => {
+export const ScrollAreaComponent = ({ children, styles }: PropsWithChildren<Props>) => {
   return (
     <ScrollArea.Root className={clsx(s.ScrollAreaRoot)} style={styles}>
       <ScrollArea.Viewport className={s.ScrollAreaViewport}>{children}</ScrollArea.Viewport>
