@@ -1,4 +1,4 @@
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import * as RadioGroupRadix from '@radix-ui/react-radio-group'
 
 import styles from './RadioGroup.module.scss'
 
@@ -10,7 +10,7 @@ type RadioGroupProps = {
   options: string[]
 }
 
-export const RadioGroupComponent = ({
+export const RadioGroup = ({
   currentValue,
   disabled = false,
   disabledOptions,
@@ -19,19 +19,20 @@ export const RadioGroupComponent = ({
 }: RadioGroupProps) => {
   const mappedRadioGroupItems = options.map(option => (
     <div className={styles.radioGroupLayoutItem} key={option}>
-      <RadioGroup.Item
+      <RadioGroupRadix.Item
         className={styles.radioGroupItem}
         disabled={disabledOptions?.includes(option)}
         id={option}
         value={option}
       >
-        <RadioGroup.Indicator className={styles.radioGroupIndicator} />
-      </RadioGroup.Item>
+        <RadioGroupRadix.Indicator className={styles.radioGroupIndicator} />
+      </RadioGroupRadix.Item>
       <label className={styles.option} htmlFor={option}>
         {option}
       </label>
     </div>
   ))
+
   const onValueChangeHandler = (value: string) => {
     onChange(value)
   }
@@ -39,7 +40,7 @@ export const RadioGroupComponent = ({
   return (
     <form>
       <div className={styles.radioGroupLayout}>
-        <RadioGroup.Root
+        <RadioGroupRadix.Root
           aria-disabled={disabled}
           className={styles.radioGroupRoot}
           disabled={disabled}
@@ -47,7 +48,7 @@ export const RadioGroupComponent = ({
           value={currentValue}
         >
           {mappedRadioGroupItems}
-        </RadioGroup.Root>
+        </RadioGroupRadix.Root>
       </div>
     </form>
   )

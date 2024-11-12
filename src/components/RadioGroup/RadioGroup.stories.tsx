@@ -4,7 +4,7 @@ import { useState } from 'react'
 
 import { action } from '@storybook/addon-actions'
 
-import { RadioGroupComponent } from '.'
+import { RadioGroup } from '.'
 
 const meta = {
   argTypes: {
@@ -34,23 +34,24 @@ const meta = {
     onChange() {},
     options: ['RadioGroup1', 'RadioGroup2', 'RadioGroup3', 'RadioGroup4'],
   },
-  component: RadioGroupComponent,
+  component: RadioGroup,
   tags: ['autodocs'],
   title: 'Components/RadioGroup',
-} satisfies Meta<typeof RadioGroupComponent>
+} satisfies Meta<typeof RadioGroup>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
+
 export const Default: Story = {
   render: args => {
     // Состояние для хранения текущего значения, выбранного в Radio
     const [selected, setSelected] = useState<string>('RadioGroup2')
+
     const handleChange = (value: string) => {
       setSelected(value)
       action('radio-selected')
     }
 
-    return <RadioGroupComponent {...args} currentValue={selected} onChange={handleChange} />
+    return <RadioGroup {...args} currentValue={selected} onChange={handleChange} />
   },
 }
