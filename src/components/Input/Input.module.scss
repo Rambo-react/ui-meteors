@@ -1,0 +1,156 @@
+@import '@styles/typography';
+
+.label {
+  @include Regular_text_14;
+
+  cursor: pointer;
+  display: block;
+  color: var(--color-light-900);
+}
+
+.inputContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  &:has(.disabled) {
+    .label {
+      cursor: default;
+    }
+  }
+}
+
+.inputField {
+  @include Regular_text_16;
+
+  display: inline-block;
+
+  box-sizing: border-box;
+  width: 100%;
+  height: var(--line-height-l);
+  padding: 6px 12px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-900);
+  border: 1px solid var(--color-light-900);
+  border-radius: 2px;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-light-900);
+  }
+
+  &:hover {
+    border-color: var(--color-dark-100);
+  }
+
+  &:focus {
+    background-color: var(--color-dark-500);
+    border-color: var(--color-light-100);
+
+    &::placeholder {
+      color: var(--color-light-100);
+    }
+  }
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  box-shadow: 0 0 0 1000px black inset;
+
+  -webkit-text-fill-color: var(--color-light-100);
+}
+
+.inputSearch {
+  padding: 6px 12px 6px 40px;
+}
+
+.errorMsg {
+  @include Small_text;
+
+  position: absolute;
+
+  margin-top: 2px;
+
+  color: var(--color-danger-500);
+
+  visibility: hidden;
+  opacity: 0;
+
+  transition:
+    visibility 0.3s ease,
+    opacity 0.3s ease;
+
+  &.show {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+.iconSearch {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+
+  color: var(--color-light-900);
+}
+
+.active .iconSearch {
+  color: var(--color-light-100);
+}
+
+.iconPass {
+  cursor: pointer;
+
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+
+  color: var(--color-light-100);
+}
+
+.disabled {
+  cursor: not-allowed;
+  color: var(--color-dark-100);
+  border-color: var(--color-dark-100);
+
+  &::placeholder {
+    color: var(--color-dark-100);
+  }
+
+  ~ .iconPass,
+  ~ .iconSearch {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+}
+
+.active .iconPass {
+  color: var(--color-light-100);
+}
+
+.error {
+  border-color: var(--color-danger-500);
+
+  &::placeholder {
+    color: var(--color-danger-500);
+  }
+
+  ~ .iconSearch {
+    color: var(--color-danger-500);
+  }
+
+  &:focus::placeholder {
+    color: var(--color-light-100);
+  }
+
+  &:focus {
+    ~ .iconSearch {
+      color: var(--color-light-100);
+    }
+  }
+}

@@ -1,0 +1,63 @@
+@import '@styles/typography';
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.textarea {
+  @include Regular_text_16;
+
+  resize: none;
+
+  min-height: 84px;
+  padding: 6px 12px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-500);
+  border: 1px solid var(--color-dark-100);
+  border-radius: 2px;
+  outline: none;
+
+  &::placeholder {
+    color: var(--color-light-900);
+  }
+
+  &:disabled {
+    color: var(--color-dark-100);
+
+    &::placeholder {
+      color: var(--color-dark-100);
+    }
+  }
+
+  &:focus:not(.error) {
+    border: 2px solid var(--color-accent-700);
+  }
+
+  &:active:not(:disabled) {
+    border: 1px solid var(--color-light-100);
+  }
+}
+
+.label {
+  @include Regular_text_14;
+
+  color: var(--color-light-900);
+}
+
+.error {
+  border: 1px solid var(--color-danger-500);
+}
+
+.disabled {
+  color: var(--color-dark-100);
+}
+
+.errorText {
+  @include Regular_text_14;
+
+  margin: 0;
+  color: var(--color-danger-500);
+}

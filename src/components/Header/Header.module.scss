@@ -1,0 +1,119 @@
+@import '@styles/typography';
+@import '@styles/colors';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 100px;
+  padding: 12px 60px;
+
+  color: var(--color-light-100);
+
+  background-color: var(--color-dark-700);
+
+  &Title {
+    @include Large;
+
+    cursor: pointer;
+    color: var(--color-light-100);
+    text-decoration: none;
+  }
+
+  &Menu {
+    display: flex;
+    align-items: center;
+  }
+
+  &MenuAuth {
+    display: flex;
+    align-items: center;
+  }
+
+  &Menu:not(:last-child) {
+    margin-right: 20px;
+  }
+
+  .notificationIcon {
+    cursor: pointer;
+    position: relative;
+    margin-top: 12px;
+    margin-right: 36px;
+
+    .notificationCount {
+      position: absolute;
+      top: -7px;
+      right: -2px;
+
+      padding: 1px 5px;
+
+      font-size: 12px;
+      color: var(--color-light-100);
+
+      background-color: var(--color-danger-500);
+      border-radius: 50%;
+    }
+  }
+
+  .loginButton {
+    margin-right: 24px;
+  }
+}
+
+.languageSelect {
+  cursor: pointer;
+
+  position: relative;
+
+  margin-right: 36px;
+  padding: 0 12px;
+
+  color: var(--color-light-100);
+
+  background: none;
+  border: 1px solid var(--color-dark-100);
+}
+
+.selectedLanguage {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+}
+
+.dropdownMenu {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  right: 4px;
+
+  display: none;
+
+  padding: 4px 12px;
+
+  border: 1px solid var(--color-dark-100);
+}
+
+.languageSelect:hover .dropdownMenu {
+  overflow-y: hidden;
+  display: block;
+}
+
+.languageOption {
+  display: flex;
+  align-items: center;
+}
+
+.dropdownItem {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+
+.dropdownItem:hover {
+  background-color: var(--color-primary-100);
+}
+
+.iconWithMargin {
+  margin-right: 12px;
+}
