@@ -1,84 +1,54 @@
-import { useState } from 'react'
-
-import * as RadioGroup from '@radix-ui/react-radio-group'
+import * as RadioGroupRadix from '@radix-ui/react-radio-group'
 
 import styles from './RadioGroup.module.scss'
 
 type RadioGroupProps = {
-  disabled?: boolean
-  disabledOption?: string
-  labels?: RadioLabels
-  onChange?: (value: string) => void
+  currentValue: string
+  disabled: boolean
+  disabledOptions?: string[]
+  onChange: (value: string) => void
+  options: string[]
 }
-export type RadioLabels = {
-  option1: string
-  option2: string
-  option3: string
-}
-export const RadioGroupExample = ({
+
+export const RadioGroup = ({
+  currentValue,
   disabled = false,
-  disabledOption,
-  labels = { option1: 'RadioGroup1', option2: 'RadioGroup2', option3: 'RadioGroup3' },
+  disabledOptions,
   onChange,
+  options,
 }: RadioGroupProps) => {
-  const [selected, setSelected] = useState<string>('RadioGroup1')
-  const handleChange = (value: string) => {
-    setSelected(value)
-    if (onChange) {
-      onChange(value)
-    }
+  const mappedRadioGroupItems = options.map(option => (
+    <div className={styles.radioGroupLayoutItem} key={option}>
+      <RadioGroupRadix.Item
+        className={styles.radioGroupItem}
+        disabled={disabledOptions?.includes(option)}
+        id={option}
+        value={option}
+      >
+        <RadioGroupRadix.Indicator className={styles.radioGroupIndicator} />
+      </RadioGroupRadix.Item>
+      <label className={styles.option} htmlFor={option}>
+        {option}
+      </label>
+    </div>
+  ))
+
+  const onValueChangeHandler = (value: string) => {
+    onChange(value)
   }
 
   return (
     <form>
       <div className={styles.radioGroupLayout}>
-        <RadioGroup.Root
+        <RadioGroupRadix.Root
           aria-disabled={disabled}
           className={styles.radioGroupRoot}
           disabled={disabled}
-          onValueChange={handleChange}
-          value={selected}
+          onValueChange={onValueChangeHandler}
+          value={currentValue}
         >
-          <div className={styles.radioGroupLayoutItem}>
-            <RadioGroup.Item
-              className={styles.radioGroupItem}
-              disabled={disabled || disabledOption === 'RadioGroup1'}
-              id={'RadioGroup1'}
-              value={'RadioGroup1'}
-            >
-              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
-            </RadioGroup.Item>
-            <label className={styles.label} htmlFor={'RadioGroup1'}>
-              {labels.option1}
-            </label>
-          </div>
-          <div className={styles.radioGroupLayoutItem}>
-            <RadioGroup.Item
-              className={styles.radioGroupItem}
-              disabled={disabled || disabledOption === 'RadioGroup2'}
-              id={'RadioGroup2'}
-              value={'RadioGroup2'}
-            >
-              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
-            </RadioGroup.Item>
-            <label className={styles.label} htmlFor={'RadioGroup2'}>
-              {labels.option2}
-            </label>
-          </div>
-          <div className={styles.radioGroupLayoutItem}>
-            <RadioGroup.Item
-              className={styles.radioGroupItem}
-              disabled={disabled || disabledOption === 'RadioGroup3'}
-              id={'RadioGroup3'}
-              value={'RadioGroup3'}
-            >
-              <RadioGroup.Indicator className={styles.radioGroupIndicator} />
-            </RadioGroup.Item>
-            <label className={styles.label} htmlFor={'RadioGroup3'}>
-              {labels.option3}
-            </label>
-          </div>
-        </RadioGroup.Root>
+          {mappedRadioGroupItems}
+        </RadioGroupRadix.Root>
       </div>
     </form>
   )
