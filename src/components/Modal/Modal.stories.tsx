@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import s from '../Card/Card.module.scss'
 
-import { Button, Icon, Input, Select, SelectItem } from '..'
+import { Button, Icon, Input, SelectBox } from '..'
 import { Modal } from './Modal'
 
 const meta = {
@@ -52,11 +52,14 @@ export const WithSelector: Story = {
   args: {
     children: (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Select placeholder={'Reason for ban'}>
-          <SelectItem value={'Bad behavior'}>Bad behavior</SelectItem>
-          <SelectItem value={'Advertising placement'}>Advertising placement</SelectItem>
-          <SelectItem value={'Another reason'}>Another reason</SelectItem>
-        </Select>
+        <SelectBox
+          onValueChange={() => {}}
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
+        />
         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
           <Button variant={'primary'}>No</Button>
           <Button variant={'outline'}>Yes</Button>

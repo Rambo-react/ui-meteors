@@ -1,23 +1,11 @@
-import React from 'react';
-import ReCAPTCHA from 'react-google-recaptcha';
+import { ReCAPTCHA } from 'react-google-recaptcha'
 
-export interface ReCaptchaProps {
-    siteKey: string;
-    onChange: (value: string | null) => void;
-    theme?: 'dark' | 'light';
+type Props = {
+  onChange: (value: null | string) => void
+  siteKey: string
+  theme?: 'dark' | 'light'
 }
 
-const ReCaptcha: React.FC<ReCaptchaProps> = ({siteKey, onChange, theme = 'dark', }) => {
-
-    return (
-        <>
-            <ReCAPTCHA
-                sitekey={siteKey}
-                onChange={onChange}
-                theme={theme}
-            />
-        </>
-    );
-};
-
-export default ReCaptcha;
+export const ReCaptcha = ({ onChange, siteKey, theme = 'dark' }: Props) => {
+  return <ReCAPTCHA onChange={onChange} sitekey={siteKey} theme={theme} />
+}
