@@ -45,10 +45,10 @@
   }
 }
 
-.triggerLabel {
-  display: flex;
-  gap: 12px;
-  align-items: center;
+.label {
+  @include Regular_text_14;
+
+  color: var(--color-light-900);
 }
 
 .content {
@@ -81,4 +81,16 @@
     background-color: var(--color-accent-900);
     outline: none;
   }
+}
+
+.optionContent {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
