@@ -1,36 +1,51 @@
 @import '@styles/typography';
 
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .container {
-  width: 100%;
-  min-width: 300px;
-  max-width: 378px;
+  position: fixed; // Убедитесь, что модалка фиксирована на экране
+  z-index: 1001; // Убедитесь, что модалка находится поверх оверлея
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%); // Центрирование модалки
+
+  display: flex;
+  flex-direction: column;
+
+  width: fit-content;
+  min-width: 378px;
+
   background-color: var(--color-dark-300);
 }
 
-.head {
+.headContainer {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
   padding: 12px 24px;
 
-  border-bottom: 1px solid var(--color-dark-100);
-
-  & > p {
-    @include H1;
-
-    margin: 0;
-    padding: 0;
-  }
-
-  & > button {
-    cursor: pointer;
-  }
+  border-bottom: 1px solid #4c4c4c;
 }
 
-.main {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+.mainContainer {
   padding: 30px 24px;
+}
+
+.overlay {
+  position: fixed; // Убедитесь, что оверлей занимает всю область экрана
+  z-index: 1000; // Убедитесь, что оверлей находится поверх других элементов
+  inset: 0;
+  background: rgb(0 0 0 / 50%); // Полупрозрачный фон
+}
+
+.closeBtn {
+  cursor: pointer;
+}
+
+.title {
+  @include H1;
 }
