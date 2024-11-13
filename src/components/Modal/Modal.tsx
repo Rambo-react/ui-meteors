@@ -6,22 +6,22 @@ import s from './Modal.module.scss'
 
 import { Icon } from '..'
 
-type Props = {
+export type ModalProps = {
   children: ReactNode
   isOpen: boolean
-  onCloseBtn: () => void
+  onClose: () => void
   title: string
 }
 
-export const Modal = ({ children, isOpen, onCloseBtn, title }: Props) => {
+export const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
   return (
     <Dialog.Root open={isOpen}>
       <Dialog.Portal>
-        <Dialog.Overlay className={s.overlay} />
-        <Dialog.Content className={s.container}>
+        <Dialog.Overlay aria-describedby={undefined} className={s.overlay} />
+        <Dialog.Content aria-describedby={''} className={s.container}>
           <div className={s.headContainer}>
             <Dialog.Title className={s.title}>{title}</Dialog.Title>
-            <Dialog.Close className={s.closeBtn} onClick={onCloseBtn}>
+            <Dialog.Close className={s.closeBtn} onClick={onClose}>
               <Icon fill={'white'} height={25} id={'close-outline'} width={25} />
             </Dialog.Close>
           </div>

@@ -1,11 +1,10 @@
-import { useState } from 'react'
-
 import { Meta, StoryObj } from '@storybook/react'
 
 import s from '../Card/Card.module.scss'
 
-import { Button, Header, Icon, Input, SelectBox } from '..'
+import { Button, Icon, SelectBox } from '..'
 import { Modal } from './Modal'
+import { StoryTemplate } from './StoryTemplate'
 
 const meta = {
   argTypes: {
@@ -23,48 +22,43 @@ const meta = {
         open: true,
       },
     },
-    onCloseBtn: {
+    onClose: {
       description: 'This handler is responsible for binding the event to the window close button ',
     },
     title: {
       description: 'Set title for modal',
     },
   },
+  args: {
+    children: <div>Children</div>,
+    isOpen: false,
+    title: 'Title',
+  },
   component: Modal,
+  render: args => <StoryTemplate {...args} />,
   tags: ['autodocs'],
   title: 'Components/Modal',
 } satisfies Meta<typeof Modal>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
 
-const Example = () => {
-  const [open, setOpen] = useState(true)
-
-  const clickHandler = () => {
-    setOpen(!open)
-  }
-
-  return (
-    <Modal isOpen={open} onCloseBtn={clickHandler} title={'Title Example'}>
+export const ExampleStory: Story = {
+  args: {
+    children: (
       <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
         <p>Children example</p>
         <Button style={{ alignSelf: 'flex-end', fontWeight: '600' }}>EXAMPLE</Button>
       </div>
-    </Modal>
-  )
+    ),
+    isOpen: true,
+    title: 'Title Example',
+  },
 }
 
-const WithSelector = () => {
-  const [open, setOpen] = useState(true)
-
-  const clickHandler = () => {
-    setOpen(!open)
-  }
-
-  return (
-    <Modal isOpen={open} onCloseBtn={clickHandler} title={'Ban user'}>
+export const WithSelectorStory: Story = {
+  args: {
+    children: (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
         <SelectBox
           onValueChange={() => {}}
@@ -79,19 +73,14 @@ const WithSelector = () => {
           <Button variant={'outline'}>Yes</Button>
         </div>
       </div>
-    </Modal>
-  )
+    ),
+    title: 'Ban user',
+  },
 }
 
-const WithCard = () => {
-  const [open, setOpen] = useState(true)
-
-  const clickHandler = () => {
-    setOpen(!open)
-  }
-
-  return (
-    <Modal isOpen={open} onCloseBtn={clickHandler} title={'Add Photo'}>
+export const WithCardStory: Story = {
+  args: {
+    children: (
       <div>
         <div
           className={s.card}
@@ -123,51 +112,7 @@ const WithCard = () => {
           </Button>
         </div>
       </div>
-    </Modal>
-  )
+    ),
+    title: 'Add Photo',
+  },
 }
-
-export const ExampleStory: Story = {
-  render: Example,
-}
-
-export const WithSelectorStory: Story = {
-  render: WithSelector,
-}
-
-export const WithCardStory: Story = {
-  render: WithCard,
-}
-
-const CombinedComponents = () => {
-  const [open, setOpen] = useState(false)
-
-  const clickHandler = () => {
-    console.log(open)
-    setOpen(!open)
-  }
-
-  return (
-    <div
-      style={{
-        alignItems: 'center',
-        backgroundColor: '#4e4e4eaa',
-        display: 'flex',
-        height: '100vh',
-        justifyContent: 'center',
-        padding: '0',
-        width: '100vw',
-      }}
-    >
-      <Button onClick={clickHandler}>Click me</Button>
-      <Modal isOpen={open} onCloseBtn={clickHandler} title={'Im modal'}>
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '10px' }}>
-          <p>Bla-bla-bla</p>
-          <Button style={{ alignSelf: 'flex-end', width: '150px' }}>Hit me if you can</Button>
-        </div>
-      </Modal>
-    </div>
-  )
-}
-
-export const OverlayExample = () => <CombinedComponents />
