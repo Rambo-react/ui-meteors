@@ -6,10 +6,10 @@ import s from './CheckBox.module.scss'
 import { Icon } from '../Icon'
 
 type Props = {
-  checked?: boolean
+  checked: boolean
   disabled?: boolean
   label?: string
-  onCheckedChange?: (checked: boolean) => void
+  onCheckedChange: (checked: boolean) => void
 }
 
 export const CheckBox = ({ checked = false, disabled = false, label, onCheckedChange }: Props) => {
