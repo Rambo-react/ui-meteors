@@ -9,10 +9,17 @@ type Props = {
   checked: boolean
   disabled?: boolean
   label?: string
+  name?: string
   onCheckedChange: (checked: boolean) => void
 }
 
-export const CheckBox = ({ checked = false, disabled = false, label, onCheckedChange }: Props) => {
+export const CheckBox = ({
+  checked = false,
+  disabled = false,
+  label,
+  name,
+  onCheckedChange,
+}: Props) => {
   return (
     <div className={s.container}>
       <label className={clsx(s.label, disabled && s.disabled)}>
@@ -21,6 +28,7 @@ export const CheckBox = ({ checked = false, disabled = false, label, onCheckedCh
             checked={checked}
             className={s.checkbox}
             disabled={disabled}
+            name={name}
             onCheckedChange={value => onCheckedChange?.(!!value)}
           >
             <CheckboxPrimitive.Indicator className={clsx(s.indicator, disabled && s.disabled)}>
