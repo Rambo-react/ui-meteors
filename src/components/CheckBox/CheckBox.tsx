@@ -11,14 +11,15 @@ type Props = {
   label?: string
   name?: string
   onCheckedChange: (checked: boolean) => void
+  required?: boolean
 }
 
 export const CheckBox = ({
   checked = false,
   disabled = false,
   label,
-  name,
   onCheckedChange,
+  ...props
 }: Props) => {
   return (
     <div className={s.container}>
@@ -28,8 +29,8 @@ export const CheckBox = ({
             checked={checked}
             className={s.checkbox}
             disabled={disabled}
-            name={name}
             onCheckedChange={value => onCheckedChange?.(!!value)}
+            {...props}
           >
             <CheckboxPrimitive.Indicator className={clsx(s.indicator, disabled && s.disabled)}>
               <Icon height={14} id={'checkmark-outline'} viewBox={'4 8 14 14'} width={14} />
