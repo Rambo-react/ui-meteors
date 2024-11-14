@@ -35,6 +35,10 @@ export default defineConfig({
           dest: 'styles',
           src: 'src/styles/_typography.scss',
         },
+        {
+          dest: 'assets',
+          src: 'src/assets/sprite.svg',
+        },
       ],
     }),
   ],
