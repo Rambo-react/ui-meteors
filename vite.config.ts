@@ -1,6 +1,7 @@
 import path, { resolve } from 'path'
 
 import { defineConfig } from 'vite'
+import { viteStaticCopy } from 'vite-plugin-static-copy'
 
 import { dependencies, devDependencies } from './package.json'
 
@@ -27,6 +28,16 @@ export default defineConfig({
     sourcemap: true,
     target: 'esnext',
   },
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          dest: 'styles',
+          src: 'src/styles/_typography.scss',
+        },
+      ],
+    }),
+  ],
   resolve: {
     alias: {
       '@styles': path.resolve(__dirname, 'src/styles'),

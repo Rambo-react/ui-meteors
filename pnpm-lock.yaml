@@ -117,6 +117,9 @@ importers:
       vite:
         specifier: ^4.5.0
         version: 4.5.0(@types/node@20.9.0)(sass@1.69.5)
+      vite-plugin-static-copy:
+        specifier: ^2.1.0
+        version: 2.1.0(vite@4.5.0(@types/node@20.9.0)(sass@1.69.5))
 
 packages:
 
@@ -5252,6 +5255,12 @@ packages:
   vary@1.1.2:
     resolution: {integrity: sha512-BNGbWLfd0eUPabhkXUVm0j8uuvREyTh5ovRa/dyow/BqAbZJyC+5fU+IzQOzmAKzYqYRAISoRhdQr3eIZ/PXqg==}
     engines: {node: '>= 0.8'}
+
+  vite-plugin-static-copy@2.1.0:
+    resolution: {integrity: sha512-n8lEOIVM00Y/zronm0RG8RdPyFd0SAAFR0sii3NWmgG3PSCyYMsvUNRQTlb3onp1XeMrKIDwCrPGxthKvqX9OQ==}
+    engines: {node: ^18.0.0 || >=20.0.0}
+    peerDependencies:
+      vite: ^5.0.0
 
   vite@4.5.0:
     resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
@@ -11492,6 +11501,14 @@ snapshots:
       spdx-expression-parse: 3.0.1
 
   vary@1.1.2: {}
+
+  vite-plugin-static-copy@2.1.0(vite@4.5.0(@types/node@20.9.0)(sass@1.69.5)):
+    dependencies:
+      chokidar: 3.5.3
+      fast-glob: 3.3.2
+      fs-extra: 11.1.1
+      picocolors: 1.0.0
+      vite: 4.5.0(@types/node@20.9.0)(sass@1.69.5)
 
   vite@4.5.0(@types/node@20.9.0)(sass@1.69.5):
     dependencies:
