@@ -32,8 +32,8 @@ export default defineConfig({
     viteStaticCopy({
       targets: [
         {
-          dest: 'styles',
-          src: 'src/_typography.scss',
+          dest: '',
+          src: 'src/styles/_typography.scss',
         },
         {
           dest: 'assets',
