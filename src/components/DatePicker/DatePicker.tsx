@@ -2,7 +2,7 @@ import clsx from 'clsx'
 
 import s from './DatePicker.module.scss'
 
-import { Icon } from '../Icon'
+import { CalendarIcon, CalendarIconOutline } from '../Icons'
 import { Calendar } from './Calendar'
 import { addSelectedDateAC, toggleIsCalendarOpenAC } from './datePickerReducer'
 import { useDatePicker } from './useDatePicker'
@@ -58,12 +58,19 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
       >
         {formatSelectedDates(selectedDates, isRangeInput)}
 
-        <Icon
-          fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
-          height={24}
-          id={isCalendarOpen ? 'calendar' : 'calendar-outline'}
-          width={24}
-        />
+        {isCalendarOpen ? (
+          <CalendarIcon
+            fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
+            height={24}
+            width={24}
+          />
+        ) : (
+          <CalendarIconOutline
+            fill={error ? 'var(--color-danger-500)' : 'var(--color-light-100)'}
+            height={24}
+            width={24}
+          />
+        )}
       </div>
 
       {isCalendarOpen && (
