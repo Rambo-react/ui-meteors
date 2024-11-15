@@ -1,5 +1,5 @@
 import { Ref, SVGProps, forwardRef, memo } from 'react'
-const SvgGithubComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
+const SvgGithub = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGElement>) => (
   <svg
     fill={'none'}
     ref={ref}
@@ -22,6 +22,7 @@ const SvgGithubComponent = (props: SVGProps<SVGSVGElement>, ref: Ref<SVGSVGEleme
     </defs>
   </svg>
 )
-const ForwardRef = forwardRef(SvgGithubComponent)
+const ForwardRef = forwardRef(SvgGithub)
+const Memo = memo(ForwardRef)
 
-export const Github = memo(ForwardRef)
+export default Memo
