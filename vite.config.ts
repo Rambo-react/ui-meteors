@@ -33,7 +33,7 @@ export default defineConfig({
       targets: [
         {
           dest: 'styles',
-          src: 'src/styles/_typography.scss',
+          src: 'src/_typography.scss',
         },
         {
           dest: 'assets',
