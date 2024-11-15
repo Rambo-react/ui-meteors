@@ -2,7 +2,8 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import s from '../Card/Card.module.scss'
 
-import { Button, Icon, SelectBox } from '..'
+import { Button, SelectBox } from '..'
+import { ImageIconOutline } from '../Icons'
 import { Modal } from './Modal'
 import { StoryTemplate } from './StoryTemplate'
 
@@ -92,7 +93,7 @@ export const WithCardStory: Story = {
             maxWidth: '222px',
           }}
         >
-          <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
+          <ImageIconOutline height={40} viewBox={'0 0 30 30'} width={40} />
         </div>
         <div
           style={{

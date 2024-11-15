@@ -1,7 +1,7 @@
 {
   "name": "@rambo-react/ui-meteors",
   "private": false,
-  "version": "0.1.4",
+  "version": "0.1.5",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
@@ -18,7 +18,9 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "create-icons": "npx @svgr/cli --out-dir src/components/Icons --jsx-runtime automatic --typescript --ref --memo --replace-attr-values \"#000={props.fill}\" --no-dimensions src/components/Icons/icons ",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
@@ -54,6 +56,7 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint-plugin-storybook": "^0.6.15",
+    "prettier": "3.3.3",
     "sass": "^1.69.5",
     "storybook": "7.5.3",
     "stylelint": "^15.11.0",

@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 import s from './Calendar.module.scss'
 
-import { Icon } from '../../Icon'
+import { ArrowIosBack, ArrowIosForward } from '../../Icons'
 import { getCalendarDays } from '../utils'
 import { MONTHS_NUMBER, WEEK_DAYS } from '../variables'
 import { CalendarDay } from './CalendarDay'
@@ -48,19 +48,17 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
 
           <div>
             <button onClick={() => goToMonth(true)} onMouseDown={e => e.preventDefault()}>
-              <Icon
+              <ArrowIosBack
                 fill={'var(--color-light-100)'}
                 height={20}
-                id={'arrow-ios-back'}
                 viewBox={'0 0 24 24'}
                 width={20}
               />
             </button>
             <button onClick={() => goToMonth(false)} onMouseDown={e => e.preventDefault()}>
-              <Icon
+              <ArrowIosForward
                 fill={'var(--color-light-100)'}
                 height={20}
-                id={'arrow-ios-forward'}
                 viewBox={'0 0 24 24'}
                 width={20}
               />

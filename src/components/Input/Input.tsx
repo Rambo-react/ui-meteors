@@ -5,7 +5,7 @@ import { clsx } from 'clsx'
 
 import s from './Input.module.scss'
 
-import { Icon } from '../Icon'
+import { EyeOffOutline, EyeOutline, Search } from '../Icons'
 
 type Props = {
   containerClassName?: string
@@ -44,30 +44,22 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             {...rest}
           />
           {type === 'search' && (
-            <Icon
-              className={s.iconSearch}
-              fill={'currentColor'}
-              height={20}
-              id={'search'}
-              width={20}
-            />
+            <Search className={s.iconSearch} fill={'currentColor'} height={20} width={20} />
           )}
           {type === 'password' &&
             (showPassword ? (
-              <Icon
+              <EyeOutline
                 className={s.iconPass}
                 fill={'currentColor'}
                 height={24}
-                id={'eye-outline'}
                 onClick={() => setShowPassword(false)}
                 width={24}
               />
             ) : (
-              <Icon
+              <EyeOffOutline
                 className={s.iconPass}
                 fill={'currentColor'}
                 height={24}
-                id={'eye-off-outline'}
                 onClick={() => setShowPassword(true)}
                 width={24}
               />
