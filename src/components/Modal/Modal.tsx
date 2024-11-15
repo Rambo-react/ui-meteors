@@ -4,7 +4,7 @@ import * as Dialog from '@radix-ui/react-dialog'
 
 import s from './Modal.module.scss'
 
-import { Icon } from '..'
+import { CloseOutline } from '../Icons'
 
 export type ModalProps = {
   children: ReactNode
@@ -22,7 +22,7 @@ export const Modal = ({ children, isOpen, onClose, title }: ModalProps) => {
           <div className={s.headContainer}>
             <Dialog.Title className={s.title}>{title}</Dialog.Title>
             <Dialog.Close className={s.closeBtn} onClick={onClose}>
-              <Icon fill={'white'} height={25} id={'close-outline'} width={25} />
+              <CloseOutline fill={'white'} height={25} width={25} />
             </Dialog.Close>
           </div>
           <div className={s.mainContainer}>{children}</div>
