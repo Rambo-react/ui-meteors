@@ -5,7 +5,7 @@ import { clsx } from 'clsx'
 
 import s from './Alert.module.scss'
 
-import { Icon } from '../Icon'
+import { Close } from '../Icons'
 
 type Props = {
   duration?: number
@@ -45,7 +45,7 @@ export const Alert = ({ duration = 6000, iconClose = true, message, styles, vari
         <Toast.Description onClick={handleClose}>
           {iconClose && (
             <div className={s.iconWrapper}>
-              <Icon fill={'white'} height={24} id={'close'} width={24} />
+              <Close fill={'white'} height={24} width={24} />
             </div>
           )}
         </Toast.Description>
