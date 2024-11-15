@@ -2,61 +2,73 @@ import { Meta, StoryObj } from '@storybook/react'
 
 import s from '../Card/Card.module.scss'
 
-import { Button, Icon, Input, Select, SelectItem } from '..'
+import { Button, SelectBox } from '..'
+import { ImageIconOutline } from '../Icons'
 import { Modal } from './Modal'
+import { StoryTemplate } from './StoryTemplate'
 
 const meta = {
   argTypes: {
     children: {
-      control: 'select',
-      description: 'Accepts whole components, which is very convenient in terms of scalability',
+      description: 'Here you can use all components',
       options: {
-        text: <p>We have sent a link to confirm your email to epam@epam.com</p>,
-        withCard: (
-          <div
-            className={s.card}
-            style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
-          >
-            <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
-          </div>
-        ),
-        withInput: (
-          <div>
-            <p>Some words:</p>
-            <Input />
-          </div>
-        ),
+        none: '*',
       },
     },
-    onCloseBtn: {
-      description: 'Use for Handling listeners on Button ',
+    isOpen: {
+      control: 'select',
+      description: 'Event for opening and closing a modal window (true / false)',
+      options: {
+        closed: false,
+        open: true,
+      },
+    },
+    onClose: {
+      description: 'This handler is responsible for binding the event to the window close button ',
+    },
+    title: {
+      description: 'Set title for modal',
     },
   },
+  args: {
+    children: <div>Children</div>,
+    isOpen: false,
+    title: 'Title',
+  },
   component: Modal,
+  render: args => <StoryTemplate {...args} />,
   tags: ['autodocs'],
   title: 'Components/Modal',
 } satisfies Meta<typeof Modal>
 
 export default meta
-
 type Story = StoryObj<typeof meta>
 
-export const Example: Story = {
+export const ExampleStory: Story = {
   args: {
-    children: <p>Children Example</p>,
+    children: (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+        <p>Children example</p>
+        <Button style={{ alignSelf: 'flex-end', fontWeight: '600' }}>EXAMPLE</Button>
+      </div>
+    ),
+    isOpen: true,
     title: 'Title Example',
   },
 }
 
-export const WithSelector: Story = {
+export const WithSelectorStory: Story = {
   args: {
     children: (
       <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <Select placeholder={'Reason for ban'}>
-          <SelectItem value={'Bad behavior'}>Bad behavior</SelectItem>
-          <SelectItem value={'Advertising placement'}>Advertising placement</SelectItem>
-          <SelectItem value={'Another reason'}>Another reason</SelectItem>
-        </Select>
+        <SelectBox
+          onValueChange={() => {}}
+          options={[
+            { label: 'Option 1', value: 'option1' },
+            { label: 'Option 2', value: 'option2' },
+            { label: 'Option 3', value: 'option3' },
+          ]}
+        />
         <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '20px' }}>
           <Button variant={'primary'}>No</Button>
           <Button variant={'outline'}>Yes</Button>
@@ -67,18 +79,25 @@ export const WithSelector: Story = {
   },
 }
 
-export const WithCard: Story = {
+export const WithCardStory: Story = {
   args: {
     children: (
       <div>
         <div
           className={s.card}
-          style={{ alignItems: 'center', display: 'flex', justifyContent: 'center' }}
+          style={{
+            alignItems: 'center',
+            display: 'flex',
+            justifyContent: 'center',
+            margin: '0 auto',
+            maxWidth: '222px',
+          }}
         >
-          <Icon height={40} id={'image-outline'} viewBox={'0 0 30 30'} width={40} />
+          <ImageIconOutline height={40} viewBox={'0 0 30 30'} width={40} />
         </div>
         <div
           style={{
+            alignItems: 'center',
             display: 'flex',
             flexDirection: 'column',
             gap: '20px',
@@ -86,8 +105,12 @@ export const WithCard: Story = {
             marginTop: '20px',
           }}
         >
-          <Button variant={'primary'}>Select from Computer</Button>
-          <Button variant={'outline'}>Open Draft</Button>
+          <Button style={{ width: '219px' }} variant={'primary'}>
+            Select from Computer
+          </Button>
+          <Button style={{ width: '219px' }} variant={'outline'}>
+            Open Draft
+          </Button>
         </div>
       </div>
     ),

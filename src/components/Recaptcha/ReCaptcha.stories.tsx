@@ -1,17 +1,21 @@
-import { Meta, StoryFn } from '@storybook/react';
-import ReCaptcha, { ReCaptchaProps } from './ReCaptcha';
+import type { Meta, StoryObj } from '@storybook/react'
 
-export default {
-  title: 'Components/ReCaptcha',
-  component: ReCaptcha,
-} as Meta;
+import { ReCaptcha } from './'
 
-const Template: StoryFn<ReCaptchaProps> = (args) => <ReCaptcha {...args} />;
-
-export const Default = Template.bind({});
-Default.args = {
-  siteKey: '6LehviATAAAAACZ5hcTODQmVldaS5fVHAOKbw3MP', // Заменит на ваш реальный siteKey
-  onChange: (value) => {
-    console.log('Captcha value:', value);
+const meta = {
+  argTypes: {},
+  args: {
+    onChange(value: null | string) {
+      console.log(value)
+    },
+    siteKey: 'siteKey',
   },
-};
+  component: ReCaptcha,
+  tags: ['autodocs'],
+  title: 'Components/ReCaptcha',
+} satisfies Meta<typeof ReCaptcha>
+
+export default meta
+type Story = StoryObj<typeof meta>
+
+export const Default: Story = {}

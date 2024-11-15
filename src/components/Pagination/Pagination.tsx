@@ -4,7 +4,7 @@ import clsx from 'clsx'
 
 import s from './Pagination.module.scss'
 
-import { Icon } from '../Icon'
+import { ArrowIosBackOutline, ArrowIosForwardOutline } from '../Icons'
 import { Select } from './Select'
 import { usePagination } from './hooks'
 
@@ -63,10 +63,9 @@ export const Pagination = ({
         disabled={isLeftArrowDisabled}
         onClick={() => onPageChange(currentPage - 3)}
       >
-        <Icon
+        <ArrowIosBackOutline
           fill={'var(--color-light-100)'}
           height={16}
-          id={'arrow-ios-back-outline'}
           viewBox={'0 0 24 24'}
           width={16}
         />
@@ -79,10 +78,9 @@ export const Pagination = ({
         disabled={isRightArrowDisabled}
         onClick={() => onPageChange(currentPage + 3)}
       >
-        <Icon
+        <ArrowIosForwardOutline
           fill={'var(--color-light-100)'}
           height={16}
-          id={'arrow-ios-forward-outline'}
           viewBox={'0 0 24 24'}
           width={16}
         />

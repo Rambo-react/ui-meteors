@@ -8,7 +8,8 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/style.css"
+    "dist/style.css",
+    "assets/sprite.svg"
   ],
   "scripts": {
     "start": "vite",
@@ -17,12 +18,15 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "create-icons": "npx @svgr/cli --out-dir src/components/Icons --jsx-runtime automatic --typescript --ref --memo --replace-attr-values \"#000={props.fill}\" --no-dimensions src/components/Icons/icons ",
+    "format": "prettier --write src"
   },
   "dependencies": {
     "@fontsource/inter": "^5.1.0",
     "@radix-ui/react-alert-dialog": "^1.1.2",
     "@radix-ui/react-checkbox": "^1.1.2",
+    "@radix-ui/react-dialog": "^1.1.2",
     "@radix-ui/react-label": "2.1.0",
     "@radix-ui/react-radio-group": "^1.2.1",
     "@radix-ui/react-scroll-area": "^1.2.0",
@@ -52,10 +56,12 @@
     "@types/react-google-recaptcha": "^2.1.9",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint-plugin-storybook": "^0.6.15",
+    "prettier": "3.3.3",
     "sass": "^1.69.5",
     "storybook": "7.5.3",
     "stylelint": "^15.11.0",
     "typescript": "^5.2.2",
-    "vite": "^4.5.0"
+    "vite": "^4.5.0",
+    "vite-plugin-static-copy": "^2.1.0"
   }
 }

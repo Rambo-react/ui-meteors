@@ -4,7 +4,7 @@ import * as SelectRadix from '@radix-ui/react-select'
 
 import s from './SelectBox.module.scss'
 
-import { Icon } from '../Icon'
+import { ArrowIosDownOutline } from '../Icons'
 
 type Option = {
   icon?: ReactNode
@@ -48,11 +48,10 @@ export const SelectBox = ({
             <div>{selectedOption.label}</div>
           </div>
           <SelectRadix.Icon>
-            <Icon
+            <ArrowIosDownOutline
               className={s.triggerChevron}
               fill={'currentColor'}
               height={24}
-              id={'arrow-ios-down-outline'}
               width={24}
             />
           </SelectRadix.Icon>
@@ -61,11 +60,10 @@ export const SelectBox = ({
         <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
           <SelectRadix.Value placeholder={placeholder} />
           <SelectRadix.Icon>
-            <Icon
+            <ArrowIosDownOutline
               className={s.triggerChevron}
               fill={'currentColor'}
               height={24}
-              id={'arrow-ios-down-outline'}
               width={24}
             />
           </SelectRadix.Icon>
