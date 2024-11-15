@@ -2,7 +2,7 @@ import * as SelectRadix from '@radix-ui/react-select'
 
 import s from './Select.module.scss'
 
-import { Icon } from '../../Icon'
+import { ArrowIosForward } from '../../Icons'
 
 type Props = {
   onValueChange: (value: string) => void
@@ -21,10 +21,9 @@ export const Select = ({ onValueChange, options }: Props) => {
       <SelectRadix.Trigger aria-label={'Items per page'} className={s.trigger}>
         <SelectRadix.Value placeholder={'100'} />
         <SelectRadix.Icon>
-          <Icon
+          <ArrowIosForward
             fill={'var(--color-light-100)'}
-            hanging={16}
-            id={'arrow-ios-forward'}
+            height={16}
             viewBox={'0 0 24 24'}
             width={16}
           />

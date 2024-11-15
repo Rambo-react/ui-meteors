@@ -3,7 +3,7 @@ import clsx from 'clsx'
 
 import s from './CheckBox.module.scss'
 
-import { Icon } from '../Icon'
+import { CheckmarkOutline } from '../Icons'
 
 type Props = {
   checked: boolean
@@ -33,7 +33,7 @@ export const CheckBox = ({
             {...props}
           >
             <CheckboxPrimitive.Indicator className={clsx(s.indicator, disabled && s.disabled)}>
-              <Icon height={14} id={'checkmark-outline'} viewBox={'4 8 14 14'} width={14} />
+              <CheckmarkOutline fill={'black'} height={14} viewBox={'4 8 14 14'} width={14} />
             </CheckboxPrimitive.Indicator>
           </CheckboxPrimitive.Root>
         </div>
