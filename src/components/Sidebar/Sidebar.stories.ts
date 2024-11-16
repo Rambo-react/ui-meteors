@@ -1,5 +1,21 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
+import Bookmark from '../Icons/Bookmark'
+import BookmarkOutline from '../Icons/BookmarkOutline'
+import Home from '../Icons/Home'
+import HomeOutline from '../Icons/HomeOutline'
+import LogOut from '../Icons/LogOut'
+import LogOutOutline from '../Icons/LogOutOutline'
+import MessageCircle from '../Icons/MessageCircle'
+import MessageCircleOutline from '../Icons/MessageCircleOutline'
+import Person from '../Icons/Person'
+import PersonOutline from '../Icons/PersonOutline'
+import PlusSquare from '../Icons/PlusSquare'
+import PlusSquareOutline from '../Icons/PlusSquareOutline'
+import Search from '../Icons/Search'
+import SearchOutline from '../Icons/SearchOutline'
+import TrendingUp from '../Icons/TrendingUp'
+import TrendingUpOutline from '../Icons/TrendingUpOutline'
 import { Sidebar } from './Sidebar'
 
 const meta = {
@@ -13,56 +29,62 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    items: [
-      { activeId: 'home', id: 'home-outline', isActive: false, isDisabled: false, label: 'Home' },
+    sections: [
       {
-        activeId: 'plus-square',
-        id: 'plus-square-outline',
-        isActive: false,
-        isDisabled: true,
-        label: 'Create',
+        activeIcon: HomeOutline,
+        disabled: false,
+        inactiveIcon: Home,
+        name: 'Home',
+        path: '/home',
       },
       {
-        activeId: 'person',
-        id: 'person-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'My Profile',
+        activeIcon: PlusSquareOutline,
+        disabled: true,
+        inactiveIcon: PlusSquare,
+        name: 'Create',
+        path: '/create',
       },
       {
-        activeId: 'message-circle',
-        id: 'message-circle-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'Messenger',
+        activeIcon: PersonOutline,
+        disabled: false,
+        inactiveIcon: Person,
+        name: 'My Profile',
+        path: '/profile',
       },
       {
-        activeId: 'search',
-        id: 'search-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'Search',
+        activeIcon: MessageCircleOutline,
+        disabled: false,
+        inactiveIcon: MessageCircle,
+        name: 'Messenger',
+        path: '/messenger',
       },
       {
-        activeId: 'trending-up',
-        id: 'trending-up-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'Statistics',
+        activeIcon: SearchOutline,
+        disabled: false,
+        inactiveIcon: Search,
+        name: 'Search',
+        path: '/search',
       },
       {
-        activeId: 'bookmark',
-        id: 'bookmark-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'Search',
+        activeIcon: TrendingUpOutline,
+        disabled: false,
+        inactiveIcon: TrendingUp,
+        name: 'Statistics',
+        path: '/statistics',
       },
       {
-        activeId: 'log-out',
-        id: 'log-out-outline',
-        isActive: false,
-        isDisabled: false,
-        label: 'Log Out',
+        activeIcon: BookmarkOutline,
+        disabled: false,
+        inactiveIcon: Bookmark,
+        name: 'Favorites',
+        path: '/favorites',
+      },
+      {
+        activeIcon: LogOutOutline,
+        disabled: false,
+        inactiveIcon: LogOut,
+        name: 'Log Out',
+        path: '/logout',
       },
     ],
   },

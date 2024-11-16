@@ -1,95 +1,136 @@
-import { useState } from 'react'
+import {
+  ForwardRefExoticComponent,
+  MemoExoticComponent,
+  RefAttributes,
+  SVGProps,
+  useState,
+} from 'react'
+
+import { clsx } from 'clsx'
 
 import styles from './Sidebar.module.scss'
 
-import { SidebarMenuItem } from './SidebarMenuItem/SidebarMenuItem'
+import Bookmark from '../Icons/Bookmark'
+import BookmarkOutline from '../Icons/BookmarkOutline'
+import Home from '../Icons/Home'
+import HomeOutline from '../Icons/HomeOutline'
+import LogOut from '../Icons/LogOut'
+import LogOutOutline from '../Icons/LogOutOutline'
+import MessageCircle from '../Icons/MessageCircle'
+import MessageCircleOutline from '../Icons/MessageCircleOutline'
+import Person from '../Icons/Person'
+import PersonOutline from '../Icons/PersonOutline'
+import PlusSquare from '../Icons/PlusSquare'
+import PlusSquareOutline from '../Icons/PlusSquareOutline'
+import Search from '../Icons/Search'
+import SearchOutline from '../Icons/SearchOutline'
+import TrendingUp from '../Icons/TrendingUp'
+import TrendingUpOutline from '../Icons/TrendingUpOutline'
 
-type SidebarProps = { items: MenuItemsType }
+type SidebarProps = { sections: MenuItemsType }
 type MenuItemsType = Array<MenuItem>
+type ComponentType = MemoExoticComponent<
+  ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
+>
+
 type MenuItem = {
-  activeId: string
-  id: string
-  isActive: boolean
-  isDisabled: boolean
-  label: string
+  activeIcon: ComponentType
+  disabled: boolean
+  inactiveIcon: ComponentType
+  name: string
+  path: string
 }
 const defaultItems = [
-  { activeId: 'home', id: 'home-outline', isActive: false, isDisabled: false, label: 'Home' },
   {
-    activeId: 'plus-square',
-    id: 'plus-square-outline',
-    isActive: false,
-    isDisabled: true,
-    label: 'Create',
+    activeIcon: HomeOutline,
+    disabled: false,
+    inactiveIcon: Home,
+    name: 'Home',
+    path: '/home',
   },
   {
-    activeId: 'person',
-    id: 'person-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'My Profile',
+    activeIcon: PlusSquareOutline,
+    disabled: true,
+    inactiveIcon: PlusSquare,
+    name: 'Create',
+    path: '/create',
   },
   {
-    activeId: 'message-circle',
-    id: 'message-circle-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'Messenger',
+    activeIcon: PersonOutline,
+    disabled: false,
+    inactiveIcon: Person,
+    name: 'My Profile',
+    path: '/profile',
   },
   {
-    activeId: 'search',
-    id: 'search-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'Search',
+    activeIcon: MessageCircleOutline,
+    disabled: false,
+    inactiveIcon: MessageCircle,
+    name: 'Messenger',
+    path: '/messenger',
   },
   {
-    activeId: 'trending-up',
-    id: 'trending-up-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'Statistics',
+    activeIcon: SearchOutline,
+    disabled: false,
+    inactiveIcon: Search,
+    name: 'Search',
+    path: '/search',
   },
   {
-    activeId: 'bookmark',
-    id: 'bookmark-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'Search',
+    activeIcon: TrendingUpOutline,
+    disabled: false,
+    inactiveIcon: TrendingUp,
+    name: 'Statistics',
+    path: '/statistics',
   },
   {
-    activeId: 'log-out',
-    id: 'log-out-outline',
-    isActive: false,
-    isDisabled: false,
-    label: 'Log Out',
+    activeIcon: BookmarkOutline,
+    disabled: false,
+    inactiveIcon: Bookmark,
+    name: 'Favorites',
+    path: '/favorites',
+  },
+  {
+    activeIcon: LogOutOutline,
+    disabled: false,
+    inactiveIcon: LogOut,
+    name: 'Log Out',
+    path: '/logout',
   },
 ]
 
-export const Sidebar = ({ items = defaultItems }: SidebarProps) => {
-  const [menuItems, setMenuItems] = useState<MenuItemsType>(items)
-
-  const mappedMenuItems = menuItems.map(item => {
-    const itemId = item.id
-    const handleActivate = () => {
-      setMenuItems(
-        menuItems.map(item =>
-          item.id === itemId ? { ...item, isActive: true } : { ...item, isActive: false }
-        )
-      )
+export const Sidebar = ({ sections = defaultItems }: SidebarProps) => {
+  const [activeSection, setActiveSection] = useState<null | number>(null)
+  const handleClick = (index: number) => {
+    if (!sections[index].disabled) {
+      setActiveSection(index)
     }
+  }
 
-    return (
-      <SidebarMenuItem
-        id={item.isActive ? item.activeId : item.id}
-        isActive={item.isActive}
-        isDisabled={item.isDisabled}
-        key={item.id}
-        label={item.label}
-        onActivate={handleActivate}
-      />
-    )
-  })
+  return (
+    <ul className={styles.sidebar}>
+      {sections.map((section, index) => {
+        const isActive = activeSection === index
+        const isDisabled = section.disabled
 
-  return <ul className={styles.sidebar}>{mappedMenuItems}</ul>
+        return (
+          <li className={styles.menuItem} key={section.name}>
+            <a
+              aria-disabled={isDisabled}
+              className={clsx(styles.menuItemLink)}
+              // href={section.path}
+              onClick={() => handleClick(index)}
+            >
+              {isActive ? (
+                <section.inactiveIcon height={24} width={24} />
+              ) : (
+                <section.activeIcon height={24} width={24} />
+              )}
+              <span className={isDisabled ? styles.spanDisabled : ''}>{section.name}</span>
+            </a>
+          </li>
+        )
+      })}
+    </ul>
+  )
 }
