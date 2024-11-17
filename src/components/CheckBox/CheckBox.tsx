@@ -1,4 +1,5 @@
 import * as CheckboxPrimitive from '@radix-ui/react-checkbox'
+import * as Label from '@radix-ui/react-label'
 import clsx from 'clsx'
 
 import s from './CheckBox.module.scss'
@@ -23,7 +24,7 @@ export const CheckBox = ({
 }: Props) => {
   return (
     <div className={s.container}>
-      <label className={clsx(s.label, disabled && s.disabled)}>
+      <Label.Root className={clsx(s.label, disabled && s.disabled)}>
         <div className={clsx(s.buttonWrapper, disabled && s.disabled)}>
           <CheckboxPrimitive.Root
             checked={checked}
@@ -38,7 +39,7 @@ export const CheckBox = ({
           </CheckboxPrimitive.Root>
         </div>
         {label}
-      </label>
+      </Label.Root>
     </div>
   )
 }
