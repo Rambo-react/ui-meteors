@@ -73,7 +73,8 @@ export const Input = forwardRef<HTMLInputElement, Props>(
               />
             ))}
         </div>
-        <p className={clsx(s.errorMsg, { [s.show]: errorMsg })}>{errorMsg}</p>
+
+        {errorMsg && <p className={s.errorMsg}>{errorMsg}</p>}
       </div>
     )
   }
