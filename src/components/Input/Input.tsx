@@ -17,7 +17,6 @@ type Props = {
 export const Input = forwardRef<HTMLInputElement, Props>(
   ({ containerClassName, errorMsg, label, type = 'text', ...rest }, ref) => {
     const generatedId = useId()
-    const [isFocused, setIsFocused] = useState(false)
     const [showPassword, setShowPassword] = useState(false)
 
     return (
@@ -27,18 +26,10 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             {label}
           </Label.Root>
         )}
-        <div className={clsx(s.inputContainer, isFocused && s.active)}>
+        <div className={s.inputContainer}>
           <input
-            className={clsx(
-              s.inputField,
-              type === 'search' && s.inputSearch,
-              errorMsg && s.error,
-              rest.disabled && s.disabled
-            )}
-            disabled={rest.disabled}
+            className={clsx(s.inputField, type === 'search' && s.inputSearch, errorMsg && s.error)}
             id={generatedId}
-            onBlur={() => setIsFocused(false)}
-            onFocus={() => setIsFocused(true)}
             ref={ref}
             type={type === 'password' && showPassword ? 'text' : type}
             {...rest}
@@ -66,7 +57,7 @@ export const Input = forwardRef<HTMLInputElement, Props>(
             ))}
         </div>
 
-        {errorMsg && <p className={s.errorMsg}>{errorMsg}</p>}
+        {!!errorMsg && <p className={s.errorMsg}>{errorMsg}</p>}
       </div>
     )
   }
