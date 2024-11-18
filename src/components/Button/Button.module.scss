@@ -1,9 +1,10 @@
 @import '@styles/typography';
 
 .button {
-  @include H3;
-
   all: unset;
+
+  /* stylelint-disable-next-line order/order */
+  @include H3;
 
   cursor: pointer;
 
