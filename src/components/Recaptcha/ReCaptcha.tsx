@@ -33,8 +33,8 @@ export const Recaptcha = (props: RecaptchaProps) => {
   } = props
 
   return (
-    <div {...rest} className={variant === 'withError' ? s.errorWrapper : ''}>
-      <div className={clsx(s.recaptchaRoot)}>
+    <div {...rest} className={clsx(variant === 'withError' && s.errorWrapper)}>
+      <div className={s.recaptchaRoot}>
         <Indicator onClick={onClick} variant={variant} />
         <div className={s.label}>{label}</div>
         <div className={s.recaptchaDisclaimer}>
@@ -57,19 +57,21 @@ type IndicatorProps = {
 
 const Indicator = ({ onClick, variant }: IndicatorProps) => {
   function getIndicator(variant: RecaptchaProps['variant']) {
-    switch (true) {
-      case variant === 'initial' || variant === 'withError' || variant === 'expired':
+    switch (variant) {
+      case 'initial':
+      case 'withError':
+      case 'expired':
         return <button className={s.btnCheck} onClick={onClick}></button>
-      case variant === 'checked':
+      case 'checked':
         return (
           <div className={s.checkedIcon}>
             <CheckIcon fill={'currentColor'} height={25} viewBox={'0 0 25 25'} width={25} />
           </div>
         )
-      case variant === 'loading':
+      case 'loading':
         return <div className={s.loader}></div>
       default:
-        return <div></div>
+        return false
     }
   }
 
