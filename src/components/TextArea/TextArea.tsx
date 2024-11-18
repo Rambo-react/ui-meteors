@@ -30,7 +30,7 @@ export const TextArea = ({
         </Label.Root>
       )}
       <textarea aria-label={label} className={classNames} id={id} {...rest} disabled={disabled} />
-      {errorText && <p className={s.errorText}>{errorText}</p>}
+      {!!errorText && <p className={s.errorText}>{errorText}</p>}
     </div>
   )
 }
