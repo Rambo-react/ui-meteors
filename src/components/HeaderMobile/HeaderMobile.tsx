@@ -66,7 +66,7 @@ export const HeaderMobile = ({
           </button>
           {isMenuOpen && (
             <div className={s.menuContainer}>
-              <Menu onClick={toggleMenu} />
+              <Menu />
             </div>
           )}
         </div>
