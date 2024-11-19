@@ -24,7 +24,7 @@ export const TextArea = ({
 
   return (
     <div className={s.container}>
-      {label && (
+      {!!label && (
         <Label.Root className={labelClassNames} htmlFor={id}>
           {label}
         </Label.Root>

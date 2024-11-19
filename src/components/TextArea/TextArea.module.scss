@@ -25,6 +25,7 @@
   }
 
   &:disabled {
+    cursor: not-allowed;
     color: var(--color-dark-100);
 
     &::placeholder {
@@ -32,12 +33,17 @@
     }
   }
 
-  &:focus:not(.error) {
+  &:focus {
     border: 2px solid var(--color-accent-700);
   }
 
   &:active:not(:disabled) {
     border: 1px solid var(--color-light-100);
+  }
+
+  &:hover:not(:disabled, :active, :focus) {
+    color: var(--color-light-900);
+    border-color: var(--color-light-900);
   }
 }
 
@@ -52,6 +58,7 @@
 }
 
 .disabled {
+  cursor: not-allowed;
   color: var(--color-dark-100);
 }
 
