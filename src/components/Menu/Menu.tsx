@@ -1,64 +1,100 @@
-import { useState } from 'react'
+import {
+  ForwardRefExoticComponent,
+  MemoExoticComponent,
+  RefAttributes,
+  SVGProps,
+  useState,
+} from 'react'
 
 import styles from './Menu.module.scss'
 
-import { Icon } from '../Icon'
+import Home from '../Icons/Home'
+import HomeOutline from '../Icons/HomeOutline'
+import MessageCircle from '../Icons/MessageCircle'
+import MessageCircleOutline from '../Icons/MessageCircleOutline'
+import Person from '../Icons/Person'
+import PersonOutline from '../Icons/PersonOutline'
+import PlusSquare from '../Icons/PlusSquare'
+import PlusSquareOutline from '../Icons/PlusSquareOutline'
+import Search from '../Icons/Search'
+import SearchOutline from '../Icons/SearchOutline'
 
 type MenuItemsType = Array<MenuItem>
+type ComponentType = MemoExoticComponent<
+  ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
+>
 type MenuItem = {
-  activeId: string
-  id: string
-  isActive: boolean
+  activeIcon: ComponentType
+  disabled: boolean
+  inactiveIcon: ComponentType
+  name: string
+  path: string
 }
-type MenuProps = {
-  onClick: (id: string) => void
-}
-const menuItemsArray = [
-  { activeId: 'home', id: 'home-outline', isActive: false, isHover: false },
+
+const menuItemsArray: MenuItemsType = [
   {
-    activeId: 'plus-square',
-    id: 'plus-square-outline',
-    isActive: false,
+    activeIcon: HomeOutline,
+    disabled: false,
+    inactiveIcon: Home,
+    name: 'Home',
+    path: '/home',
   },
   {
-    activeId: 'person',
-    id: 'person-outline',
-    isActive: false,
+    activeIcon: PlusSquareOutline,
+    disabled: true,
+    inactiveIcon: PlusSquare,
+    name: 'Create',
+    path: '/create',
   },
   {
-    activeId: 'message-circle',
-    id: 'message-circle-outline',
-    isActive: false,
+    activeIcon: PersonOutline,
+    disabled: false,
+    inactiveIcon: Person,
+    name: 'My Profile',
+    path: '/profile',
   },
   {
-    activeId: 'search',
-    id: 'search-outline',
-    isActive: false,
+    activeIcon: MessageCircleOutline,
+    disabled: false,
+    inactiveIcon: MessageCircle,
+    name: 'Messenger',
+    path: '/messenger',
+  },
+  {
+    activeIcon: SearchOutline,
+    disabled: false,
+    inactiveIcon: Search,
+    name: 'Search',
+    path: '/search',
   },
 ]
 
-export const Menu = ({ onClick }: MenuProps) => {
-  const [menuItems, setMenuItems] = useState<MenuItemsType>(menuItemsArray)
+export const Menu = () => {
+  const [activeSection, setActiveSection] = useState<null | number>(null)
+  const handleClick = (index: number) => {
+    setActiveSection(index)
+  }
 
   return (
     <div className={styles.menu}>
-      {menuItems.map(item => (
-        <Icon
-          fill={item.isActive ? 'var(--color-accent-500)' : 'var(--color-light-100)'}
-          height={24}
-          id={item.isActive ? item.activeId : item.id}
-          key={item.id}
-          onClick={() => {
-            setMenuItems(
-              menuItems.map(i =>
-                i.id === item.id ? { ...i, isActive: true } : { ...i, isActive: false }
-              )
-            )
-            onClick(item.id)
-          }}
-          width={24}
-        />
-      ))}
+      {menuItemsArray.map((item, index) => {
+        const isActive = activeSection === index
+
+        return (
+          <a
+            className={styles.menuItemLink}
+            // href={item.path}
+            key={item.name}
+            onClick={() => handleClick(index)}
+          >
+            {isActive ? (
+              <item.inactiveIcon height={24} width={24} />
+            ) : (
+              <item.activeIcon height={24} width={24} />
+            )}
+          </a>
+        )
+      })}
     </div>
   )
 }

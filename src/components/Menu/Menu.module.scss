@@ -9,3 +9,17 @@
   background-color: var(--color-dark-700);
   border-top: solid 1px var(--color-dark-300);
 }
+
+.menuItemLink {
+  svg {
+    fill: var(--color-light-100);
+  }
+
+  &:active svg {
+    fill: var(--color-accent-500);
+  }
+
+  &:focus svg {
+    fill: var(--color-accent-500);
+  }
+}
