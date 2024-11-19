@@ -33,17 +33,20 @@
     }
   }
 
-  &:focus {
-    border: 2px solid var(--color-accent-700);
+  &:hover:not(:disabled, :active) {
+    color: var(--color-light-900);
+    border-color: var(--color-light-900);
+    outline: none;
+  }
+
+  &:focus:not(:hover, :active, .error) {
+    border-color: transparent;
+    outline: 2px solid var(--color-accent-700);
+    outline-offset: -1px;
   }
 
   &:active:not(:disabled) {
     border: 1px solid var(--color-light-100);
-  }
-
-  &:hover:not(:disabled, :active, :focus) {
-    color: var(--color-light-900);
-    border-color: var(--color-light-900);
   }
 }
 
