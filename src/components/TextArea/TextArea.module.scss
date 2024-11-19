@@ -25,6 +25,7 @@
   }
 
   &:disabled {
+    cursor: not-allowed;
     color: var(--color-dark-100);
 
     &::placeholder {
@@ -32,8 +33,16 @@
     }
   }
 
-  &:focus:not(.error) {
-    border: 2px solid var(--color-accent-700);
+  &:hover:not(:disabled, :active) {
+    color: var(--color-light-900);
+    border-color: var(--color-light-900);
+    outline: none;
+  }
+
+  &:focus:not(:hover, :active, .error) {
+    border-color: transparent;
+    outline: 2px solid var(--color-accent-700);
+    outline-offset: -1px;
   }
 
   &:active:not(:disabled) {
@@ -52,6 +61,7 @@
 }
 
 .disabled {
+  cursor: not-allowed;
   color: var(--color-dark-100);
 }
 

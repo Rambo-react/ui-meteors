@@ -24,13 +24,13 @@ export const TextArea = ({
 
   return (
     <div className={s.container}>
-      {label && (
+      {!!label && (
         <Label.Root className={labelClassNames} htmlFor={id}>
           {label}
         </Label.Root>
       )}
       <textarea aria-label={label} className={classNames} id={id} {...rest} disabled={disabled} />
-      {errorText && <p className={s.errorText}>{errorText}</p>}
+      {!!errorText && <p className={s.errorText}>{errorText}</p>}
     </div>
   )
 }
