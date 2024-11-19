@@ -101,6 +101,7 @@
   &:focus-within:not(:active, .error) {
     border-color: transparent;
     outline: 2px solid var(--color-accent-700);
+    outline-offset: -1px;
   }
 
   &:hover:not(:disabled, :active) {
