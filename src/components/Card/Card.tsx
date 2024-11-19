@@ -1,11 +1,11 @@
-import { ReactNode } from 'react'
+import { ComponentPropsWithoutRef } from 'react'
+
+import clsx from 'clsx'
 
 import styles from './Card.module.scss'
 
-type CardProps = {
-  children: ReactNode
-}
+type CardProps = ComponentPropsWithoutRef<'div'>
 
-export const Card = ({ children }: CardProps) => {
-  return <div className={styles.card}>{children}</div>
+export const Card = ({ children, className }: CardProps) => {
+  return <div className={clsx(styles.card, className)}>{children}</div>
 }

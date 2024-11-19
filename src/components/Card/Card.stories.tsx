@@ -5,11 +5,11 @@ import { Card } from '.'
 const meta = {
   argTypes: {
     children: {
-      description: 'content inside card',
+      description: 'Content inside card',
     },
   },
   args: {
-    children: <div>Card</div>,
+    children: <span>Card</span>,
   },
   component: Card,
   tags: ['autodocs'],
