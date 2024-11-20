@@ -14,9 +14,10 @@ export const AcceptedAlert: Story = {
   args: {
     message: 'Your settings are saved',
     styles: {
-      left: '10px',
-      position: 'absolute',
-      top: '10px',
+      left: '0px',
+      padding: '0px',
+      position: 'fixed',
+      top: '0px',
     },
     variant: 'accepted',
   },
@@ -25,11 +26,6 @@ export const AcceptedAlert: Story = {
 export const ErrorAlert: Story = {
   args: {
     message: 'Error! Server is not available',
-    styles: {
-      left: '10px',
-      position: 'absolute',
-      top: '10px',
-    },
     variant: 'error',
   },
 }
