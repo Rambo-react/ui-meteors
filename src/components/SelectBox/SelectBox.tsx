@@ -6,9 +6,9 @@ import s from './SelectBox.module.scss'
 
 import { ArrowIosDownOutline } from '../Icons'
 
-type Option = {
+export type Option = {
   icon?: ReactNode
-  label: string
+  label?: string
   value: string
 }
 
@@ -44,7 +44,7 @@ export const SelectBox = ({
       {selectedOption ? (
         <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
           <div className={s.optionContent}>
-            <div className={s.icon}>{selectedOption.icon}</div>
+            {selectedOption.icon && <div className={s.icon}>{selectedOption.icon}</div>}
             <div>{selectedOption.label}</div>
           </div>
           <SelectRadix.Icon>
