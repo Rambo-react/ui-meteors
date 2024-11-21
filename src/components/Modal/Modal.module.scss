@@ -15,8 +15,8 @@
   display: flex;
   flex-direction: column;
 
-  width: fit-content;
-  min-width: 378px;
+  width: 100%;
+  max-width: 378px;
 
   background-color: var(--color-dark-300);
 }
@@ -48,4 +48,18 @@
 
 .title {
   @include H1;
+}
+
+@media screen and (width <= 576px) {
+  .container {
+    max-width: 330px;
+  }
+
+  .headContainer {
+    padding: 12px;
+  }
+
+  .mainContainer {
+    padding: 30px 12px 36px;
+  }
 }
