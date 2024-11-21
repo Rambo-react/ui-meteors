@@ -156,3 +156,9 @@
     transform: translateY(-50%) scale(1);
   }
 }
+
+@media screen and (width <= 576px) {
+  .recaptchaRoot {
+    width: 330px;
+  }
+}
