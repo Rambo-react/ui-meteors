@@ -6,30 +6,29 @@ import clsx from 'clsx'
 import s from './TextArea.module.scss'
 
 type Props = {
-  disabled?: boolean
   errorText?: string
   label?: string
 } & ComponentPropsWithoutRef<'textarea'>
 
 export const TextArea = ({
   className,
-  disabled = false,
   errorText = '',
+  id,
   label = 'Text-area',
   ...rest
 }: Props) => {
   const classNames = clsx(s.textarea, errorText && s.error, className)
-  const labelClassNames = clsx(s.label, disabled && s.disabled)
-  const id = useId()
+  const generatedId = useId()
+  const customId = id || generatedId
 
   return (
     <div className={s.container}>
       {!!label && (
-        <Label.Root className={labelClassNames} htmlFor={id}>
+        <Label.Root className={s.label} htmlFor={customId}>
           {label}
         </Label.Root>
       )}
-      <textarea aria-label={label} className={classNames} id={id} {...rest} disabled={disabled} />
+      <textarea aria-label={label} className={classNames} id={customId} {...rest} />
       {!!errorText && <p className={s.errorText}>{errorText}</p>}
     </div>
   )

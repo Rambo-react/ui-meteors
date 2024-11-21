@@ -15,21 +15,23 @@ type Props = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, Props>(
-  ({ containerClassName, errorMsg, label, type = 'text', ...rest }, ref) => {
+  ({ containerClassName, errorMsg, id, label, type = 'text', ...rest }, ref) => {
     const generatedId = useId()
+    const customId = id || generatedId
     const [showPassword, setShowPassword] = useState(false)
+    const containerClassNames = clsx(s.container, containerClassName)
 
     return (
-      <div className={containerClassName}>
-        {label && (
-          <Label.Root className={s.label} htmlFor={generatedId}>
+      <div className={containerClassNames}>
+        {!!label && (
+          <Label.Root className={s.label} htmlFor={customId}>
             {label}
           </Label.Root>
         )}
         <div className={s.inputContainer}>
           <input
             className={clsx(s.inputField, type === 'search' && s.inputSearch, errorMsg && s.error)}
-            id={generatedId}
+            id={customId}
             ref={ref}
             type={type === 'password' && showPassword ? 'text' : type}
             {...rest}

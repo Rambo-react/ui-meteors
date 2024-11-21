@@ -8,16 +8,17 @@
   color: var(--color-light-900);
 }
 
+.container {
+  &:has(input:disabled) > .label {
+    cursor: not-allowed;
+    color: var(--color-dark-100);
+  }
+}
+
 .inputContainer {
   position: relative;
   display: flex;
   align-items: center;
-
-  &:has(.disabled) {
-    .label {
-      cursor: default;
-    }
-  }
 }
 
 .iconSearch {
