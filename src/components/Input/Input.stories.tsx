@@ -13,6 +13,7 @@ type Story = StoryObj<typeof meta>
 
 export const Search: Story = {
   args: {
+    disabled: false,
     placeholder: 'Input search',
     type: 'search',
   },
