@@ -1,4 +1,4 @@
-import { ReactNode, useState } from 'react'
+import { CSSProperties, ReactNode, useState } from 'react'
 
 import * as SelectRadix from '@radix-ui/react-select'
 
@@ -19,6 +19,7 @@ type Props = {
   onValueChange: (value: string) => void
   options: Option[]
   placeholder?: string
+  triggerStyle?: CSSProperties
 }
 
 export const SelectBox = ({
@@ -28,6 +29,7 @@ export const SelectBox = ({
   onValueChange,
   options,
   placeholder,
+  triggerStyle,
 }: Props) => {
   const [selectedValue, setSelectedValue] = useState<null | string>(defaultValue || null)
 
@@ -42,7 +44,7 @@ export const SelectBox = ({
     <SelectRadix.Root onValueChange={handleValueChange}>
       {label && <label className={s.label}>{label}</label>}
       {selectedOption ? (
-        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
+        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled} style={triggerStyle}>
           <div className={s.optionContent}>
             {selectedOption.icon && <div className={s.icon}>{selectedOption.icon}</div>}
             <div>{selectedOption.label}</div>
@@ -57,7 +59,7 @@ export const SelectBox = ({
           </SelectRadix.Icon>
         </SelectRadix.Trigger>
       ) : (
-        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled}>
+        <SelectRadix.Trigger className={s.trigger} data-disabled={disabled} style={triggerStyle}>
           <SelectRadix.Value placeholder={placeholder} />
           <SelectRadix.Icon>
             <ArrowIosDownOutline
