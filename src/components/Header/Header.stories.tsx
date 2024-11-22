@@ -13,11 +13,8 @@ type Story = StoryObj<typeof meta>
 export const Default: Story = {
   args: {
     isAuthorized: true,
-    languageOptions: [
-      { iconId: 'flag-uk', label: 'English', value: 'en' },
-      { iconId: 'flag-russia', label: 'Русский', value: 'ru' },
-    ],
     notificationCount: 3,
+    onSelectValueChange: val => console.log(val),
     title: 'Inctagram',
   },
 }
@@ -25,10 +22,6 @@ export const Default: Story = {
 export const NotAuthorized: Story = {
   args: {
     isAuthorized: false,
-    languageOptions: [
-      { iconId: 'flag-uk', label: 'English', value: 'en' },
-      { iconId: 'flag-russia', label: 'Русский', value: 'ru' },
-    ],
     notificationCount: 3,
     title: 'Inctagram',
   },
