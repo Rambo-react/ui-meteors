@@ -96,6 +96,10 @@
 }
 
 @media (width<=360px) {
+  .header {
+    padding: 15px 12px;
+  }
+
   .iconWrapper {
     display: none;
   }
