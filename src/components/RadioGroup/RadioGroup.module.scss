@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 button {
   all: unset;
@@ -53,7 +53,7 @@ button {
 }
 
 .option {
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   margin-left: 10px;
   color: var(--color-light-100);

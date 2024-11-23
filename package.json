@@ -1,15 +1,14 @@
 {
   "name": "@rambo-react/ui-meteors",
   "private": false,
-  "version": "0.2.6",
+  "version": "0.2.7",
   "type": "module",
   "main": "dist/index.js",
   "module": "dist/index.js",
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/style.css",
-    "assets/sprite.svg"
+    "dist/style.css"
   ],
   "scripts": {
     "start": "vite",

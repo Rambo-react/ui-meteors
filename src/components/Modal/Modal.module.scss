@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 * {
   margin: 0;
@@ -47,7 +47,7 @@
 }
 
 .title {
-  @include H1;
+  @include typography.H1;
 }
 
 @media screen and (width <= 576px) {

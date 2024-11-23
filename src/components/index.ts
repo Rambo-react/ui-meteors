@@ -1,4 +1,3 @@
-export * from './Icon'
 export * from './Button'
 export * from './Recaptcha'
 export * from './Input'

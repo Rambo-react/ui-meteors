@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .wrapper {
   display: grid;
@@ -13,7 +13,7 @@
   align-items: center;
 
   & > p {
-    @include Small_text;
+    @include typography.Small_text;
 
     width: max-content;
     margin-left: 5px;
