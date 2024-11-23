@@ -8,8 +8,7 @@
   "types": "dist/index.d.ts",
   "files": [
     "dist",
-    "dist/style.css",
-    "assets/sprite.svg"
+    "dist/style.css"
   ],
   "scripts": {
     "start": "vite",
