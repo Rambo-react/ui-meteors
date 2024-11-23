@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 @mixin Before_styles {
   content: '';
@@ -26,7 +26,7 @@
   height: 36px;
 
   span {
-    @include Regular_text_16;
+    @include typography.Regular_text_16;
 
     position: relative;
     z-index: 1;

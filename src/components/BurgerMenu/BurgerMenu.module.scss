@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .iconButton {
   all: unset;
@@ -64,7 +64,7 @@
   all: unset;
 
   /* stylelint-disable-next-line order/order */
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   display: flex;
   gap: 12px;

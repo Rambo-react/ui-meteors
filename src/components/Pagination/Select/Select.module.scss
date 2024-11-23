@@ -1,10 +1,10 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .trigger {
   all: unset;
 
   /* stylelint-disable-next-line order/order */
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   display: flex;
   gap: 2px;
@@ -48,7 +48,7 @@
 }
 
 .item {
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   user-select: none;
 

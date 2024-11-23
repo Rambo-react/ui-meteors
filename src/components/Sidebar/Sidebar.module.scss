@@ -1,7 +1,7 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .sidebar {
-  @include Medium_text_14;
+  @include typography.Medium_text_14;
 
   z-index: 1;
   top: 0;
