@@ -1,5 +1,4 @@
-@import '@styles/typography';
-@import '@styles/colors';
+@use '@styles/typography' as typography;
 
 .header {
   position: relative;
@@ -27,7 +26,7 @@
 }
 
 .title {
-  @include Large;
+  @include typography.Large;
 
   cursor: pointer;
   display: inline-block;

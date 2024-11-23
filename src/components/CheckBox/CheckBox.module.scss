@@ -1,4 +1,4 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .container {
   display: flex;
@@ -6,7 +6,7 @@
 }
 
 .label {
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   cursor: pointer;
 

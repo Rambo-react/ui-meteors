@@ -1,10 +1,10 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .tab {
   all: unset;
 
   /* stylelint-disable-next-line order/order */
-  @include H3;
+  @include typography.H3;
 
   cursor: pointer;
 

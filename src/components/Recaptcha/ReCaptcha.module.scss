@@ -1,7 +1,7 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .recaptchaRoot {
-  @include Small_text;
+  @include typography.Small_text;
 
   position: relative;
 

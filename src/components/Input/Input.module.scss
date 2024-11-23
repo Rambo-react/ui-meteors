@@ -1,7 +1,7 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .label {
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   cursor: pointer;
   display: block;
@@ -42,7 +42,7 @@
 }
 
 .inputField {
-  @include Regular_text_16;
+  @include typography.Regular_text_16;
 
   display: inline-block;
 
@@ -129,7 +129,7 @@ input:-webkit-autofill:focus {
 }
 
 .errorMsg {
-  @include Regular_text_14;
+  @include typography.Regular_text_14;
 
   margin: 0;
   color: var(--color-danger-500);

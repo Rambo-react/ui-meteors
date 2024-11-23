@@ -1,7 +1,7 @@
-@import '@styles/typography';
+@use '@styles/typography' as typography;
 
 .alert {
-  @include Regular_text_16;
+  @include typography.Regular_text_16;
 
   position: relative;
 
