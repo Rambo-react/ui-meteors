@@ -27,13 +27,19 @@ export const Alert = ({
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
+    let timerId: number
+
     if (message) {
       setIsAlertOpen(true)
-      const timer = setTimeout(() => {
+      timerId = +setTimeout(() => {
         handleClose()
       }, duration)
+    }
 
-      return () => clearTimeout(timer)
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
     }
   }, [message, duration])
 
