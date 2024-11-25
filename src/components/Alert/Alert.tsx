@@ -11,18 +11,26 @@ type Props = {
   duration?: number
   iconClose?: boolean
   message: string
+  onClose?: () => void
   styles?: CSSProperties
   variant: 'accepted' | 'error'
 }
 
-export const Alert = ({ duration = 6000, iconClose = true, message, styles, variant }: Props) => {
+export const Alert = ({
+  duration = 6000,
+  iconClose = true,
+  message,
+  onClose,
+  styles,
+  variant,
+}: Props) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
     if (message) {
       setIsAlertOpen(true)
       const timer = setTimeout(() => {
-        setIsAlertOpen(false)
+        handleClose()
       }, duration)
 
       return () => clearTimeout(timer)
@@ -31,6 +39,7 @@ export const Alert = ({ duration = 6000, iconClose = true, message, styles, vari
 
   const handleClose = () => {
     setIsAlertOpen(false)
+    onClose && onClose()
   }
 
   return (
