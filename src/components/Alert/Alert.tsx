@@ -65,7 +65,7 @@ export const Alert = ({
           )}
         </Toast.Description>
       </Toast.Root>
-      <Toast.Viewport className={clsx(s.viewport)} style={styles} />
+      <Toast.Viewport className={s.viewport} style={styles} />
     </Toast.Provider>
   )
 }
