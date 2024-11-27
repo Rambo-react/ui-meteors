@@ -11,26 +11,41 @@ type Props = {
   duration?: number
   iconClose?: boolean
   message: string
+  onClose?: () => void
   styles?: CSSProperties
   variant: 'accepted' | 'error'
 }
 
-export const Alert = ({ duration = 6000, iconClose = true, message, styles, variant }: Props) => {
+export const Alert = ({
+  duration = 6000,
+  iconClose = true,
+  message,
+  onClose,
+  styles,
+  variant,
+}: Props) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
+    let timerId: number
+
     if (message) {
       setIsAlertOpen(true)
-      const timer = setTimeout(() => {
-        setIsAlertOpen(false)
+      timerId = +setTimeout(() => {
+        handleClose()
       }, duration)
+    }
 
-      return () => clearTimeout(timer)
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
     }
   }, [message, duration])
 
   const handleClose = () => {
     setIsAlertOpen(false)
+    onClose && onClose()
   }
 
   return (
@@ -50,7 +65,7 @@ export const Alert = ({ duration = 6000, iconClose = true, message, styles, vari
           )}
         </Toast.Description>
       </Toast.Root>
-      <Toast.Viewport className={clsx(s.viewport)} style={styles} />
+      <Toast.Viewport className={s.viewport} style={styles} />
     </Toast.Provider>
   )
 }
