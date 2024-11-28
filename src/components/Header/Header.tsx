@@ -15,12 +15,14 @@ import { Option, SelectBox } from '../SelectBox'
 
 export type HeaderProps = {
   isAuthorized?: boolean
+  logInHandler?: () => void
   menuItems?: BurgerMenuItem[]
   notificationCount?: number
   onSelectValueChange: (value: string) => void
   selectOptions?: Option[]
+  signUpHandler?: () => void
   title?: string
-  titleLink?: string
+  titleHandler?: () => void
 }
 
 const defaultOptions = [
@@ -63,18 +65,20 @@ const defaultMenuItems = [
 
 export const Header = ({
   isAuthorized,
+  logInHandler,
   menuItems = defaultMenuItems,
   notificationCount = 0,
   onSelectValueChange,
   selectOptions = defaultOptions,
+  signUpHandler,
   title = 'Inctagram',
-  titleLink = '/',
+  titleHandler,
 }: HeaderProps) => {
   return (
     <header className={s.header}>
-      <a className={s.title} href={titleLink}>
+      <span className={s.title} onClick={titleHandler}>
         {title}
-      </a>
+      </span>
       <div className={s.content}>
         {isAuthorized && (
           <div className={s.iconWrapper}>
@@ -99,8 +103,12 @@ export const Header = ({
         )}
         {!isAuthorized && (
           <div className={s.headerButtons}>
-            <Button variant={'text'}>Log In</Button>
-            <Button variant={'primary'}>Sign Up</Button>
+            <Button onClick={logInHandler} variant={'text'}>
+              Log In
+            </Button>
+            <Button onClick={signUpHandler} variant={'primary'}>
+              Sign Up
+            </Button>
           </div>
         )}
       </div>
