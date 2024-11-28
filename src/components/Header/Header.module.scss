@@ -31,7 +31,6 @@
   cursor: pointer;
   display: inline-block;
   color: var(--color-light-100);
-  text-decoration: none;
 }
 
 .iconWrapper {
@@ -59,7 +58,6 @@
     right: 0;
 
     display: flex;
-    align-items: center;
     justify-content: center;
 
     width: 13px;
