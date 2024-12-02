@@ -112,12 +112,16 @@
   margin-right: 12px;
 }
 
-@media (width<=360px) {
+@media (width<=375px) {
   .itemLabel {
     display: none;
   }
 
   .icon {
     margin-right: 2px;
+  }
+
+  .trigger {
+    border: none;
   }
 }
