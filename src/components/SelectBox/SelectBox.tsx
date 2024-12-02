@@ -47,7 +47,7 @@ export const SelectBox = ({
         <SelectRadix.Trigger className={s.trigger} data-disabled={disabled} style={triggerStyle}>
           <div className={s.optionContent}>
             {selectedOption.icon && <div className={s.icon}>{selectedOption.icon}</div>}
-            <div>{selectedOption.label}</div>
+            <div className={s.itemLabel}>{selectedOption.label}</div>
           </div>
           <SelectRadix.Icon>
             <ArrowIosDownOutline
