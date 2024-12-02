@@ -92,7 +92,7 @@
   display: none;
 }
 
-@media (width<=360px) {
+@media (width<=375px) {
   .header {
     padding: 15px 12px;
   }
@@ -103,5 +103,10 @@
 
   .burgerContainer {
     display: block;
+    margin-right: 24px;
+  }
+
+  .headerButtons {
+    display: none;
   }
 }
