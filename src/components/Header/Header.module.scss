@@ -78,21 +78,11 @@
   justify-content: space-between;
 }
 
-.headerButtons {
-  display: flex;
-  align-items: center;
-
-  *:first-child {
-    margin-right: 24px;
-    margin-left: 36px;
-  }
-}
-
 .burgerContainer {
   display: none;
 }
 
-@media (width<=375px) {
+@media (width<=425px) {
   .header {
     padding: 15px 12px;
   }
@@ -103,10 +93,6 @@
 
   .burgerContainer {
     display: block;
-    margin-right: 24px;
-  }
-
-  .headerButtons {
-    display: none;
+    margin-left: 24px;
   }
 }
