@@ -1,7 +1,8 @@
+import { ReactNode } from 'react'
+
 import s from './Header.module.scss'
 
 import { BurgerMenu, BurgerMenuItem } from '../BurgerMenu/BurgerMenu'
-import { Button } from '../Button'
 import {
   BellOutline,
   BookmarkOutline,
@@ -14,6 +15,7 @@ import {
 import { Option, SelectBox } from '../SelectBox'
 
 export type HeaderProps = {
+  children?: ReactNode
   isAuthorized?: boolean
   logInHandler?: () => void
   menuItems?: BurgerMenuItem[]
@@ -64,13 +66,12 @@ const defaultMenuItems = [
 ]
 
 export const Header = ({
+  children,
   isAuthorized,
-  logInHandler,
   menuItems = defaultMenuItems,
   notificationCount = 0,
   onSelectValueChange,
   selectOptions = defaultOptions,
-  signUpHandler,
   title = 'Inctagram',
   titleHandler,
 }: HeaderProps) => {
@@ -101,16 +102,7 @@ export const Header = ({
             <BurgerMenu items={menuItems} />
           </div>
         )}
-        {!isAuthorized && (
-          <div className={s.headerButtons}>
-            <Button onClick={logInHandler} variant={'text'}>
-              Log In
-            </Button>
-            <Button onClick={signUpHandler} variant={'primary'}>
-              Sign Up
-            </Button>
-          </div>
-        )}
+        {children}
       </div>
     </header>
   )
