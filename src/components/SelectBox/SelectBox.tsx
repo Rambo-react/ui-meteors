@@ -80,7 +80,9 @@ export const SelectBox = ({
                 <SelectRadix.Item className={s.item} key={value} value={value}>
                   <div className={s.optionContent}>
                     {icon && <div className={s.icon}>{icon}</div>}
-                    <SelectRadix.ItemText className={s.itemLabel}>{label}</SelectRadix.ItemText>
+                    <span className={s.itemLabel}>
+                      <SelectRadix.ItemText>{label}</SelectRadix.ItemText>
+                    </span>
                   </div>
                 </SelectRadix.Item>
               ))}
