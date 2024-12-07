@@ -15,7 +15,7 @@ type Props = {
 } & ComponentPropsWithoutRef<'input'>
 
 export const Input = forwardRef<HTMLInputElement, Props>(
-  ({ containerClassName, errorMsg, id, label, type = 'text', ...rest }, ref) => {
+  ({ className, containerClassName, errorMsg, id, label, type = 'text', ...rest }, ref) => {
     const generatedId = useId()
     const customId = id || generatedId
     const [showPassword, setShowPassword] = useState(false)
@@ -30,7 +30,12 @@ export const Input = forwardRef<HTMLInputElement, Props>(
         )}
         <div className={s.inputContainer}>
           <input
-            className={clsx(s.inputField, type === 'search' && s.inputSearch, errorMsg && s.error)}
+            className={clsx(
+              s.inputField,
+              type === 'search' && s.inputSearch,
+              errorMsg && s.error,
+              className
+            )}
             id={customId}
             ref={ref}
             type={type === 'password' && showPassword ? 'text' : type}
