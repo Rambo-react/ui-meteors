@@ -47,7 +47,7 @@ type Story = StoryObj<typeof meta>
 export const ExampleStory: Story = {
   args: {
     children: (
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', padding: '20px' }}>
         <p>Children example</p>
         <Button style={{ alignSelf: 'flex-end', fontWeight: '600' }}>EXAMPLE</Button>
       </div>
