@@ -9,13 +9,12 @@
   align-items: center;
   justify-content: space-between;
 
-  width: 387px;
-  padding: 12px 24px;
+  width: 100%;
+  max-width: 387px;
+  padding: 12px 65px 12px 24px;
 
   hyphens: auto;
   color: var(--color-light-100);
-  word-wrap: break-word;
-  overflow-wrap: break-word;
 
   border-radius: 2px;
 
@@ -30,7 +29,11 @@
   }
 }
 
-.iconWrapper {
+.message {
+  word-break: break-all;
+}
+
+.icon {
   all: unset;
 
   cursor: pointer;
