@@ -6,7 +6,7 @@ import {
   useState,
 } from 'react'
 
-import styles from './Menu.module.scss'
+import s from './Menu.module.scss'
 
 import Home from '../Icons/Home'
 import HomeOutline from '../Icons/HomeOutline'
@@ -19,7 +19,7 @@ import PlusSquareOutline from '../Icons/PlusSquareOutline'
 import Search from '../Icons/Search'
 import SearchOutline from '../Icons/SearchOutline'
 
-type MenuItemsType = Array<MenuItem>
+type Props = { callbacks?: ItemCallback[]; sections?: MenuItem[] }
 type ComponentType = MemoExoticComponent<
   ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
 >
@@ -27,74 +27,74 @@ type MenuItem = {
   activeIcon: ComponentType
   disabled: boolean
   inactiveIcon: ComponentType
+  itemCallback: () => void
   name: string
-  path: string
 }
 
-const menuItemsArray: MenuItemsType = [
+type ItemCallback = (() => void) | null
+
+const menuItemsArray = [
   {
-    activeIcon: HomeOutline,
+    activeIcon: Home,
     disabled: false,
-    inactiveIcon: Home,
+    inactiveIcon: HomeOutline,
+    itemCallback: () => console.log('/home'),
     name: 'Home',
-    path: '/home',
   },
   {
-    activeIcon: PlusSquareOutline,
+    activeIcon: PlusSquare,
     disabled: true,
-    inactiveIcon: PlusSquare,
+    inactiveIcon: PlusSquareOutline,
+    itemCallback: () => console.log('/create'),
     name: 'Create',
-    path: '/create',
   },
   {
-    activeIcon: PersonOutline,
+    activeIcon: Person,
     disabled: false,
-    inactiveIcon: Person,
+    inactiveIcon: PersonOutline,
+    itemCallback: () => console.log('/profile'),
     name: 'My Profile',
-    path: '/profile',
   },
   {
-    activeIcon: MessageCircleOutline,
+    activeIcon: MessageCircle,
     disabled: false,
-    inactiveIcon: MessageCircle,
+    inactiveIcon: MessageCircleOutline,
+    itemCallback: () => console.log('/messenger'),
     name: 'Messenger',
-    path: '/messenger',
   },
   {
-    activeIcon: SearchOutline,
+    activeIcon: Search,
     disabled: false,
-    inactiveIcon: Search,
+    inactiveIcon: SearchOutline,
+    itemCallback: () => console.log('/search'),
     name: 'Search',
-    path: '/search',
   },
 ]
 
-export const Menu = () => {
+export const Menu = ({ callbacks = [], sections = menuItemsArray }: Props) => {
   const [activeSection, setActiveSection] = useState<null | number>(null)
-  const handleClick = (index: number) => {
+  const handleClick = (index: number, handler = () => {}) => {
     setActiveSection(index)
+    handler()
   }
 
   return (
-    <div className={styles.menu}>
-      {menuItemsArray.map((item, index) => {
+    <nav className={s.menu}>
+      {sections.map(({ itemCallback, name, ...item }, index) => {
         const isActive = activeSection === index
 
+        const handler = callbacks[index] ?? itemCallback
+
         return (
-          <a
-            className={styles.menuItemLink}
-            // href={item.path}
-            key={item.name}
-            onClick={() => handleClick(index)}
-          >
+          <span className={s.item} key={name + index} onClick={() => handleClick(index, handler)}>
             {isActive ? (
-              <item.inactiveIcon height={24} width={24} />
+              <item.activeIcon fill={'var(--color-accent-500)'} height={24} width={24} />
             ) : (
-              <item.activeIcon height={24} width={24} />
+              <item.inactiveIcon height={24} width={24} />
             )}
-          </a>
+          </span>
         )
       })}
-    </div>
+    </nav>
   )
 }
