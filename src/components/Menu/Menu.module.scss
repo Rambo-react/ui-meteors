@@ -1,25 +1,36 @@
 .menu {
+  position: relative;
+
   display: flex;
   justify-content: space-between;
 
-  width: 360px;
-  height: 59px;
+  width: 100%;
+  min-width: 360px;
+  height: 60px;
   padding: 18px 48px;
 
   background-color: var(--color-dark-700);
-  border-top: solid 1px var(--color-dark-300);
-}
 
-.menuItemLink {
-  svg {
-    fill: var(--color-light-100);
+  &::after {
+    content: '';
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 1px;
+
+    background-color: var(--color-dark-300);
   }
 
-  &:active svg {
-    fill: var(--color-accent-500);
-  }
+  .item {
+    svg {
+      fill: var(--color-light-100);
+    }
 
-  &:focus svg {
-    fill: var(--color-accent-500);
+    &:active svg {
+      fill: var(--color-accent-500);
+    }
   }
 }
