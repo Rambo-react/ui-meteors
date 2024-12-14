@@ -27,7 +27,11 @@ import SearchOutline from '../Icons/SearchOutline'
 import TrendingUp from '../Icons/TrendingUp'
 import TrendingUpOutline from '../Icons/TrendingUpOutline'
 
-type Props = { sections?: MenuItem[] }
+type Props = {
+  callbacks?: ItemCallback[]
+  sections?: MenuItem[]
+}
+
 type ComponentType = MemoExoticComponent<
   ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
 >
@@ -35,81 +39,85 @@ type ComponentType = MemoExoticComponent<
 type MenuItem = {
   activeIcon: ComponentType
   disabled: boolean
-  handler: () => void
   inactiveIcon: ComponentType
+  itemCallback: () => void
   name: string
 }
+
+type ItemCallback = (() => void) | null
+
 const defaultItems = [
   {
     activeIcon: Home,
     disabled: false,
-    handler: () => console.log('/home'),
     inactiveIcon: HomeOutline,
+    itemCallback: () => console.log('/home'),
     name: 'Home',
   },
   {
     activeIcon: PlusSquare,
     disabled: true,
-    handler: () => console.log('/create'),
     inactiveIcon: PlusSquareOutline,
+    itemCallback: () => console.log('/create'),
     name: 'Create',
   },
   {
     activeIcon: Person,
     disabled: false,
-    handler: () => console.log('/profile'),
     inactiveIcon: PersonOutline,
+    itemCallback: () => console.log('/profile'),
     name: 'My Profile',
   },
   {
     activeIcon: MessageCircle,
     disabled: false,
-    handler: () => console.log('/messenger'),
     inactiveIcon: MessageCircleOutline,
+    itemCallback: () => console.log('/messenger'),
     name: 'Messenger',
   },
   {
     activeIcon: Search,
     disabled: false,
-    handler: () => console.log('/search'),
     inactiveIcon: SearchOutline,
+    itemCallback: () => console.log('/search'),
     name: 'Search',
   },
   {
     activeIcon: TrendingUp,
     disabled: false,
-    handler: () => console.log('/statistics'),
     inactiveIcon: TrendingUpOutline,
+    itemCallback: () => console.log('/statistics'),
     name: 'Statistics',
   },
   {
     activeIcon: Bookmark,
     disabled: false,
-    handler: () => console.log('/favorites'),
     inactiveIcon: BookmarkOutline,
+    itemCallback: () => console.log('/favorites'),
     name: 'Favorites',
   },
   {
     activeIcon: LogOut,
     disabled: false,
-    handler: () => console.log('/logout'),
     inactiveIcon: LogOutOutline,
+    itemCallback: () => console.log('/logout'),
     name: 'Log Out',
   },
 ]
 
-export const Sidebar = ({ sections = defaultItems }: Props) => {
+export const Sidebar = ({ callbacks = [], sections = defaultItems }: Props) => {
   const [activeSection, setActiveSection] = useState<null | number>(null)
 
-  const handleClick = (index: number, handler: () => void) => {
+  const handleClick = (index: number, handler = () => {}) => {
     setActiveSection(index)
     handler()
   }
 
   return (
     <ul className={s.sidebar}>
-      {sections.map(({ disabled, handler, name, ...section }, index) => {
+      {sections.map(({ disabled, itemCallback, name, ...section }, index) => {
         const isActive = activeSection === index
+        const handler = callbacks[index] ?? itemCallback
 
         return (
           <li
