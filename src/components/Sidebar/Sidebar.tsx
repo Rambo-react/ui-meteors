@@ -27,8 +27,7 @@ import SearchOutline from '../Icons/SearchOutline'
 import TrendingUp from '../Icons/TrendingUp'
 import TrendingUpOutline from '../Icons/TrendingUpOutline'
 
-type SidebarProps = { sections?: MenuItemsType }
-type MenuItemsType = MenuItem[]
+type Props = { sections?: MenuItem[] }
 type ComponentType = MemoExoticComponent<
   ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
 >
@@ -99,7 +98,7 @@ const defaultItems = [
   },
 ]
 
-export const Sidebar = ({ sections = defaultItems }: SidebarProps) => {
+export const Sidebar = ({ sections = defaultItems }: Props) => {
   const [activeSection, setActiveSection] = useState<null | number>(null)
 
   const handleClick = (index: number, handler: () => void) => {
