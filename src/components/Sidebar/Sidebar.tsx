@@ -28,7 +28,7 @@ import TrendingUp from '../Icons/TrendingUp'
 import TrendingUpOutline from '../Icons/TrendingUpOutline'
 
 type Props = {
-  callbacks?: ItemCallback[]
+  callbacks?: CallbackItem[]
   sections?: MenuItem[]
 }
 
@@ -44,7 +44,10 @@ type MenuItem = {
   name: string
 }
 
-type ItemCallback = (() => void) | null
+type CallbackItem = {
+  itemCallback: (() => void) | null
+  name: string
+}
 
 const defaultItems = [
   {
@@ -117,7 +120,8 @@ export const Sidebar = ({ callbacks = [], sections = defaultItems }: Props) => {
     <ul className={s.sidebar}>
       {sections.map(({ disabled, itemCallback, name, ...section }, index) => {
         const isActive = activeSection === index
-        const handler = callbacks[index] ?? itemCallback
+        const newCallback = callbacks.find(el => el.name === name)?.itemCallback
+        const handler = newCallback ?? itemCallback
 
         return (
           <li
