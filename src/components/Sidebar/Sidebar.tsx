@@ -59,7 +59,7 @@ const defaultItems = [
   },
   {
     activeIcon: PlusSquare,
-    disabled: true,
+    disabled: false,
     inactiveIcon: PlusSquareOutline,
     itemCallback: () => console.log('/create'),
     name: 'Create',
