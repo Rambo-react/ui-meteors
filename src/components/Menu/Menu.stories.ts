@@ -13,6 +13,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    callbacks: [null, () => console.log('click for 2 element')],
+    callbacks: [{ itemCallback: () => console.log('clicked to Create'), name: 'Create' }],
   },
 }
