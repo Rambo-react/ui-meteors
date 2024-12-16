@@ -19,7 +19,7 @@ import PlusSquareOutline from '../Icons/PlusSquareOutline'
 import Search from '../Icons/Search'
 import SearchOutline from '../Icons/SearchOutline'
 
-type Props = { callbacks?: ItemCallback[]; sections?: MenuItem[] }
+type Props = { callbacks?: CallbackItem[]; sections?: MenuItem[] }
 type ComponentType = MemoExoticComponent<
   ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
 >
@@ -31,7 +31,10 @@ type MenuItem = {
   name: string
 }
 
-type ItemCallback = (() => void) | null
+type CallbackItem = {
+  itemCallback: (() => void) | null
+  name: string
+}
 
 const menuItemsArray = [
   {
@@ -82,8 +85,8 @@ export const Menu = ({ callbacks = [], sections = menuItemsArray }: Props) => {
     <nav className={s.menu}>
       {sections.map(({ itemCallback, name, ...item }, index) => {
         const isActive = activeSection === index
-
-        const handler = callbacks[index] ?? itemCallback
+        const newCallback = callbacks.find(el => el.name === name)?.itemCallback
+        const handler = newCallback ?? itemCallback
 
         return (
           <span className={s.item} key={name + index} onClick={() => handleClick(index, handler)}>
