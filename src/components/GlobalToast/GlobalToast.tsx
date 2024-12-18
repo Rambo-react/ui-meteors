@@ -2,48 +2,52 @@ import { useEffect, useState } from 'react'
 
 import s from './GlobalToast.module.scss'
 
-import { Alert, Props } from '../Alert'
+import { Alert, AlertProps } from '../Alert'
 
 type Notification = { id: string; message: string }
 type GlobalToastProps = {
   delay: number
+  duration: AlertProps['duration']
   messages: Notification[]
-  variant: Props['variant']
+  variant: AlertProps['variant']
 }
-export const GlobalToast = ({ delay = 1000, messages, variant }: GlobalToastProps) => {
+export const GlobalToast = ({ delay = 1000, duration, messages, variant }: GlobalToastProps) => {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
   useEffect(() => {
-    const showNotifications = () => {
-      messages.forEach((message, index) => {
-        setTimeout(() => {
-          setNotifications(prev => [...prev, message])
-
-          setTimeout(() => {
-            setNotifications(prev => prev.filter(notif => notif.id !== message.id))
-          }, 3000) // Задержка перед удалением уведомления
-        }, index * delay) // Задержка перед показом каждого уведомления
-      })
+    let timerId: number
+    const showNotifications = async () => {
+      for (const message of messages) {
+        setNotifications(prev => [...prev, message])
+        await new Promise(resolve => {
+          timerId = +setTimeout(resolve, delay)
+        })
+      }
     }
 
-    if (messages.length > 0) {
-      showNotifications()
+    showNotifications()
+
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
     }
-  }, [messages])
+  }, [messages, delay])
 
   const removeNotification = (index: number) => {
-    setNotifications(prev => prev.filter((_, i) => i !== index))
+    setNotifications(prev => prev.filter(a => parseInt(a.id) !== index))
   }
 
   return (
     <div className={s.toast}>
-      {notifications.map((notification, index) => {
+      {notifications.map(notification => {
         return (
           <Alert
             className={`${s.alert} ${s.appear}`}
+            duration={duration}
             key={notification.id}
             message={notification.message}
-            onClose={() => removeNotification(index)}
+            onClose={() => removeNotification(parseInt(notification.id))}
             variant={variant}
           />
         )
