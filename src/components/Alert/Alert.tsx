@@ -7,7 +7,7 @@ import s from './Alert.module.scss'
 
 import { Close } from '../Icons'
 
-type Props = {
+export type AlertProps = {
   className?: string
   duration?: number
   iconClose?: boolean
@@ -23,7 +23,7 @@ export const Alert = ({
   message,
   onClose,
   variant,
-}: Props) => {
+}: AlertProps) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
