@@ -15,6 +15,11 @@ const meta = {
         none: '*',
       },
     },
+    customHeader: {
+      control: 'object',
+      defaultValue: undefined,
+      description: 'Here you can use custom header',
+    },
     isOpen: {
       control: 'select',
       description: 'Event for opening and closing a modal window (true / false)',
@@ -32,6 +37,7 @@ const meta = {
   },
   args: {
     children: <div>Children</div>,
+    customHeader: undefined,
     isOpen: false,
     title: 'Title',
   },
@@ -115,5 +121,23 @@ export const WithCardStory: Story = {
       </div>
     ),
     title: 'Add Photo',
+  },
+}
+export const WithCustomHeaderStory: Story = {
+  args: {
+    children: (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', padding: '20px' }}>
+        <p>Modal content</p>
+      </div>
+    ),
+    customHeader: (
+      <div>
+        <p>Custom header</p>
+      </div>
+    ),
+    isOpen: true,
+    onClose: () => {
+      console.log('onClose')
+    },
   },
 }
