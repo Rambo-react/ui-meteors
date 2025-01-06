@@ -16,7 +16,6 @@ const meta = {
       },
     },
     customHeader: {
-      control: 'object',
       defaultValue: undefined,
       description: 'Here you can use custom header',
     },
@@ -135,7 +134,6 @@ export const WithCustomHeaderStory: Story = {
         <p>Custom header</p>
       </div>
     ),
-    isOpen: true,
     onClose: () => {
       console.log('onClose')
     },
