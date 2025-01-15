@@ -134,6 +134,7 @@ export const WithCustomHeaderStory: Story = {
         <p>Custom header</p>
       </div>
     ),
+    isOpen: true,
     onClose: () => {
       console.log('onClose')
     },
