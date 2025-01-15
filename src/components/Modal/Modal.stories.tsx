@@ -30,6 +30,10 @@ const meta = {
     onClose: {
       description: 'This handler is responsible for binding the event to the window close button ',
     },
+    onCloseOut: {
+      description:
+        'This handler is responsible for binding an event to a click outside the modal window.',
+    },
     title: {
       description: 'Set title for modal',
     },
@@ -134,9 +138,5 @@ export const WithCustomHeaderStory: Story = {
         <p>Custom header</p>
       </div>
     ),
-    isOpen: true,
-    onClose: () => {
-      console.log('onClose')
-    },
   },
 }
