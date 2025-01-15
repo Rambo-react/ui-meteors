@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, useEffect, useRef } from 'react'
 
 import * as Dialog from '@radix-ui/react-dialog'
 import clsx from 'clsx'
@@ -13,6 +13,7 @@ export type ModalProps = {
   customHeader?: ReactNode | undefined
   isOpen: boolean
   onClose: () => void
+  onCloseOut: () => void
   title?: string
 }
 
@@ -22,13 +23,39 @@ export const Modal = ({
   customHeader,
   isOpen,
   onClose,
+  onCloseOut,
   title,
 }: ModalProps) => {
+  const modalRef = useRef<HTMLDivElement | null>(null)
+  const handleClickOutside = (event: MouseEvent) => {
+    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+      onCloseOut()
+    }
+  }
+
+  useEffect(() => {
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [isOpen])
+
+  if (!isOpen) {
+    return null
+  }
+
   return (
     <Dialog.Root open={isOpen}>
       <Dialog.Portal>
         <Dialog.Overlay aria-describedby={undefined} className={s.overlay} />
-        <Dialog.Content aria-describedby={''} className={clsx(s.container, className)}>
+        <Dialog.Content
+          aria-describedby={''}
+          className={clsx(s.container, className)}
+          ref={modalRef}
+        >
           <div className={s.headContainer}>
             {customHeader || (
               <>
