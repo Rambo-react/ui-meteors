@@ -12,8 +12,8 @@ export type ModalProps = {
   className?: string | undefined
   customHeader?: ReactNode | undefined
   isOpen: boolean
-  onClose: () => void
-  onCloseOut: () => void
+  onClose?: () => void
+  onCloseOut?: () => void
   title?: string
 }
 
@@ -28,7 +28,7 @@ export const Modal = ({
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null)
   const handleClickOutside = (event: MouseEvent) => {
-    if (modalRef.current && !modalRef.current.contains(event.target as Node)) {
+    if (onCloseOut && modalRef.current && !modalRef.current.contains(event.target as Node)) {
       onCloseOut()
     }
   }
