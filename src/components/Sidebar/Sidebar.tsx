@@ -8,7 +8,7 @@ import {
 
 import { clsx } from 'clsx'
 
-import styles from './Sidebar.module.scss'
+import s from './Sidebar.module.scss'
 
 import Bookmark from '../Icons/Bookmark'
 import BookmarkOutline from '../Icons/BookmarkOutline'
@@ -27,8 +27,11 @@ import SearchOutline from '../Icons/SearchOutline'
 import TrendingUp from '../Icons/TrendingUp'
 import TrendingUpOutline from '../Icons/TrendingUpOutline'
 
-type SidebarProps = { sections: MenuItemsType }
-type MenuItemsType = Array<MenuItem>
+type Props = {
+  callbacks?: CallbackItem[]
+  sections?: MenuItem[]
+}
+
 type ComponentType = MemoExoticComponent<
   ForwardRefExoticComponent<Omit<SVGProps<SVGSVGElement>, 'ref'> & RefAttributes<SVGSVGElement>>
 >
@@ -37,97 +40,103 @@ type MenuItem = {
   activeIcon: ComponentType
   disabled: boolean
   inactiveIcon: ComponentType
+  itemCallback: () => void
   name: string
-  path: string
 }
+
+type CallbackItem = {
+  itemCallback: (() => void) | null
+  name: string
+}
+
 const defaultItems = [
   {
-    activeIcon: HomeOutline,
+    activeIcon: Home,
     disabled: false,
-    inactiveIcon: Home,
+    inactiveIcon: HomeOutline,
+    itemCallback: () => console.log('/home'),
     name: 'Home',
-    path: '/home',
   },
   {
-    activeIcon: PlusSquareOutline,
-    disabled: true,
-    inactiveIcon: PlusSquare,
+    activeIcon: PlusSquare,
+    disabled: false,
+    inactiveIcon: PlusSquareOutline,
+    itemCallback: () => console.log('/create'),
     name: 'Create',
-    path: '/create',
   },
   {
-    activeIcon: PersonOutline,
+    activeIcon: Person,
     disabled: false,
-    inactiveIcon: Person,
+    inactiveIcon: PersonOutline,
+    itemCallback: () => console.log('/profile'),
     name: 'My Profile',
-    path: '/profile',
   },
   {
-    activeIcon: MessageCircleOutline,
+    activeIcon: MessageCircle,
     disabled: false,
-    inactiveIcon: MessageCircle,
+    inactiveIcon: MessageCircleOutline,
+    itemCallback: () => console.log('/messenger'),
     name: 'Messenger',
-    path: '/messenger',
   },
   {
-    activeIcon: SearchOutline,
+    activeIcon: Search,
     disabled: false,
-    inactiveIcon: Search,
+    inactiveIcon: SearchOutline,
+    itemCallback: () => console.log('/search'),
     name: 'Search',
-    path: '/search',
   },
   {
-    activeIcon: TrendingUpOutline,
+    activeIcon: TrendingUp,
     disabled: false,
-    inactiveIcon: TrendingUp,
+    inactiveIcon: TrendingUpOutline,
+    itemCallback: () => console.log('/statistics'),
     name: 'Statistics',
-    path: '/statistics',
   },
   {
-    activeIcon: BookmarkOutline,
+    activeIcon: Bookmark,
     disabled: false,
-    inactiveIcon: Bookmark,
+    inactiveIcon: BookmarkOutline,
+    itemCallback: () => console.log('/favorites'),
     name: 'Favorites',
-    path: '/favorites',
   },
   {
-    activeIcon: LogOutOutline,
+    activeIcon: LogOut,
     disabled: false,
-    inactiveIcon: LogOut,
+    inactiveIcon: LogOutOutline,
+    itemCallback: () => console.log('/logout'),
     name: 'Log Out',
-    path: '/logout',
   },
 ]
 
-export const Sidebar = ({ sections = defaultItems }: SidebarProps) => {
+export const Sidebar = ({ callbacks = [], sections = defaultItems }: Props) => {
   const [activeSection, setActiveSection] = useState<null | number>(null)
-  const handleClick = (index: number) => {
-    if (!sections[index].disabled) {
-      setActiveSection(index)
-    }
+
+  const handleClick = (index: number, handler = () => {}) => {
+    setActiveSection(index)
+    handler()
   }
 
   return (
-    <ul className={styles.sidebar}>
-      {sections.map((section, index) => {
+    <ul className={s.sidebar}>
+      {sections.map(({ disabled, itemCallback, name, ...section }, index) => {
         const isActive = activeSection === index
-        const isDisabled = section.disabled
+        const newCallback = callbacks.find(el => el.name === name)?.itemCallback
+        const handler = newCallback ?? itemCallback
 
         return (
-          <li className={styles.menuItem} key={section.name}>
-            <a
-              aria-disabled={isDisabled}
-              className={clsx(styles.menuItemLink)}
-              // href={section.path}
-              onClick={() => handleClick(index)}
-            >
-              {isActive ? (
-                <section.inactiveIcon height={24} width={24} />
-              ) : (
-                <section.activeIcon height={24} width={24} />
-              )}
-              <span className={isDisabled ? styles.spanDisabled : ''}>{section.name}</span>
-            </a>
+          <li
+            aria-disabled={disabled}
+            className={s.menuItem}
+            key={name}
+            onClick={() => handleClick(index, handler)}
+            tabIndex={disabled ? -1 : 0}
+          >
+            {isActive ? (
+              <section.activeIcon fill={'var(--color-accent-500)'} height={24} width={24} />
+            ) : (
+              <section.inactiveIcon height={24} width={24} />
+            )}
+            <span className={clsx(disabled && s.spanDisabled, isActive && s.active)}>{name}</span>
           </li>
         )
       })}

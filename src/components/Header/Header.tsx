@@ -1,7 +1,8 @@
+import { ReactNode } from 'react'
+
 import s from './Header.module.scss'
 
 import { BurgerMenu, BurgerMenuItem } from '../BurgerMenu/BurgerMenu'
-import { Button } from '../Button'
 import {
   BellOutline,
   BookmarkOutline,
@@ -14,13 +15,16 @@ import {
 import { Option, SelectBox } from '../SelectBox'
 
 export type HeaderProps = {
+  children?: ReactNode
   isAuthorized?: boolean
+  logInHandler?: () => void
   menuItems?: BurgerMenuItem[]
   notificationCount?: number
   onSelectValueChange: (value: string) => void
   selectOptions?: Option[]
+  signUpHandler?: () => void
   title?: string
-  titleLink?: string
+  titleHandler?: () => void
 }
 
 const defaultOptions = [
@@ -62,19 +66,20 @@ const defaultMenuItems = [
 ]
 
 export const Header = ({
+  children,
   isAuthorized,
   menuItems = defaultMenuItems,
   notificationCount = 0,
   onSelectValueChange,
   selectOptions = defaultOptions,
   title = 'Inctagram',
-  titleLink = '/',
+  titleHandler,
 }: HeaderProps) => {
   return (
     <header className={s.header}>
-      <a className={s.title} href={titleLink}>
+      <span className={s.title} onClick={titleHandler}>
         {title}
-      </a>
+      </span>
       <div className={s.content}>
         {isAuthorized && (
           <div className={s.iconWrapper}>
@@ -97,12 +102,7 @@ export const Header = ({
             <BurgerMenu items={menuItems} />
           </div>
         )}
-        {!isAuthorized && (
-          <div className={s.headerButtons}>
-            <Button variant={'text'}>Log In</Button>
-            <Button variant={'primary'}>Sign Up</Button>
-          </div>
-        )}
+        {children}
       </div>
     </header>
   )

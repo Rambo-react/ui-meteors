@@ -1,4 +1,4 @@
-import { CSSProperties, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import * as Toast from '@radix-ui/react-toast'
 import { clsx } from 'clsx'
@@ -7,30 +7,45 @@ import s from './Alert.module.scss'
 
 import { Close } from '../Icons'
 
-type Props = {
+export type AlertProps = {
+  className?: string
   duration?: number
   iconClose?: boolean
   message: string
-  styles?: CSSProperties
+  onClose?: () => void
   variant: 'accepted' | 'error'
 }
 
-export const Alert = ({ duration = 6000, iconClose = true, message, styles, variant }: Props) => {
+export const Alert = ({
+  className,
+  duration = 6000,
+  iconClose = true,
+  message,
+  onClose,
+  variant,
+}: AlertProps) => {
   const [isAlertOpen, setIsAlertOpen] = useState(false)
 
   useEffect(() => {
+    let timerId: number
+
     if (message) {
       setIsAlertOpen(true)
-      const timer = setTimeout(() => {
-        setIsAlertOpen(false)
+      timerId = +setTimeout(() => {
+        handleClose()
       }, duration)
+    }
 
-      return () => clearTimeout(timer)
+    return () => {
+      if (timerId) {
+        clearTimeout(timerId)
+      }
     }
   }, [message, duration])
 
   const handleClose = () => {
     setIsAlertOpen(false)
+    onClose && onClose()
   }
 
   return (
@@ -42,15 +57,13 @@ export const Alert = ({ duration = 6000, iconClose = true, message, styles, vari
         role={'alert'}
       >
         <Toast.Title>{message}</Toast.Title>
-        <Toast.Description onClick={handleClose}>
-          {iconClose && (
-            <div className={s.iconWrapper}>
-              <Close fill={'white'} height={24} width={24} />
-            </div>
-          )}
-        </Toast.Description>
+        {iconClose && (
+          <Toast.Description onClick={handleClose}>
+            <Close className={s.icon} fill={'white'} height={24} width={24} />
+          </Toast.Description>
+        )}
       </Toast.Root>
-      <Toast.Viewport className={clsx(s.viewport)} style={styles} />
+      <Toast.Viewport className={clsx(s.viewport, className)} />
     </Toast.Provider>
   )
 }

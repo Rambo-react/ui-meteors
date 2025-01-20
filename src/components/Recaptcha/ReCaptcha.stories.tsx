@@ -22,7 +22,11 @@ const FakeRecaptcha = (props: FakeRecaptchaProps) => {
     }, 1500)
   }
 
-  return <Recaptcha onClick={onClick ?? handleOnClick} variant={recaptchaVariant} />
+  return (
+    <div style={{ width: '300px' }}>
+      <Recaptcha onClick={onClick ?? handleOnClick} variant={recaptchaVariant} />
+    </div>
+  )
 }
 
 const meta = {

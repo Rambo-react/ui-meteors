@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { action } from '@storybook/addon-actions'
-
 import { Menu } from './Menu'
 
 const meta = {
@@ -15,6 +13,6 @@ type Story = StoryObj<typeof meta>
 
 export const Default: Story = {
   args: {
-    onClick: action('icon clicked:'),
+    callbacks: [{ itemCallback: () => console.log('clicked to Create'), name: 'Create' }],
   },
 }

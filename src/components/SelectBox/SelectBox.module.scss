@@ -11,6 +11,7 @@
 
   box-sizing: border-box;
   width: 100%;
+  min-width: 163px;
   height: 36px;
   padding: 6px 12px;
 
@@ -112,12 +113,26 @@
   margin-right: 12px;
 }
 
-@media (width<=360) {
+@media (width<=425px) {
   .itemLabel {
     display: none;
   }
 
   .icon {
     margin-right: 2px;
+  }
+
+  .trigger {
+    min-width:  42px;
+    padding-right: 0;
+    border: none;
+
+    &[data-state='open'] {
+      border: none;
+    }
+  }
+
+  .viewport {
+    border: none;
   }
 }

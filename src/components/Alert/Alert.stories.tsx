@@ -13,12 +13,6 @@ type Story = StoryObj<typeof meta>
 export const AcceptedAlert: Story = {
   args: {
     message: 'Your settings are saved',
-    styles: {
-      left: '0px',
-      padding: '0px',
-      position: 'fixed',
-      top: '0px',
-    },
     variant: 'accepted',
   },
 }
