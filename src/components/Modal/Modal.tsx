@@ -1,4 +1,4 @@
-import { ReactNode, useEffect, useRef } from 'react'
+import { ReactNode, useCallback, useEffect, useRef } from 'react'
 
 import * as Dialog from '@radix-ui/react-dialog'
 import clsx from 'clsx'
@@ -27,11 +27,14 @@ export const Modal = ({
   title,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null)
-  const handleClickOutside = (event: MouseEvent) => {
-    if (onCloseOut && modalRef.current && !modalRef.current.contains(event.target as Node)) {
-      onCloseOut()
-    }
-  }
+  const handleClickOutside = useCallback(
+    (event: MouseEvent) => {
+      if (onCloseOut && modalRef.current && !modalRef.current.contains(event.target as Node)) {
+        onCloseOut()
+      }
+    },
+    [onCloseOut]
+  )
 
   useEffect(() => {
     if (isOpen) {
@@ -41,7 +44,7 @@ export const Modal = ({
     return () => {
       document.removeEventListener('mousedown', handleClickOutside)
     }
-  }, [isOpen])
+  }, [isOpen, handleClickOutside])
 
   if (!isOpen) {
     return null
