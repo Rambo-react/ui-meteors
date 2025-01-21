@@ -23,7 +23,6 @@ export const TextArea = ({
   const customId = id || generatedId
   const [currentLength, setCurrentLength] = useState(0)
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    console.log('TYYYY', currentLength)
     setCurrentLength(event.target.value.length)
   }
 
