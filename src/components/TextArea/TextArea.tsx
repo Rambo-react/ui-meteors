@@ -8,6 +8,8 @@ import s from './TextArea.module.scss'
 type Props = {
   errorText?: string
   label?: string
+  maxLengthVisible?: boolean
+  onChange?: () => void
 } & ComponentPropsWithoutRef<'textarea'>
 
 export const TextArea = ({
@@ -15,15 +17,20 @@ export const TextArea = ({
   errorText = '',
   id,
   label = 'Text-area',
-  maxLength,
+  onChange = () => {},
   ...rest
 }: Props) => {
   const classNames = clsx(s.textarea, errorText && s.error, className)
   const generatedId = useId()
   const customId = id || generatedId
   const [currentLength, setCurrentLength] = useState(0)
+
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setCurrentLength(event.target.value.length)
+
+    if (onChange) {
+      onChange()
+    }
   }
 
   return (
@@ -37,12 +44,17 @@ export const TextArea = ({
         aria-label={label}
         className={classNames}
         id={customId}
-        maxLength={maxLength}
+        maxLength={rest.maxLength}
         onChange={handleChange}
         {...rest}
       />
-      {maxLength && <p className={s.maxLength}>{`${currentLength}/${maxLength}`}</p>}
-      {!!errorText && <p className={s.errorText}>{errorText}</p>}
+      {errorText ? (
+        <p className={s.errorText}>{errorText}</p>
+      ) : (
+        rest.maxLengthVisible && (
+          <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>
+        )
+      )}
     </div>
   )
 }

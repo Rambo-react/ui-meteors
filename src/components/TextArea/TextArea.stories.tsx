@@ -1,7 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import { ChangeEventHandler, useState } from 'react'
-
 import { TextArea } from './'
 
 const meta = {
@@ -17,6 +15,7 @@ const meta = {
     errorText: '',
     label: 'Text-area',
     maxLength: 50,
+    maxLengthVisible: true,
     placeholder: 'Text-area',
   },
   component: TextArea,
