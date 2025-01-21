@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, useId } from 'react'
+import React, { ComponentPropsWithoutRef, useId, useState } from 'react'
 
 import * as Label from '@radix-ui/react-label'
 import clsx from 'clsx'
@@ -15,11 +15,17 @@ export const TextArea = ({
   errorText = '',
   id,
   label = 'Text-area',
+  maxLength,
   ...rest
 }: Props) => {
   const classNames = clsx(s.textarea, errorText && s.error, className)
   const generatedId = useId()
   const customId = id || generatedId
+  const [currentLength, setCurrentLength] = useState(0)
+  const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
+    console.log('TYYYY', currentLength)
+    setCurrentLength(event.target.value.length)
+  }
 
   return (
     <div className={s.container}>
@@ -28,7 +34,15 @@ export const TextArea = ({
           {label}
         </Label.Root>
       )}
-      <textarea aria-label={label} className={classNames} id={customId} {...rest} />
+      <textarea
+        aria-label={label}
+        className={classNames}
+        id={customId}
+        maxLength={maxLength}
+        onChange={handleChange}
+        {...rest}
+      />
+      {maxLength && <p className={s.maxLength}>{`${currentLength}/${maxLength}`}</p>}
       {!!errorText && <p className={s.errorText}>{errorText}</p>}
     </div>
   )
