@@ -14,6 +14,8 @@ const meta = {
     disabled: false,
     errorText: '',
     label: 'Text-area',
+    maxLength: 50,
+    maxLengthVisible: true,
     placeholder: 'Text-area',
   },
   component: TextArea,
