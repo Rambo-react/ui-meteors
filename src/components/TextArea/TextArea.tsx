@@ -10,13 +10,14 @@ type Props = {
   label?: string
   maxLengthVisible?: boolean
   onChange?: () => void
-} & ComponentPropsWithoutRef<'textarea'>
+} & Omit<ComponentPropsWithoutRef<'textarea'>, 'onChange'>
 
 export const TextArea = ({
   className,
   errorText = '',
   id,
   label = 'Text-area',
+  maxLengthVisible = false,
   onChange = () => {},
   ...rest
 }: Props) => {
@@ -51,9 +52,7 @@ export const TextArea = ({
       {errorText ? (
         <p className={s.errorText}>{errorText}</p>
       ) : (
-        rest.maxLengthVisible && (
-          <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>
-        )
+        maxLengthVisible && <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>
       )}
     </div>
   )
