@@ -21,6 +21,7 @@ export const TextArea = ({
   onChange = () => {},
   ...rest
 }: Props) => {
+  const showMaxLength = !errorText && maxLengthVisible
   const classNames = clsx(s.textarea, errorText && s.error, className)
   const generatedId = useId()
   const customId = id || generatedId
@@ -45,15 +46,12 @@ export const TextArea = ({
         aria-label={label}
         className={classNames}
         id={customId}
-        maxLength={rest.maxLength}
         onChange={handleChange}
         {...rest}
       />
-      {errorText ? (
-        <p className={s.errorText}>{errorText}</p>
-      ) : (
-        maxLengthVisible && <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>
-      )}
+      {!!errorText && <p className={s.errorText}>{errorText}</p>}
+
+      {showMaxLength && <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>}
     </div>
   )
 }
