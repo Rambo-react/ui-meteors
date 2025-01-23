@@ -37,12 +37,16 @@ const meta = {
     title: {
       description: 'Set title for modal',
     },
+    withoutHeader: {
+      description: 'Modal without header',
+    },
   },
   args: {
     children: <div>Children</div>,
     customHeader: undefined,
     isOpen: false,
     title: 'Title',
+    withoutHeader: false,
   },
   component: Modal,
   render: args => <StoryTemplate {...args} />,
@@ -138,5 +142,16 @@ export const WithCustomHeaderStory: Story = {
         <p>Custom header</p>
       </div>
     ),
+  },
+}
+export const WithoutHeaderStory: Story = {
+  args: {
+    children: (
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '18px', padding: '20px' }}>
+        <p>Modal content</p>
+      </div>
+    ),
+    isOpen: true,
+    withoutHeader: true,
   },
 }

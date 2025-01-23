@@ -4,7 +4,7 @@ import { Modal, ModalProps } from '../Modal'
 
 type Props = Omit<ModalProps, 'onClose'>
 
-export const StoryTemplate = ({ children, customHeader, isOpen, title }: Props) => {
+export const StoryTemplate = ({ children, customHeader, isOpen, title, withoutHeader }: Props) => {
   const [open, setOpen] = useState(isOpen)
 
   const onClickHandler = () => {
@@ -12,7 +12,13 @@ export const StoryTemplate = ({ children, customHeader, isOpen, title }: Props) 
   }
 
   return (
-    <Modal customHeader={customHeader} isOpen={open} onClose={onClickHandler} title={title}>
+    <Modal
+      customHeader={customHeader}
+      isOpen={open}
+      onClose={onClickHandler}
+      title={title}
+      withoutHeader={withoutHeader}
+    >
       {children}
     </Modal>
   )
