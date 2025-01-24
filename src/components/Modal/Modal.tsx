@@ -15,6 +15,7 @@ export type ModalProps = {
   onClose?: () => void
   onCloseOut?: () => void
   title?: string
+  withoutHeader?: boolean
 }
 
 export const Modal = ({
@@ -25,6 +26,7 @@ export const Modal = ({
   onClose,
   onCloseOut,
   title,
+  withoutHeader,
 }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement | null>(null)
   const handleClickOutside = useCallback(
@@ -59,7 +61,7 @@ export const Modal = ({
           className={clsx(s.container, className)}
           ref={modalRef}
         >
-          <div className={s.headContainer}>
+          <div className={withoutHeader ? s.withoutHeader : s.headContainer}>
             {customHeader || (
               <>
                 <Dialog.Title className={s.title}>{title}</Dialog.Title>
