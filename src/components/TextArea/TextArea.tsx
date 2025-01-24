@@ -9,7 +9,7 @@ type Props = {
   errorText?: string
   label?: string
   maxLengthVisible?: boolean
-  onChange?: () => void
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 } & Omit<ComponentPropsWithoutRef<'textarea'>, 'onChange'>
 
 export const TextArea = ({
@@ -31,7 +31,7 @@ export const TextArea = ({
     setCurrentLength(event.target.value.length)
 
     if (onChange) {
-      onChange()
+      onChange(event)
     }
   }
 
