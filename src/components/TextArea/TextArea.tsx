@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useId, useState } from 'react'
+import React, { ComponentPropsWithoutRef, useId } from 'react'
 
 import * as Label from '@radix-ui/react-label'
 import clsx from 'clsx'
@@ -10,7 +10,6 @@ type Props = {
   label?: string
   maxLengthVisible?: boolean
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
-  value?: string
 } & Omit<ComponentPropsWithoutRef<'textarea'>, 'onChange'>
 
 export const TextArea = ({
@@ -20,21 +19,15 @@ export const TextArea = ({
   label = 'Text-area',
   maxLengthVisible = false,
   onChange = () => {},
-  value = '',
   ...rest
 }: Props) => {
   const showMaxLength = !errorText && maxLengthVisible
   const classNames = clsx(s.textarea, errorText && s.error, className)
   const generatedId = useId()
   const customId = id || generatedId
-  const [currentLength, setCurrentLength] = useState(value?.length || 0)
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCurrentLength(event.target.value.length)
-
-    if (onChange) {
-      onChange(event)
-    }
+    onChange(event)
   }
 
   return (
@@ -49,12 +42,15 @@ export const TextArea = ({
         className={classNames}
         id={customId}
         onChange={handleChange}
-        value={value}
         {...rest}
       />
       {!!errorText && <p className={s.errorText}>{errorText}</p>}
 
-      {showMaxLength && <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>}
+      {showMaxLength && (
+        <p
+          className={s.maxLength}
+        >{`${typeof rest.value === 'string' ? rest.value.length : 0}/${rest.maxLength}`}</p>
+      )}
     </div>
   )
 }
