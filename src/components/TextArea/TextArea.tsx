@@ -1,4 +1,4 @@
-import React, { ComponentPropsWithoutRef, useId, useState } from 'react'
+import React, { ComponentPropsWithoutRef, useId } from 'react'
 
 import * as Label from '@radix-ui/react-label'
 import clsx from 'clsx'
@@ -25,14 +25,9 @@ export const TextArea = ({
   const classNames = clsx(s.textarea, errorText && s.error, className)
   const generatedId = useId()
   const customId = id || generatedId
-  const [currentLength, setCurrentLength] = useState(0)
 
   const handleChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setCurrentLength(event.target.value.length)
-
-    if (onChange) {
-      onChange(event)
-    }
+    onChange(event)
   }
 
   return (
@@ -51,7 +46,11 @@ export const TextArea = ({
       />
       {!!errorText && <p className={s.errorText}>{errorText}</p>}
 
-      {showMaxLength && <p className={s.maxLength}>{`${currentLength}/${rest.maxLength}`}</p>}
+      {showMaxLength && (
+        <p
+          className={s.maxLength}
+        >{`${typeof rest.value === 'string' ? rest.value.length : 0}/${rest.maxLength}`}</p>
+      )}
     </div>
   )
 }
