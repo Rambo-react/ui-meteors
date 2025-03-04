@@ -8,6 +8,7 @@ import s from './TextArea.module.scss'
 type Props = {
   errorText?: string
   label?: string
+  maxLengthClassName?: string
   maxLengthVisible?: boolean
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>) => void
 } & Omit<ComponentPropsWithoutRef<'textarea'>, 'onChange'>
@@ -17,6 +18,7 @@ export const TextArea = ({
   errorText = '',
   id,
   label = 'Text-area',
+  maxLengthClassName,
   maxLengthVisible = false,
   onChange = () => {},
   ...rest
@@ -48,7 +50,7 @@ export const TextArea = ({
 
       {showMaxLength && (
         <p
-          className={s.maxLength}
+          className={clsx(s.maxLength, maxLengthClassName)}
         >{`${typeof rest.value === 'string' ? rest.value.length : 0}/${rest.maxLength}`}</p>
       )}
     </div>
