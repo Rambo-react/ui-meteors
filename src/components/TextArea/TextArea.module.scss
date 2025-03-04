@@ -73,8 +73,7 @@
 }
 
 .maxLength {
-  position: absolute;
-  top: 120px;
-  right: 30px;
+  display: flex;
+  justify-content: flex-end;
   color: var(--color-dark-100);
 }
