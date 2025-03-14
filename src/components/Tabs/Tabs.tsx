@@ -8,7 +8,7 @@ import s from './Tabs.module.scss'
 export type Tab = Omit<
   ComponentPropsWithoutRef<typeof RadixTabs.Trigger>,
   'children' | 'className' | 'key' | 'onClick'
->
+> & { label: string }
 
 type Props = {
   getTabNameOnClick: (tabName: string) => void
@@ -17,7 +17,7 @@ type Props = {
 }
 
 export const Tabs = ({ getTabNameOnClick, selected, tabs }: Props) => {
-  const mappedData = tabs.map(({ value, ...rest }) => (
+  const mappedData = tabs.map(({ label, value, ...rest }) => (
     <RadixTabs.Trigger
       className={clsx(s.tab, {
         [s.selected]: value === selected,
@@ -27,13 +27,13 @@ export const Tabs = ({ getTabNameOnClick, selected, tabs }: Props) => {
       value={value}
       {...rest}
     >
-      {value}
+      {label}
     </RadixTabs.Trigger>
   ))
 
   return (
-    <RadixTabs.Root defaultValue={'account'}>
-      <RadixTabs.List>{mappedData}</RadixTabs.List>
+    <RadixTabs.Root value={selected}>
+      <RadixTabs.List className={s.list}>{mappedData}</RadixTabs.List>
     </RadixTabs.Root>
   )
 }
