@@ -29,9 +29,30 @@
     }
   }
 
+  &:hover {
+    background-color: rgba(from var(--color-accent-900) r g b / 15%);
+  }
+
+  &:active {
+    background-color: rgba(from var(--color-accent-100) r g b / 15%);
+  }
+
+  &:focus {
+    border-radius: 4px;
+    outline: 2px solid var(--color-accent-500);
+  }
+
   &:disabled {
     cursor: default;
     color: var(--color-dark-300);
+
+    &:hover {
+      background-color: transparent;
+    }
+
+    &:active {
+      background-color: transparent;
+    }
   }
 }
 
