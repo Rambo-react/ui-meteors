@@ -8,7 +8,10 @@ import s from './Tabs.module.scss'
 export type Tab = Omit<
   ComponentPropsWithoutRef<typeof RadixTabs.Trigger>,
   'children' | 'className' | 'key' | 'onClick'
->
+> & {
+  path: string
+  value: string
+}
 
 type Props = {
   getTabNameOnClick: (tabName: string) => void
@@ -17,14 +20,14 @@ type Props = {
 }
 
 export const Tabs = ({ getTabNameOnClick, selected, tabs }: Props) => {
-  const mappedData = tabs.map(({ value, ...rest }) => (
+  const mappedData = tabs.map(({ path, value, ...rest }) => (
     <RadixTabs.Trigger
       className={clsx(s.tab, {
-        [s.selected]: value === selected,
+        [s.selected]: path === selected,
       })}
-      key={value}
-      onClick={() => getTabNameOnClick(value)}
-      value={value}
+      key={path}
+      onClick={() => getTabNameOnClick(path)}
+      value={path}
       {...rest}
     >
       {value}

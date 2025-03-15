@@ -5,10 +5,10 @@ import { useEffect, useState } from 'react'
 import { Tabs } from './'
 
 const tabs = [
-  { value: 'General information' },
-  { value: 'Devices' },
-  { value: 'Account Management' },
-  { value: 'My payments' },
+  { path: 'general-information', value: 'General Information' },
+  { path: 'devices', value: 'Devices' },
+  { path: 'account-management', value: 'Account Management' },
+  { path: 'my-payments', value: 'My Payments' },
 ]
 
 const meta = {
@@ -19,9 +19,9 @@ const meta = {
     },
     selected: {
       control: { type: 'radio' },
-      defaultValue: 'Devices',
+      defaultValue: 'devices',
       description: 'Current selected tab (optional)',
-      options: ['General information', 'Devices', 'Account Management', 'My payments'],
+      options: ['general-information', 'devices', 'account-management', 'my-payments'],
     },
     tabs: {
       defaultValue: tabs,
@@ -29,7 +29,7 @@ const meta = {
     },
   },
   args: {
-    selected: 'Devices',
+    selected: 'devices',
     tabs,
   },
   component: Tabs,
