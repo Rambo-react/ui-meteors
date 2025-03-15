@@ -32,7 +32,7 @@ export const Tabs = ({ getTabNameOnClick, selected, tabs }: Props) => {
   ))
 
   return (
-    <RadixTabs.Root>
+    <RadixTabs.Root value={selected}>
       <RadixTabs.List className={s.list}>{mappedData}</RadixTabs.List>
     </RadixTabs.Root>
   )
