@@ -9,25 +9,24 @@ export type Tab = Omit<
   ComponentPropsWithoutRef<typeof RadixTabs.Trigger>,
   'children' | 'className' | 'key' | 'onClick'
 > & {
-  path: string
+  onTabClick: () => void
   value: string
 }
 
 type Props = {
-  getTabNameOnClick: (tabName: string) => void
   selected?: string
   tabs: Tab[]
 }
 
-export const Tabs = ({ getTabNameOnClick, selected, tabs }: Props) => {
-  const mappedData = tabs.map(({ path, value, ...rest }) => (
+export const Tabs = ({ selected, tabs }: Props) => {
+  const mappedData = tabs.map(({ onTabClick, value, ...rest }) => (
     <RadixTabs.Trigger
       className={clsx(s.tab, {
-        [s.selected]: path === selected,
+        [s.selected]: value === selected,
       })}
-      key={path}
-      onClick={() => getTabNameOnClick(path)}
-      value={path}
+      key={value}
+      onClick={onTabClick}
+      value={value}
       {...rest}
     >
       {value}

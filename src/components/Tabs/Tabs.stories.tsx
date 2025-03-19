@@ -5,23 +5,31 @@ import { useEffect, useState } from 'react'
 import { Tabs } from './'
 
 const tabs = [
-  { path: 'general-information', value: 'General Information' },
-  { path: 'devices', value: 'Devices' },
-  { path: 'account-management', value: 'Account Management' },
-  { path: 'my-payments', value: 'My Payments' },
+  {
+    onTabClick: () => {},
+    value: 'General Information',
+  },
+  {
+    onTabClick: () => {},
+    value: 'Devices',
+  },
+  {
+    onTabClick: () => {},
+    value: 'Account Management',
+  },
+  {
+    onTabClick: () => {},
+    value: 'My Payments',
+  },
 ]
 
 const meta = {
   argTypes: {
-    getTabNameOnClick: {
-      defaultValue: () => {},
-      description: 'Allows you to get the tab name when you click on a tab',
-    },
     selected: {
       control: { type: 'radio' },
-      defaultValue: 'devices',
+      defaultValue: 'Devices',
       description: 'Current selected tab (optional)',
-      options: ['general-information', 'devices', 'account-management', 'my-payments'],
+      options: ['General Information', 'Devices', 'Account Management', 'My Payments'],
     },
     tabs: {
       defaultValue: tabs,
@@ -29,7 +37,7 @@ const meta = {
     },
   },
   args: {
-    selected: 'devices',
+    selected: 'Devices',
     tabs,
   },
   component: Tabs,
@@ -46,17 +54,21 @@ export const BasicExample: Story = {
 
     useEffect(() => setSelectedTab(args.selected), [args.selected])
 
-    const selectTabHandler = (tabName: string) => {
-      setSelectedTab(tabName)
-    }
+    const tabsWithHandlers = args.tabs.map(tab => ({
+      ...tab,
+      onTabClick: () => setSelectedTab(tab.value),
+    }))
 
-    return <Tabs {...args} getTabNameOnClick={selectTabHandler} selected={selectedTab} />
+    return <Tabs {...args} selected={selectedTab} tabs={tabsWithHandlers} />
   },
 }
 
 export const WithEachDisabledTab: Story = {
   render(args) {
-    const tabsWithDisabled = args.tabs.map(tab => ({ ...tab, disabled: true }))
+    const tabsWithDisabled = args.tabs.map(tab => ({
+      ...tab,
+      disabled: true,
+    }))
 
     return <Tabs {...args} tabs={tabsWithDisabled} />
   },
