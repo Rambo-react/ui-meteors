@@ -7,7 +7,7 @@ import { Tabs } from './'
 const tabs = [
   {
     onTabClick: () => {},
-    value: 'General Information',
+    value: 'General information',
   },
   {
     onTabClick: () => {},
@@ -19,7 +19,7 @@ const tabs = [
   },
   {
     onTabClick: () => {},
-    value: 'My Payments',
+    value: 'My payments',
   },
 ]
 
