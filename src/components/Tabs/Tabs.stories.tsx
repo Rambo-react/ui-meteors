@@ -29,7 +29,7 @@ const meta = {
       control: { type: 'radio' },
       defaultValue: 'Devices',
       description: 'Current selected tab (optional)',
-      options: ['General Information', 'Devices', 'Account Management', 'My Payments'],
+      options: ['General information', 'Devices', 'Account Management', 'My payments'],
     },
     tabs: {
       defaultValue: tabs,
