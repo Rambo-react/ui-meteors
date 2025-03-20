@@ -5,18 +5,26 @@ import { useEffect, useState } from 'react'
 import { Tabs } from './'
 
 const tabs = [
-  { value: 'General information' },
-  { value: 'Devices' },
-  { value: 'Account Management' },
-  { value: 'My payments' },
+  {
+    onTabClick: () => {},
+    value: 'General information',
+  },
+  {
+    onTabClick: () => {},
+    value: 'Devices',
+  },
+  {
+    onTabClick: () => {},
+    value: 'Account Management',
+  },
+  {
+    onTabClick: () => {},
+    value: 'My payments',
+  },
 ]
 
 const meta = {
   argTypes: {
-    getTabNameOnClick: {
-      defaultValue: () => {},
-      description: 'Allows you to get the tab name when you click on a tab',
-    },
     selected: {
       control: { type: 'radio' },
       defaultValue: 'Devices',
@@ -46,17 +54,21 @@ export const BasicExample: Story = {
 
     useEffect(() => setSelectedTab(args.selected), [args.selected])
 
-    const selectTabHandler = (tabName: string) => {
-      setSelectedTab(tabName)
-    }
+    const tabsWithHandlers = args.tabs.map(tab => ({
+      ...tab,
+      onTabClick: () => setSelectedTab(tab.value),
+    }))
 
-    return <Tabs {...args} getTabNameOnClick={selectTabHandler} selected={selectedTab} />
+    return <Tabs {...args} selected={selectedTab} tabs={tabsWithHandlers} />
   },
 }
 
 export const WithEachDisabledTab: Story = {
   render(args) {
-    const tabsWithDisabled = args.tabs.map(tab => ({ ...tab, disabled: true }))
+    const tabsWithDisabled = args.tabs.map(tab => ({
+      ...tab,
+      disabled: true,
+    }))
 
     return <Tabs {...args} tabs={tabsWithDisabled} />
   },
