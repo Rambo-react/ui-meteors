@@ -3,18 +3,23 @@
 .tab {
   all: unset;
 
-  /* stylelint-disable-next-line order/order */
-  @include typography.H3;
-
   cursor: pointer;
 
-  padding: 6px 23px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 243px;
+  height: 36px;
 
   color: var(--color-dark-100);
 
   border-bottom: 2px solid;
 
   transition: 0.15s;
+
+  /* stylelint-disable-next-line order/order */
+  @include typography.H3;
 
   &.selected {
     color: var(--color-accent-500);
@@ -49,4 +54,8 @@
       background-color: transparent;
     }
   }
+}
+
+.list {
+  display: flex;
 }
