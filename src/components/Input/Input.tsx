@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, forwardRef, useId, useState } from 'react'
+import { ComponentPropsWithoutRef, ReactNode, forwardRef, useId, useState } from 'react'
 
 import * as Label from '@radix-ui/react-label'
 import { clsx } from 'clsx'
@@ -10,7 +10,7 @@ import { EyeOffOutline, EyeOutline, Search } from '../Icons'
 type Props = {
   containerClassName?: string
   errorMsg?: string
-  label?: string
+  label?: ReactNode | string
   type?: 'email' | 'password' | 'search' | 'text'
 } & ComponentPropsWithoutRef<'input'>
 
