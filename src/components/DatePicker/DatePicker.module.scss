@@ -4,7 +4,6 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
 
   span {
     @include typography.Regular_text_14;
@@ -21,6 +20,7 @@
     display: flex;
     gap: 24px;
     align-items: center;
+    justify-content: space-between;
 
     width: auto;
     padding: 6px 12px;

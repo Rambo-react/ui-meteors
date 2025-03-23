@@ -30,6 +30,7 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
       }
     } else {
       getDate([new Date(dateInMs)])
+      dispatch(toggleIsCalendarOpenAC())
     }
   }
 
