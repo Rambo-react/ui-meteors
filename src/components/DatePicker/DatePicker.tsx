@@ -11,7 +11,7 @@ import { formatSelectedDates } from './utils'
 type Props = {
   disabled?: boolean
   error?: string
-  getDate: (date: Date[]) => void
+  getDate: (date: Date | Date[]) => void
   isRangeInput?: boolean
   label?: string
 }
@@ -29,7 +29,7 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
         getDate([...selectedDates, dateInMs].sort().map(ms => new Date(ms)))
       }
     } else {
-      getDate([new Date(dateInMs)])
+      getDate(new Date(dateInMs))
       dispatch(toggleIsCalendarOpenAC())
     }
   }
