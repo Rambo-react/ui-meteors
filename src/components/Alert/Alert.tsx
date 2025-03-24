@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { ReactNode, useEffect, useState } from 'react'
 
 import * as Toast from '@radix-ui/react-toast'
 import { clsx } from 'clsx'
@@ -11,7 +11,7 @@ export type AlertProps = {
   className?: string
   duration?: number
   iconClose?: boolean
-  message: string
+  message: ReactNode
   onClose?: () => void
   variant: 'accepted' | 'error'
 }
