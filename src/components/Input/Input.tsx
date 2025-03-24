@@ -10,7 +10,7 @@ import { EyeOffOutline, EyeOutline, Search } from '../Icons'
 type Props = {
   containerClassName?: string
   errorMsg?: string
-  label?: ReactNode | string
+  label?: ReactNode
   type?: 'email' | 'password' | 'search' | 'text'
 } & ComponentPropsWithoutRef<'input'>
 
