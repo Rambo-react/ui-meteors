@@ -23,7 +23,7 @@ const meta = {
   args: {
     disabled: false,
     error: '',
-    getDate(date: Date[]) {
+    getDate(date: Date | Date[]) {
       console.log(date)
     },
     isRangeInput: false,
