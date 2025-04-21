@@ -24,6 +24,9 @@ export const datePickerReducer = (
         return { ...state, selectedDates: [action.selectedDate] }
       }
     }
+    case 'CLEAR_SELECTED_DATES': {
+      return { ...state, selectedDates: [] }
+    }
     default: {
       return state
     }
@@ -32,6 +35,8 @@ export const datePickerReducer = (
 
 // actions
 export const toggleIsCalendarOpenAC = () => ({ type: 'TOGGLE_IS_CALENDAR_OPEN' }) as const
+
+export const clearSelectedDatesAC = () => ({ type: 'CLEAR_SELECTED_DATES' }) as const
 
 export const addSelectedDateAC = (selectedDate: number, isRangeInput: boolean) =>
   ({ isRangeInput, selectedDate, type: 'ADD_SELECTED_DATE' }) as const
@@ -48,4 +53,5 @@ export type SelectedDate = {
 }
 export type DatePickerReducerActions =
   | ReturnType<typeof addSelectedDateAC>
+  | ReturnType<typeof clearSelectedDatesAC>
   | ReturnType<typeof toggleIsCalendarOpenAC>

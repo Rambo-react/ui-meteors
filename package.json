@@ -36,7 +36,8 @@
     "clsx": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-google-recaptcha": "^3.1.0"
+    "react-google-recaptcha": "^3.1.0",
+    "react-input-mask": "^2.0.4"
   },
   "devDependencies": {
     "@it-incubator/eslint-config": "^1.0.1",
@@ -54,6 +55,7 @@
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",
     "@types/react-google-recaptcha": "^2.1.9",
+    "@types/react-input-mask": "^3.0.6",
     "@vitejs/plugin-react": "^4.0.3",
     "eslint-plugin-storybook": "^0.6.15",
     "prettier": "3.3.3",
