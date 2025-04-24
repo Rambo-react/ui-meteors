@@ -4,14 +4,13 @@ import s from './GlobalToast.module.scss'
 
 import { Alert, AlertProps } from '../Alert'
 
-type Notification = { id: string; message: string }
+type Notification = { id: string; message: string; type: 'accepted' | 'error' }
 type GlobalToastProps = {
   delay: number
   duration: AlertProps['duration']
   messages: Notification[]
-  variant: AlertProps['variant']
 }
-export const GlobalToast = ({ delay = 1000, duration, messages, variant }: GlobalToastProps) => {
+export const GlobalToast = ({ delay = 1000, duration, messages }: GlobalToastProps) => {
   const [notifications, setNotifications] = useState<Notification[]>([])
 
   useEffect(() => {
@@ -48,7 +47,7 @@ export const GlobalToast = ({ delay = 1000, duration, messages, variant }: Globa
             key={notification.id}
             message={notification.message}
             onClose={() => removeNotification(parseInt(notification.id))}
-            variant={variant}
+            variant={notification.type}
           />
         )
       })}

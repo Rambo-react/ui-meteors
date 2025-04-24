@@ -15,11 +15,10 @@ export const AcceptedAlert: Story = {
     delay: 1000,
     duration: 3000,
     messages: [
-      { id: '1', message: 'Your settings are saved' },
-      { id: '2', message: 'Your settings are saved!!' },
-      { id: '3', message: 'Your settings are saved!!!!' },
+      { id: '1', message: 'Your settings are saved', type: 'accepted' },
+      { id: '2', message: 'Your settings are saved!!', type: 'accepted' },
+      { id: '3', message: 'Your settings are saved!!!!', type: 'accepted' },
     ],
-    variant: 'accepted',
   },
 }
 
@@ -28,10 +27,9 @@ export const ErrorAlert: Story = {
     delay: 1000,
     duration: 3000,
     messages: [
-      { id: '1', message: 'Error! Server is not available' },
-      { id: '2', message: 'Error! Server is not available%%' },
-      { id: '3', message: 'Error! Server is not available&&' },
+      { id: '1', message: 'Error! Server is not available', type: 'error' },
+      { id: '2', message: 'Error! Server is not available%%', type: 'error' },
+      { id: '3', message: 'Error! Server is not available&&', type: 'error' },
     ],
-    variant: 'error',
   },
 }
