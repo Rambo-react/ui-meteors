@@ -1,38 +1,33 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import { TODAYS_MONTH, TODAYS_YEAR } from '../variables'
 
-export const useCalendar = () => {
-  const [{ selectedMonth, selectedYear }, setCalendarState] = useState({
-    selectedMonth: TODAYS_MONTH,
-    selectedYear: TODAYS_YEAR,
+export const useCalendar = (initialDate?: Date) => {
+  const [{ selectedMonth, selectedYear }, setCalendarState] = useState<{
+    selectedMonth: number
+    selectedYear: number
+  }>({
+    selectedMonth: initialDate?.getMonth() ?? TODAYS_MONTH,
+    selectedYear: initialDate?.getFullYear() ?? TODAYS_YEAR,
   })
 
-  const goToMonth = (isGoToPrevMonth: boolean) => {
-    let shouldChangeYear = false
-    let month = selectedMonth
-    let year = selectedYear
-
-    if (month === (isGoToPrevMonth ? 0 : 11)) {
-      month = isGoToPrevMonth ? 11 : 0
-      shouldChangeYear = true
-    } else {
-      month += isGoToPrevMonth ? -1 : 1
+  useEffect(() => {
+    if (initialDate) {
+      setCalendarState({
+        selectedMonth: initialDate.getMonth(),
+        selectedYear: initialDate.getFullYear(),
+      })
     }
-
-    if (shouldChangeYear) {
-      year += isGoToPrevMonth ? -1 : 1
-    }
-
-    setCalendarState({
-      selectedMonth: month,
-      selectedYear: year,
-    })
-  }
+  }, [initialDate])
 
   return {
-    goToMonth,
     selectedMonth,
     selectedYear,
+    setSelectedMonth: (month: number) => {
+      setCalendarState(prev => ({ ...prev, selectedMonth: month }))
+    },
+    setSelectedYear: (year: number) => {
+      setCalendarState(prev => ({ ...prev, selectedYear: year }))
+    },
   }
 }
