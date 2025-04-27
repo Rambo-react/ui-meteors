@@ -5,11 +5,12 @@ import clsx from 'clsx'
 import s from './Pagination.module.scss'
 
 import { ArrowIosBackOutline, ArrowIosForwardOutline } from '../Icons'
-import { Select } from './Select'
+import { Select, Values } from './Select'
 import { usePagination } from './hooks'
 
 type Props = {
   currentPage: number
+  defaultValueItemsPerPage: Values
   itemsCount: number
   itemsPerPage: ItemsPerPage
   onItemsPerPageChange: (itemsPerPage: ItemsPerPage) => void
@@ -22,6 +23,7 @@ const ITEMS_PER_PAGE_VALUES = ['10', '20', '30', '50', '100']
 
 export const Pagination = ({
   currentPage,
+  defaultValueItemsPerPage,
   itemsCount,
   itemsPerPage,
   onItemsPerPageChange,
@@ -88,7 +90,11 @@ export const Pagination = ({
 
       <div className={s.itemsPerPage}>
         Show
-        <Select onValueChange={onItemsPerPageChangeHandler} options={ITEMS_PER_PAGE_VALUES} />
+        <Select
+          defaultValue={defaultValueItemsPerPage}
+          onValueChange={onItemsPerPageChangeHandler}
+          options={ITEMS_PER_PAGE_VALUES}
+        />
         per page
       </div>
     </div>
