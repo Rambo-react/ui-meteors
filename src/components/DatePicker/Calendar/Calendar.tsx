@@ -26,7 +26,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
     )
 
     const handleMonthChange = (next: boolean) => {
-      const newDate = new Date(selectedYear, selectedMonth + (next ? -1 : 1), 1)
+      const newDate = new Date(selectedYear, selectedMonth + (next ? 1 : -1), 1)
 
       setSelectedMonth(newDate.getMonth())
       setSelectedYear(newDate.getFullYear())
@@ -71,7 +71,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
           <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
           <div>
-            <button onClick={() => handleMonthChange(true)} onMouseDown={e => e.preventDefault()}>
+            <button onClick={() => handleMonthChange(false)} onMouseDown={e => e.preventDefault()}>
               <ArrowIosBack
                 fill={'var(--color-light-100)'}
                 height={20}
@@ -79,7 +79,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
                 width={20}
               />
             </button>
-            <button onClick={() => handleMonthChange(false)} onMouseDown={e => e.preventDefault()}>
+            <button onClick={() => handleMonthChange(true)} onMouseDown={e => e.preventDefault()}>
               <ArrowIosForward
                 fill={'var(--color-light-100)'}
                 height={20}
