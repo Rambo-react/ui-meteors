@@ -17,7 +17,9 @@ export const GlobalToast = ({ delay = 1000, duration, messages }: GlobalToastPro
     let timerId: number
     const showNotifications = async () => {
       for (const message of messages) {
-        setNotifications(prev => [...prev, message])
+        const newNotification = { ...message, id: crypto.randomUUID() }
+
+        setNotifications(prev => [...prev, newNotification])
         await new Promise(resolve => {
           timerId = +setTimeout(resolve, delay)
         })
@@ -39,7 +41,7 @@ export const GlobalToast = ({ delay = 1000, duration, messages }: GlobalToastPro
 
   return (
     <div className={s.toast}>
-      {notifications.map(notification => {
+      {notifications.map((notification, index) => {
         return (
           <Alert
             className={`${s.alert} ${s.appear}`}
