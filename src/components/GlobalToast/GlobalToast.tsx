@@ -41,7 +41,7 @@ export const GlobalToast = ({ delay = 1000, duration, messages }: GlobalToastPro
 
   return (
     <div className={s.toast}>
-      {notifications.map((notification, index) => {
+      {notifications.map(notification => {
         return (
           <Alert
             className={`${s.alert} ${s.appear}`}
