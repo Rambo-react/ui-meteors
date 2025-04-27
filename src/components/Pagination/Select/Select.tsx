@@ -4,12 +4,15 @@ import s from './Select.module.scss'
 
 import { ArrowIosForward } from '../../Icons'
 
+export type Values = '10' | '20' | '30' | '50' | '100'
+
 type Props = {
+  defaultValue: Values
   onValueChange: (value: string) => void
   options: string[]
 }
 
-export const Select = ({ onValueChange, options }: Props) => {
+export const Select = ({ defaultValue, onValueChange, options }: Props) => {
   const mappedOptions = options.map(v => (
     <SelectRadix.Item className={s.item} key={v} value={v}>
       <SelectRadix.ItemText>{v}</SelectRadix.ItemText>
@@ -17,7 +20,7 @@ export const Select = ({ onValueChange, options }: Props) => {
   ))
 
   return (
-    <SelectRadix.Root onValueChange={onValueChange}>
+    <SelectRadix.Root defaultValue={defaultValue} onValueChange={onValueChange}>
       <SelectRadix.Trigger aria-label={'Items per page'} className={s.trigger}>
         <SelectRadix.Value placeholder={'100'} />
         <SelectRadix.Icon>

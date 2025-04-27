@@ -24,6 +24,7 @@ const meta = {
   },
   args: {
     currentPage: 3,
+    defaultValueItemsPerPage: '10',
     itemsCount: 510,
     itemsPerPage: 20,
     onItemsPerPageChange(itemsPerPage: ItemsPerPage) {
