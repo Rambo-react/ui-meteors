@@ -4,14 +4,14 @@ import s from './GlobalToast.module.scss'
 
 import { Alert, AlertProps } from '../Alert'
 
-type Notification = { id: string; message: string; type: 'accepted' | 'error' }
+type Notification = { message: string; type: 'accepted' | 'error' }
 type GlobalToastProps = {
   delay: number
   duration: AlertProps['duration']
   messages: Notification[]
 }
 export const GlobalToast = ({ delay = 1000, duration, messages }: GlobalToastProps) => {
-  const [notifications, setNotifications] = useState<Notification[]>([])
+  const [notifications, setNotifications] = useState<(Notification & { id: string })[]>([])
 
   useEffect(() => {
     let timerId: number
