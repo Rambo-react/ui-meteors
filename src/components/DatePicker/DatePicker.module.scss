@@ -73,8 +73,6 @@
   }
 }
 
-
-
 .inputContainer {
   width: 100%;
   display: flex;
@@ -91,7 +89,7 @@
     border: none;
     outline: none;
     width: 100%;
-    &:focus{
+    &:focus {
       outline: none;
       border: none;
     }
