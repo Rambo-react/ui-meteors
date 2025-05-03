@@ -12,7 +12,7 @@ type Props = {
   value?: string
 }
 
-export const MaskedInput = forwardRef<HTMLInputElement, Props>((props, ref) => {
+export const MaskedInput = forwardRef<HTMLInputElement, Props>(props => {
   const inputRef = useRef<HTMLInputElement | null>(null)
   const { ref: imaskRef } = useIMask({
     autofix: true,
