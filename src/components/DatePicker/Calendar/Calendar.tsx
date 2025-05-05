@@ -1,4 +1,4 @@
-import { forwardRef, useEffect } from 'react'
+import { forwardRef } from 'react'
 
 import clsx from 'clsx'
 
@@ -11,39 +11,15 @@ import { CalendarDay } from './CalendarDay'
 import { useCalendar } from './useCalendar'
 
 type Props = {
-  currentDate?: Date | null
   label?: string
   onCalendarBlur: () => void
   onDateSelect: (dateInMs: number) => void
-  onMonthChange: (date: Date) => void
   selectedDates: number[]
 }
 
 export const Calendar = forwardRef<HTMLDivElement, Props>(
-  ({ currentDate, label, onCalendarBlur, onDateSelect, onMonthChange, selectedDates }, ref) => {
-    const { selectedMonth, selectedYear, setSelectedMonth, setSelectedYear } = useCalendar(
-      currentDate || undefined
-    )
-
-    const handleMonthChange = (next: boolean) => {
-      const newDate = new Date(selectedYear, selectedMonth + (next ? 1 : -1), 1)
-
-      setSelectedMonth(newDate.getMonth())
-      setSelectedYear(newDate.getFullYear())
-      onMonthChange(newDate)
-    }
-
-    useEffect(() => {
-      if (currentDate) {
-        const isSameMonthYear =
-          currentDate.getMonth() === selectedMonth && currentDate.getFullYear() === selectedYear
-
-        if (!isSameMonthYear) {
-          setSelectedMonth(currentDate.getMonth())
-          setSelectedYear(currentDate.getFullYear())
-        }
-      }
-    }, [currentDate, selectedMonth, selectedYear, setSelectedMonth, setSelectedYear])
+  ({ label, onCalendarBlur, onDateSelect, selectedDates }, ref) => {
+    const { goToMonth, selectedMonth, selectedYear } = useCalendar()
 
     const mappedWeekDays = WEEK_DAYS.map(day => <div key={day}>{day}</div>)
 
@@ -71,7 +47,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
           <span>{`${MONTHS_NUMBER[selectedMonth]} ${selectedYear}`}</span>
 
           <div>
-            <button onClick={() => handleMonthChange(false)} onMouseDown={e => e.preventDefault()}>
+            <button onClick={() => goToMonth(true)} onMouseDown={e => e.preventDefault()}>
               <ArrowIosBack
                 fill={'var(--color-light-100)'}
                 height={20}
@@ -79,7 +55,7 @@ export const Calendar = forwardRef<HTMLDivElement, Props>(
                 width={20}
               />
             </button>
-            <button onClick={() => handleMonthChange(true)} onMouseDown={e => e.preventDefault()}>
+            <button onClick={() => goToMonth(false)} onMouseDown={e => e.preventDefault()}>
               <ArrowIosForward
                 fill={'var(--color-light-100)'}
                 height={20}
