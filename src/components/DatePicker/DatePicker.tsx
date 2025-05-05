@@ -3,7 +3,6 @@ import clsx from 'clsx'
 import s from './DatePicker.module.scss'
 
 import { CalendarIcon, CalendarIconOutline } from '../Icons'
-import { Input } from '../Input'
 import { Calendar } from './Calendar'
 import { addSelectedDateAC, toggleIsCalendarOpenAC } from './datePickerReducer'
 import { useDatePicker } from './useDatePicker'
