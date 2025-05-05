@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
+import InputMask from 'react-input-mask'
 
 import clsx from 'clsx'
 
@@ -6,8 +7,8 @@ import s from './DatePicker.module.scss'
 
 import { Button } from '../Button'
 import { CalendarIcon, CalendarIconOutline } from '../Icons'
+import { Input } from '../Input'
 import { Calendar } from './Calendar'
-import { MaskedInput } from './MaskedInput'
 import {
   addSelectedDateAC,
   clearSelectedDatesAC,
@@ -29,6 +30,7 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
   const [calendarDate, setCalendarDate] = useState<Date>(TODAY)
   const { calendarRef, dispatch, isCalendarOpen, onCalendarBlur, selectedDates } = useDatePicker()
   const [localValue, setLocalValue] = useState('')
+  const inputRef = useRef<HTMLInputElement>(null)
 
   useEffect(() => {
     if (!isRangeInput && selectedDates.length > 0) {
@@ -59,14 +61,19 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
     }
   }
 
-  const handleInputChange = (value: string) => {
-    setLocalValue(value)
-    const [d, m, y] = value.split('.')
-    const parsedDate = parseDateString(`${y}-${m}-${d}`)
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = e.target.value
 
-    if (parsedDate) {
-      setCalendarDate(parsedDate)
-      getDate([parsedDate])
+    setLocalValue(inputValue)
+
+    const date = parseDateString(inputValue)
+
+    if (date) {
+      setCalendarDate(date)
+      getDate([date])
+    } else {
+      setCalendarDate(TODAY)
+      getDate([])
     }
   }
 
@@ -104,14 +111,24 @@ export const DatePicker = ({ disabled, error, getDate, isRangeInput = false, lab
             [s.calendarExpanded]: isCalendarOpen, // for background while calendar opened
           })}
         >
-          <MaskedInput
-            className={clsx(s.input, { [s.error]: error })}
+          <InputMask
             disabled={disabled}
+            mask={'99.99.9999'}
+            maskPlaceholder={null}
             onBlur={handlerBlur}
             onChange={handleInputChange}
-            placeholder={'дд.мм.гггг'}
             value={localValue}
-          />
+          >
+            {props => (
+              <Input
+                {...props}
+                className={clsx(s.input, { [s.error]: error })}
+                disabled={disabled}
+                placeholder={'дд.мм.гггг'}
+                ref={inputRef}
+              />
+            )}
+          </InputMask>
           <Button
             className={s.calendarDate}
             disabled={disabled}
