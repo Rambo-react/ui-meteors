@@ -1,4 +1,3 @@
-'use client'
 import React, { forwardRef, useRef } from 'react'
 import { IMask, useIMask } from 'react-imask'
 
