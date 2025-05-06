@@ -53,9 +53,6 @@ importers:
       react-google-recaptcha:
         specifier: ^3.1.0
         version: 3.1.0(react@18.2.0)
-      react-imask:
-        specifier: ^7.6.1
-        version: 7.6.1(react@18.2.0)
     devDependencies:
       '@it-incubator/eslint-config':
         specifier: ^1.0.1
@@ -102,9 +99,6 @@ importers:
       '@types/react-google-recaptcha':
         specifier: ^2.1.9
         version: 2.1.9
-      '@types/react-input-mask':
-        specifier: ^3.0.6
-        version: 3.0.6
       '@vitejs/plugin-react':
         specifier: ^4.0.3
         version: 4.1.1(vite@4.5.0(@types/node@20.9.0)(sass@1.69.5))
@@ -781,10 +775,6 @@ packages:
 
   '@babel/regjsgen@0.8.0':
     resolution: {integrity: sha512-x/rqGMdzj+fWZvCOYForTghzbtqPDZ5gPwaoNGHdgDfF2QA/XZbCBp4Moo5scrkAMPhB7z26XM/AaHuIJdgauA==}
-
-  '@babel/runtime-corejs3@7.27.1':
-    resolution: {integrity: sha512-909rVuj3phpjW6y0MCXAZ5iNeORePa6ldJvp2baWGcTjwqbBDDz6xoS5JHJ7lS88NlwLYj07ImL/8IUMtDZzTA==}
-    engines: {node: '>=6.9.0'}
 
   '@babel/runtime@7.23.2':
     resolution: {integrity: sha512-mM8eg4yl5D6i3lu2QKPuPH4FArvJ8KhTofbE7jwMUv9KX5mBvwPAqnV3MlyBNqdp9RyRKP6Yck8TrfYrPvX3bg==}
@@ -2265,9 +2255,6 @@ packages:
   '@types/react-google-recaptcha@2.1.9':
     resolution: {integrity: sha512-nT31LrBDuoSZJN4QuwtQSF3O89FVHC4jLhM+NtKEmVF5R1e8OY0Jo4//x2Yapn2aNHguwgX5doAq8Zo+Ehd0ug==}
 
-  '@types/react-input-mask@3.0.6':
-    resolution: {integrity: sha512-+5I18WKyG3eWIj7TVPWfK1VitI9mPpS9y6jE/BfmTCe+iL27NfBw/yzKRvCFp1DRBvlvvcsiZf05bub0YC1k8A==}
-
   '@types/react@18.2.37':
     resolution: {integrity: sha512-RGAYMi2bhRgEXT3f4B92WTohopH6bIXw05FuGlmJEnv/omEn190+QYEIYxIAuIBdKgboYYdVved2p1AxZVQnaw==}
 
@@ -2808,9 +2795,6 @@ packages:
 
   core-js-compat@3.33.2:
     resolution: {integrity: sha512-axfo+wxFVxnqf8RvxTzoAlzW4gRoacrHeoFlc9n0x50+7BEyZL/Rt3hicaED1/CEd7I6tPCPVUYcJwCMO5XUYw==}
-
-  core-js-pure@3.42.0:
-    resolution: {integrity: sha512-007bM04u91fF4kMgwom2I5cQxAFIy8jVulgr9eozILl/SZE53QOqnW/+vviC+wQWLv+AunBG+8Q0TLoeSsSxRQ==}
 
   core-util-is@1.0.3:
     resolution: {integrity: sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==}
@@ -3571,10 +3555,6 @@ packages:
   ignore@5.2.4:
     resolution: {integrity: sha512-MAb38BcSbH0eHNBxn7ql2NH/kX33OkB3lZ1BNdh7ENeRChHTYsTvWrMubiIAMNS2llXEEgZ1MUOBtXChP3kaFQ==}
     engines: {node: '>= 4'}
-
-  imask@7.6.1:
-    resolution: {integrity: sha512-sJlIFM7eathUEMChTh9Mrfw/IgiWgJqBKq2VNbyXvBZ7ev/IlO6/KQTKlV/Fm+viQMLrFLG/zCuudrLIwgK2dg==}
-    engines: {npm: '>=4.0.0'}
 
   immutable@4.3.4:
     resolution: {integrity: sha512-fsXeu4J4i6WNWSikpI88v/PcVflZz+6kMhUfIwc5SY+poQRPnaf5V7qds6SUyUN3cVxEzuCab7QIoLOQ+DQ1wA==}
@@ -4565,18 +4545,6 @@ packages:
     peerDependencies:
       react: '>=16.4.1'
 
-  react-imask@7.6.1:
-    resolution: {integrity: sha512-vLNfzcCz62Yzx/GRGh5tiCph9Gbh2cZu+Tz8OiO5it2eNuuhpA0DWhhSlOtVtSJ80+Bx+vFK5De8eQ9AmbkXzA==}
-    engines: {npm: '>=4.0.0'}
-    peerDependencies:
-      react: '>=0.14.0'
-
-  react-input-mask@2.0.4:
-    resolution: {integrity: sha512-1hwzMr/aO9tXfiroiVCx5EtKohKwLk/NT8QlJXHQ4N+yJJFyUuMT+zfTpLBwX/lK3PkuMlievIffncpMZ3HGRQ==}
-    peerDependencies:
-      react: '>=0.14.0'
-      react-dom: '>=0.14.0'
-
   react-inspector@6.0.2:
     resolution: {integrity: sha512-x+b7LxhmHXjHoU/VrFAzw5iutsILRoYyDq97EDYdFpPLcvqtEzk4ZSZSQjnFPbr5T57tLXnHcqFYoN1pI6u8uQ==}
     peerDependencies:
@@ -5356,9 +5324,6 @@ packages:
 
   walker@1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
-
-  warning@4.0.3:
-    resolution: {integrity: sha512-rpJyN222KWIvHJ/F53XSZv0Zl/accqHR8et1kpaMTD/fLCRxtV8iX8czMzY7sVZupTI3zcUTg8eycS2kNF9l6w==}
 
   watchpack@2.4.0:
     resolution: {integrity: sha512-Lcvm7MGST/4fup+ifyKi2hjyIAwcdI4HRgtvTpIUxBRhB+RFtUh8XtDOxUfctVCnhVi+QQj49i91OyvzkJl6cg==}
@@ -6238,10 +6203,6 @@ snapshots:
       source-map-support: 0.5.21
 
   '@babel/regjsgen@0.8.0': {}
-
-  '@babel/runtime-corejs3@7.27.1':
-    dependencies:
-      core-js-pure: 3.42.0
 
   '@babel/runtime@7.23.2':
     dependencies:
@@ -8161,10 +8122,6 @@ snapshots:
     dependencies:
       '@types/react': 18.2.37
 
-  '@types/react-input-mask@3.0.6':
-    dependencies:
-      '@types/react': 18.2.37
-
   '@types/react@18.2.37':
     dependencies:
       '@types/prop-types': 15.7.10
@@ -8803,8 +8760,6 @@ snapshots:
   core-js-compat@3.33.2:
     dependencies:
       browserslist: 4.22.1
-
-  core-js-pure@3.42.0: {}
 
   core-util-is@1.0.3: {}
 
@@ -9764,10 +9719,6 @@ snapshots:
   ieee754@1.2.1: {}
 
   ignore@5.2.4: {}
-
-  imask@7.6.1:
-    dependencies:
-      '@babel/runtime-corejs3': 7.27.1
 
   immutable@4.3.4: {}
 
@@ -10735,19 +10686,6 @@ snapshots:
       react: 18.2.0
       react-async-script: 1.2.0(react@18.2.0)
 
-  react-imask@7.6.1(react@18.2.0):
-    dependencies:
-      imask: 7.6.1
-      prop-types: 15.8.1
-      react: 18.2.0
-
-  react-input-mask@2.0.4(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
-    dependencies:
-      invariant: 2.2.4
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
-      warning: 4.0.3
-
   react-inspector@6.0.2(react@18.2.0):
     dependencies:
       react: 18.2.0
@@ -11658,10 +11596,6 @@ snapshots:
   walker@1.0.8:
     dependencies:
       makeerror: 1.0.12
-
-  warning@4.0.3:
-    dependencies:
-      loose-envify: 1.4.0
 
   watchpack@2.4.0:
     dependencies:
